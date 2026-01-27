@@ -8,22 +8,22 @@ interface Props {
 
 export const SectionHeading: React.FC<Props> = ({ title, subtitle, center = false }) => {
   return (
-    <div className={`mb-6 lg:mb-10 w-full ${center ? 'flex flex-col items-center' : 'text-left'} animate-enter`}>
+    <div className={`mb-4 lg:mb-8 w-full ${center ? 'flex flex-col items-center' : 'text-left'} animate-enter`}>
       {/* Decorative accent */}
       {!center && (
-        <div className="w-8 h-1 lg:w-12 lg:h-1.5 bg-gradient-to-r from-purple-600 to-pink-500 mb-3 lg:mb-4 rounded-full" />
+        <div className="w-8 h-1 lg:w-10 lg:h-1 bg-gradient-to-r from-purple-600 to-pink-500 mb-2 lg:mb-3 rounded-full" />
       )}
       
-      <h2 className={`text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-brand font-black text-slate-900 tracking-tight mb-3 lg:mb-4 uppercase ${center ? 'text-center' : ''}`}>
+      <h2 className={`text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-brand font-black text-slate-900 tracking-tight mb-2 lg:mb-3 uppercase ${center ? 'text-center' : ''}`}>
         {title}
       </h2>
       
       {center && (
-         <div className="w-10 h-1 lg:w-16 lg:h-1.5 bg-gradient-to-r from-purple-600 to-pink-500 mb-3 lg:mb-5 rounded-full" />
+         <div className="w-10 h-1 bg-gradient-to-r from-purple-600 to-pink-500 mb-3 rounded-full" />
       )}
 
       {subtitle && (
-        <p className={`text-sm md:text-base lg:text-lg xl:text-xl text-slate-500 max-w-4xl leading-relaxed font-normal delay-100 animate-enter ${center ? 'text-left self-center text-center' : 'text-left'}`}>
+        <p className={`text-xs md:text-sm lg:text-base text-slate-500 max-w-3xl leading-relaxed font-normal delay-100 animate-enter ${center ? 'text-left self-center text-center' : 'text-left'}`}>
           {subtitle}
         </p>
       )}

@@ -8,18 +8,24 @@ import {
   UserPlus, 
   Gift, 
   Briefcase, 
-  Globe 
+  Globe,
+  Handshake,
+  Stethoscope,
+  ClipboardList,
+  Target
 } from 'lucide-react';
-import { ProcessStep, TimingStat, SourcingChannel, EvaluationType, KanbanColumn, StarStep, OnboardingTip } from './types';
+import { ProcessStep, TimingStat, SourcingChannel, EvaluationType, KanbanColumn, StarStep, OnboardingTip, OnboardingTask } from './types';
 
-// Slide: Process Roadmap
+// Slide: Process Roadmap (Updated to 8 steps)
 export const PROCESS_STEPS: ProcessStep[] = [
-  { id: 1, phase: "Inicio", title: "Detección", description: "Datos generales y claves del perfil.", icon: Search },
-  { id: 2, phase: "Difusión", title: "Comunicación", description: "Interna y Referidos.", icon: Megaphone },
-  { id: 3, phase: "Hunting", title: "Selección", description: "Perfiles acordes al KickOff.", icon: Users },
-  { id: 4, phase: "Conocer", title: "Entrevistas", description: "Individuales con Líder/Gerente.", icon: MessageSquare },
-  { id: 5, phase: "Cierre", title: "Propuesta", description: "Armado y análisis de equipo.", icon: FileCheck },
-  { id: 6, phase: "Ingreso", title: "Onboarding", description: "El 1er día fyo.", icon: PartyPopper }
+  { id: 1, phase: "Paso 1", title: "Reunión TBP", description: "Alineación inicial sobre el perfil buscado.", icon: Target },
+  { id: 2, phase: "Paso 2", title: "Comunicación", description: "Difusión interna y referidos.", icon: Megaphone },
+  { id: 3, phase: "Paso 3", title: "KickOff", description: "Validación con consultoras.", icon: Handshake },
+  { id: 4, phase: "Paso 4", title: "Entrevistas", description: "Junto a Líderes y Gerentes.", icon: Users },
+  { id: 5, phase: "Paso 5", title: "Psicotécnico", description: "Evaluación de competencias.", icon: ClipboardList },
+  { id: 6, phase: "Paso 6", title: "Propuesta", description: "Análisis y oferta formal.", icon: FileCheck },
+  { id: 7, phase: "Paso 7", title: "Médico", description: "Estudios de ley.", icon: Stethoscope },
+  { id: 8, phase: "Paso 8", title: "Onboarding", description: "Bienvenida al equipo fyo.", icon: PartyPopper }
 ];
 
 // Slide: Timing SLA
@@ -30,11 +36,11 @@ export const TIMING_STATS: TimingStat[] = [
   { role: "Liderazgo", range: "70-90 días", color: "bg-orange-50 border-orange-200 text-orange-800" },
 ];
 
-// Slide: Sourcing Actions (Not a funnel anymore)
+// Slide: Sourcing Actions
 export const SOURCING_CHANNELS: SourcingChannel[] = [
-  { title: "Promoción Interna", description: "1 año antigüedad + buena performance.", icon: UserPlus, percentage: "Talento Interno" },
-  { title: "Programa Referidos", description: "Si pasa la prueba, ¡Gift Card para vos!", icon: Gift, percentage: "Red de Contactos" },
-  { title: "Jóvenes Profesionales", description: "Semillero de formación comercial.", icon: Briefcase, percentage: "Semillero" },
+  { title: "Promoción Interna", description: "1 año antigüedad + performance.", icon: UserPlus, percentage: "Talento Interno" },
+  { title: "Programa Referidos", description: "Si pasa la prueba, ¡Premio!", icon: Gift, percentage: "Red de Contactos" },
+  { title: "Jóvenes Profesionales", description: "Semillero comercial.", icon: Briefcase, percentage: "Semillero" },
   { title: "Búsqueda Externa", description: "Consultoras y Mercado.", icon: Globe, percentage: "Mercado Abierto" }
 ];
 
@@ -53,47 +59,50 @@ export const STAR_MODEL: StarStep[] = [
   { letter: "4", meaning: "Bienvenida", question: "Coordinación de fecha y Onboarding.", color: "bg-pink-50 text-pink-900 border-pink-100" }
 ];
 
-// Slide: Onboarding Kanban
-export const ONBOARDING_KANBAN: KanbanColumn[] = [
+// Slide: Onboarding Kanban (Structure Only - Tasks moved to Pool in component)
+export const ONBOARDING_KANBAN_STRUCTURE: KanbanColumn[] = [
   {
     id: "pre",
     title: "Antes de llegar",
     emoji: "🎒",
-    tasks: [
-      { id: "1", content: "Asegurar accesos y notebook", tag: "Líder" },
-      { id: "2", content: "Ficha de inducción lista", tag: "RRHH" },
-      { id: "3", content: "Evitar el desorden", tag: "Equipo" }
-    ]
+    tasks: []
   },
   {
     id: "day1",
     title: "El Primer Día",
     emoji: "👋",
-    tasks: [
-      { id: "4", content: "Bienvenida cálida (sonrisa)", tag: "Líder" },
-      { id: "5", content: "Presentalo con intención", tag: "Líder" },
-      { id: "6", content: "Gestión del almuerzo", tag: "Equipo" },
-      { id: "7", content: "Cerrar el día: '¿Cómo te sentiste?'", tag: "Líder" }
-    ]
+    tasks: []
   },
   {
     id: "month1",
     title: "Seguimiento",
     emoji: "🤝",
-    tasks: [
-      { id: "8", content: "Buscar un Aliado (Referente)", tag: "Equipo" },
-      { id: "9", content: "Compartí tiempo (no lo dejes solo)", tag: "Líder" },
-      { id: "10", content: "Feedback Período Prueba", tag: "RRHH" }
-    ]
+    tasks: []
   }
+];
+
+// All tasks for the pool
+export const ALL_ONBOARDING_TASKS: OnboardingTask[] = [
+  { id: "1", content: "Asegurar accesos y notebook", tag: "Líder" },
+  { id: "2", content: "Ficha de inducción lista", tag: "TBP" },
+  { id: "3", content: "Evitar el desorden", tag: "Equipo" },
+  { id: "4", content: "Bienvenida cálida (sonrisa)", tag: "Líder" },
+  { id: "5", content: "Presentalo con intención", tag: "Líder" },
+  { id: "6", content: "Gestión del almuerzo", tag: "Equipo" },
+  { id: "7", content: "Cierre: '¿Cómo te sentiste?'", tag: "Líder" },
+  { id: "8", content: "Buscar un Aliado (Referente)", tag: "Equipo" },
+  { id: "9", content: "Compartí tiempo (no solo)", tag: "Líder" },
+  { id: "10", content: "Feedback Período Prueba", tag: "TBP" },
+  { id: "p1", content: "Presentación al equipo", tag: "Líder" },
+  { id: "p2", content: "Configurar correo", tag: "Equipo" }
 ];
 
 // Slide: Onboarding Tips
 export const ONBOARDING_TIPS: OnboardingTip[] = [
-  { title: "Presencia", description: "Tu cercanía hace la diferencia. El objetivo es que sienta: 'Me estaban esperando'." },
-  { title: "Pertenencia", description: "Como líder, sos el primer referente. Transmitís cultura y confianza desde el minuto cero." },
-  { title: "Sembrar", description: "Lo que hacés el primer día impacta directamente en su motivación y adaptación futura." },
+  { title: "Presencia", description: "Tu cercanía hace la diferencia. Que sienta: 'Me estaban esperando'." },
+  { title: "Pertenencia", description: "Sos el primer referente. Transmitís cultura desde el minuto cero." },
+  { title: "Sembrar", description: "Lo que hacés el primer día impacta en su motivación futura." },
   { title: "El Aliado", description: "Busca a alguien cercano que acompañe dudas y momentos." },
-  { title: "Almuerzo", description: "Organizá con quiénes, qué y cuándo. No dejes que almuerce solo/a el primer día." },
-  { title: "Cierre", description: "Terminá el día con una pregunta simple pero poderosa: '¿Cómo te sentiste hoy?'." }
+  { title: "Almuerzo", description: "Organizá con quiénes y qué. No dejes que almuerce solo/a." },
+  { title: "Cierre", description: "Terminá el día preguntando: '¿Cómo te sentiste hoy?'." }
 ];

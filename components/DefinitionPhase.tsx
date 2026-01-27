@@ -1,126 +1,89 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { SectionHeading } from './SectionHeading';
-import { CheckSquare, Square, FileText, Users, Calendar, ArrowRight } from 'lucide-react';
+import { HelpCircle, Lightbulb, Target, Users, Search } from 'lucide-react';
 
-const CHECKLIST_ITEMS = [
-  "Validamos Descripción de Puesto",
-  "Estrategia de 'Silla Vacía'",
-  "Revisión necesidad del equipo",
-  "Perfil técnico + actitudinal",
-  "Cronograma (fechas clave)",
-  "Alineación del aviso"
+const REFLECTION_CARDS = [
+  {
+    id: 1,
+    icon: Search,
+    question: "¿Tengo clara la 'Misión' real del puesto?",
+    insight: "No copies una JD vieja. Pensá: ¿Qué problema viene a resolver esta persona en los primeros 6 meses? Ese es tu verdadero norte."
+  },
+  {
+    id: 2,
+    icon: Users,
+    question: "¿Busco un clon o alguien que complemente?",
+    insight: "Buscamos diversidad cognitiva. Si todos piensan igual, el equipo no crece. Definí qué 'superpoder' le falta hoy a tu equipo."
+  },
+  {
+    id: 3,
+    icon: Target,
+    question: "¿Qué es negociable y qué es excluyente?",
+    insight: "La lista de deseos infinita ahuyenta talento. Priorizá: ¿Actitud sobre técnica? ¿Potencial sobre experiencia? Elegí tus batallas."
+  }
 ];
 
 export const DefinitionPhase: React.FC = () => {
-  const [checkedItems, setCheckedItems] = useState<number[]>([]);
-
-  useEffect(() => {
-    const saved = localStorage.getItem('fyo_profile_checklist_v2');
-    if (saved) {
-      setCheckedItems(JSON.parse(saved));
-    }
-  }, []);
-
-  const toggleItem = (index: number) => {
-    const newChecked = checkedItems.includes(index)
-      ? checkedItems.filter(i => i !== index)
-      : [...checkedItems, index];
-    setCheckedItems(newChecked);
-    localStorage.setItem('fyo_profile_checklist_v2', JSON.stringify(newChecked));
-  };
+  const [activeCard, setActiveCard] = useState<number | null>(null);
 
   return (
-    <section className="h-full flex flex-col justify-start md:justify-center max-w-7xl mx-auto w-full px-4 pt-8 md:pt-0">
+    <section className="h-full flex flex-col justify-center max-w-7xl mx-auto w-full px-4">
       
-      {/* Explicit Top Header */}
-      <div className="shrink-0">
+      <div className="shrink-0 mb-6 lg:mb-10">
         <SectionHeading 
-            title="ENTENDAMOS QUÉ BUSCAMOS 🔍" 
-            subtitle="Antes de salir a buscar, tenemos que saber qué estamos buscando. Validamos el diagnóstico con 3 pilares."
+            title="INTROSPECCIÓN DEL LÍDER 🤔" 
+            subtitle="Antes de pedir, hay que definir. El éxito de la búsqueda depende de la claridad de tu pedido."
         />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 mt-6 lg:mt-10 flex-1 min-h-0">
-        
-        {/* Column 1: The Why/What (Compact) */}
-        <div className="lg:col-span-4 flex flex-col gap-4">
-             <div className="flex-1 bg-white/90 p-5 rounded-2xl border border-white shadow-sm hover:shadow-md hover:border-purple-200 transition-all group flex flex-col justify-center">
-                <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 bg-purple-100 rounded-lg text-purple-600">
-                        <FileText className="w-5 h-5" />
-                    </div>
-                    <h3 className="font-brand font-bold text-base text-slate-900">El Puesto</h3>
-                </div>
-                <p className="text-slate-500 text-xs leading-relaxed">
-                    Si no existe la Descripción, la creamos juntos.
-                </p>
-             </div>
-
-             <div className="flex-1 bg-white/90 p-5 rounded-2xl border border-white shadow-sm hover:shadow-md hover:border-pink-200 transition-all group flex flex-col justify-center">
-                <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 bg-pink-100 rounded-lg text-pink-600">
-                        <Users className="w-5 h-5" />
-                    </div>
-                    <h3 className="font-brand font-bold text-base text-slate-900">El Perfil</h3>
-                </div>
-                <p className="text-slate-500 text-xs leading-relaxed">
-                    Skills técnicos + Culturales (Actitud).
-                </p>
-             </div>
-
-             <div className="flex-1 bg-white/90 p-5 rounded-2xl border border-white shadow-sm hover:shadow-md hover:border-orange-200 transition-all group flex flex-col justify-center">
-                <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 bg-orange-100 rounded-lg text-orange-600">
-                        <Calendar className="w-5 h-5" />
-                    </div>
-                    <h3 className="font-brand font-bold text-base text-slate-900">El Tiempo</h3>
-                </div>
-                <p className="text-slate-500 text-xs leading-relaxed">
-                    Planificamos la fecha de ingreso hacia atrás.
-                </p>
-             </div>
-        </div>
-
-        {/* Column 2 & 3: Interactive Checklist */}
-        <div className="lg:col-span-8 bg-slate-100/50 backdrop-blur-sm rounded-[2rem] p-6 lg:p-10 relative overflow-hidden border border-white/50 flex flex-col justify-center">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-purple-200 rounded-full blur-[80px] -mr-20 -mt-20 opacity-40 pointer-events-none"></div>
-            
-            <div className="relative z-10 h-full flex flex-col">
-                <div className="flex items-center gap-3 mb-6 shrink-0">
-                    <span className="bg-slate-900 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg">Tu Rol como Líder</span>
-                    <h4 className="font-brand font-bold text-2xl text-slate-900">Checklist de Inicio</h4>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 flex-1">
-                    {CHECKLIST_ITEMS.map((item, i) => {
-                        const isChecked = checkedItems.includes(i);
-                        return (
-                        <div 
-                            key={i} 
-                            onClick={() => toggleItem(i)}
-                            className={`
-                                group flex items-center gap-3 p-3 rounded-xl cursor-pointer transition-all duration-300 border
-                                ${isChecked ? 'bg-white border-purple-200 shadow-sm scale-[1.02]' : 'bg-white/40 border-transparent hover:bg-white/80'}
-                            `}
-                        >
-                            <div className={`transition-all duration-300 transform group-hover:scale-110 ${isChecked ? 'text-purple-600' : 'text-slate-400'}`}>
-                            {isChecked ? <CheckSquare className="w-5 h-5" /> : <Square className="w-5 h-5" />}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8">
+        {REFLECTION_CARDS.map((card) => {
+            const isActive = activeCard === card.id;
+            return (
+                <div 
+                    key={card.id}
+                    onClick={() => setActiveCard(isActive ? null : card.id)}
+                    className={`
+                        relative cursor-pointer group h-64 lg:h-80 perspective-1000
+                    `}
+                >
+                    <div className={`
+                        w-full h-full relative preserve-3d transition-transform duration-700 rounded-[2rem] shadow-lg
+                        ${isActive ? 'rotate-y-180' : ''}
+                    `}>
+                        {/* Front */}
+                        <div className="absolute inset-0 backface-hidden bg-white border border-slate-100 rounded-[2rem] p-6 flex flex-col items-center justify-center text-center hover:border-purple-200 hover:shadow-xl transition-all">
+                            <div className="w-14 h-14 bg-slate-50 text-slate-400 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-purple-50 group-hover:text-purple-600 transition-all">
+                                <card.icon className="w-7 h-7" />
                             </div>
-                            <span className={`text-sm font-medium transition-colors ${isChecked ? 'text-slate-800' : 'text-slate-500'}`}>
-                                {item}
+                            <h3 className="text-lg font-brand font-bold text-slate-900 leading-tight mb-4">
+                                {card.question}
+                            </h3>
+                            <span className="text-xs font-bold text-purple-600 uppercase tracking-widest flex items-center gap-1 bg-purple-50 px-3 py-1 rounded-full">
+                                <HelpCircle className="w-3 h-3" />
+                                Toca para reflexionar
                             </span>
                         </div>
-                        );
-                    })}
+
+                        {/* Back */}
+                        <div className="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-purple-600 to-indigo-700 rounded-[2rem] p-6 flex flex-col items-center justify-center text-center text-white">
+                            <Lightbulb className="w-8 h-8 text-yellow-300 mb-4 animate-pulse" />
+                            <p className="text-sm lg:text-base font-medium leading-relaxed">
+                                {card.insight}
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                
-                <div className="mt-6 flex items-center gap-2 text-purple-700 text-xs font-bold bg-purple-50/80 border border-purple-100 inline-flex px-4 py-2.5 rounded-xl shrink-0 self-start">
-                    <ArrowRight className="w-4 h-4" />
-                    <span>Completar este checklist garantiza un inicio exitoso.</span>
-                </div>
-            </div>
-        </div>
+            );
+        })}
       </div>
+      
+      <div className="mt-8 text-center animate-enter delay-500">
+         <p className="text-slate-400 text-xs italic">
+            "Definir bien es el 50% de la contratación."
+         </p>
+      </div>
+
     </section>
   );
 };
