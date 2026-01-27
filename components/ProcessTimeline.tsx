@@ -2,46 +2,56 @@ import React from 'react';
 import { SectionHeading } from './SectionHeading';
 import { PROCESS_STEPS } from '../constants';
 
-// Based on PDF Page 3 icons/concepts
-const STEP_ICONS = ["🏁", "📢", "🕵️", "🤝", "✍️", "🎉"];
-
 export const ProcessTimeline: React.FC = () => {
   return (
-    <section className="h-full flex flex-col justify-center max-w-7xl mx-auto w-full">
-      <div className="mb-8 md:mb-16">
+    <section className="h-full flex flex-col justify-center max-w-[90vw] lg:max-w-7xl mx-auto w-full px-4">
+      <div className="mb-12 lg:mb-20">
         <SectionHeading 
-            title="ETAPAS DEL PROCESO 🚀" 
-            subtitle="Desde la detección de la necesidad hasta el primer día de trabajo."
+            title="Roadmap del Proceso 🗺️" 
+            subtitle="Una visión paso a paso, desde que surge la necesidad hasta que la persona ingresa."
         />
       </div>
 
-      <div className="relative px-2">
-          {/* Connector Line */}
-          <div className="absolute top-12 lg:top-16 left-0 w-full h-1 bg-slate-100 hidden lg:block rounded-full overflow-hidden">
-             <div className="w-full h-full bg-gradient-to-r from-purple-200 via-pink-200 to-slate-200 opacity-50"></div>
-          </div>
+      <div className="relative w-full">
+          {/* Main Horizontal Line */}
+          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-1 bg-slate-200 -translate-y-1/2 rounded-full -z-10"></div>
+          <div className="hidden lg:block absolute top-1/2 left-0 h-1 bg-gradient-to-r from-purple-500 to-pink-500 -translate-y-1/2 rounded-full -z-10 w-[90%] opacity-20"></div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-8 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-6 gap-6 lg:gap-4">
             {PROCESS_STEPS.map((step, index) => (
-              <div key={step.id} className="group relative pt-6 lg:pt-8 animate-enter" style={{ animationDelay: `${index * 100}ms` }}>
+              <div 
+                key={step.id} 
+                className="group relative flex flex-row lg:flex-col items-center gap-4 lg:gap-0 animate-enter" 
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
                 
-                {/* Connector Dot */}
-                <div className="hidden lg:flex absolute top-12 lg:top-16 left-1/2 -translate-x-1/2 w-4 h-4 lg:w-5 lg:h-5 bg-white border-4 border-purple-200 rounded-full z-10 group-hover:border-purple-600 group-hover:scale-125 transition-all duration-300 shadow-sm"></div>
-
-                <div className="flex flex-col h-full bg-white p-4 lg:p-8 rounded-2xl border border-slate-100 hover:border-purple-300 hover:shadow-xl hover:shadow-purple-900/5 hover:-translate-y-2 transition-all duration-300 min-h-[160px] lg:min-h-[220px]">
-                  
-                  <div className="mb-3 lg:mb-6 flex justify-center">
-                    <div className="w-12 h-12 lg:w-16 lg:h-16 bg-slate-50 rounded-full flex items-center justify-center text-2xl lg:text-4xl group-hover:bg-purple-50 group-hover:scale-110 transition-all duration-300">
-                        {STEP_ICONS[index]}
+                {/* Timeline Node (Desktop) */}
+                <div className="hidden lg:flex w-10 h-10 bg-white border-4 border-slate-200 rounded-full items-center justify-center z-10 mb-6 group-hover:border-purple-500 group-hover:scale-125 transition-all duration-300 shadow-sm relative">
+                    <span className="w-3 h-3 bg-slate-300 rounded-full group-hover:bg-purple-600 transition-colors"></span>
+                    
+                    {/* Number Badge */}
+                    <div className="absolute -top-3 -right-3 bg-slate-900 text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                        {index + 1}
                     </div>
-                  </div>
+                </div>
 
-                  <div className="text-center mt-auto">
-                    <span className="text-[10px] lg:text-xs font-bold text-slate-400 uppercase tracking-widest mb-1 lg:mb-2 block">Paso {index + 1}</span>
-                    <h3 className="text-sm lg:text-xl font-brand font-bold text-slate-900 mb-2 leading-tight group-hover:text-purple-700 transition-colors uppercase">
+                {/* Mobile Line Connector */}
+                <div className="lg:hidden absolute left-6 top-10 bottom-0 w-0.5 bg-slate-200 last:hidden"></div>
+
+                {/* Card */}
+                <div className="flex-1 bg-white p-5 lg:p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-purple-200 transition-all duration-300 lg:text-center w-full group-hover:-translate-y-2">
+                  <div className="flex lg:justify-center mb-3">
+                      <div className="p-2 bg-purple-50 rounded-lg text-purple-600 group-hover:scale-110 transition-transform">
+                          <step.icon className="w-5 h-5 lg:w-6 lg:h-6" />
+                      </div>
+                  </div>
+                  
+                  <div>
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Fase {index + 1}</span>
+                    <h3 className="text-base lg:text-lg font-brand font-bold text-slate-900 mb-2 leading-tight group-hover:text-purple-700 transition-colors">
                       {step.title}
                     </h3>
-                    <p className="text-slate-500 text-[10px] lg:text-sm leading-relaxed font-medium">
+                    <p className="text-slate-500 text-xs lg:text-sm leading-relaxed font-medium">
                       {step.description}
                     </p>
                   </div>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SectionHeading } from './SectionHeading';
-import { CheckSquare, Square, FileText, Users, Calendar } from 'lucide-react';
+import { CheckSquare, Square, FileText, Users, Calendar, ArrowRight } from 'lucide-react';
 
 const CHECKLIST_ITEMS = [
   "Validamos Descripción de Puesto con Líder 📝",
@@ -14,7 +14,6 @@ const CHECKLIST_ITEMS = [
 export const DefinitionPhase: React.FC = () => {
   const [checkedItems, setCheckedItems] = useState<number[]>([]);
 
-  // Load state from localStorage on mount
   useEffect(() => {
     const saved = localStorage.getItem('fyo_profile_checklist_v2');
     if (saved) {
@@ -26,86 +25,96 @@ export const DefinitionPhase: React.FC = () => {
     const newChecked = checkedItems.includes(index)
       ? checkedItems.filter(i => i !== index)
       : [...checkedItems, index];
-    
     setCheckedItems(newChecked);
     localStorage.setItem('fyo_profile_checklist_v2', JSON.stringify(newChecked));
   };
 
   return (
-    <section className="h-full flex flex-col justify-center max-w-7xl mx-auto w-full">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-center">
+    <section className="h-full flex flex-col justify-center max-w-7xl mx-auto w-full px-4">
+      <SectionHeading 
+        title="ENTENDAMOS QUÉ BUSCAMOS 🔍" 
+        subtitle="Antes de salir a buscar, tenemos que saber qué estamos buscando. Validamos el diagnóstico con 3 pilares."
+      />
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8 mt-8 lg:mt-12 h-full">
         
-        {/* Left Content */}
-        <div>
-          <SectionHeading 
-            title="ENTENDAMOS QUÉ BUSCAMOS 🔍" 
-            subtitle="Antes de salir a buscar, tenemos que saber qué estamos buscando. Validamos el diagnóstico."
-          />
-          
-          <div className="bg-white rounded-[2rem] p-8 lg:p-10 border border-slate-100 shadow-2xl shadow-purple-900/5 mt-6 lg:mt-10 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-40 h-40 bg-purple-50 rounded-full blur-3xl -mr-10 -mt-10"></div>
-            
-            <h4 className="font-brand font-bold text-slate-900 mb-6 lg:mb-8 flex items-center gap-3 text-lg lg:text-2xl relative z-10">
-              <span className="text-2xl lg:text-3xl">📋</span>
-              Checklist del Líder
-            </h4>
-            <ul className="space-y-4 lg:space-y-6 relative z-10">
-              {CHECKLIST_ITEMS.map((item, i) => {
-                const isChecked = checkedItems.includes(i);
-                return (
-                  <li 
-                    key={i} 
-                    onClick={() => toggleItem(i)}
-                    className={`flex items-center gap-3 lg:gap-4 font-medium text-sm lg:text-lg cursor-pointer transition-all hover:translate-x-1 ${isChecked ? 'text-purple-700' : 'text-slate-600'}`}
-                  >
-                    <div className={`transition-colors ${isChecked ? 'text-purple-600' : 'text-slate-300'}`}>
-                      {isChecked ? <CheckSquare className="w-5 h-5 lg:w-7 lg:h-7" /> : <Square className="w-5 h-5 lg:w-7 lg:h-7" />}
+        {/* Column 1: The Why/What */}
+        <div className="space-y-4 lg:col-span-1 flex flex-col justify-center">
+             <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-purple-300 transition-all group">
+                <div className="flex items-center gap-4 mb-3">
+                    <div className="p-3 bg-purple-100 rounded-xl text-purple-600">
+                        <FileText className="w-6 h-6" />
                     </div>
-                    <span className={isChecked ? 'line-through opacity-70' : ''}>{item}</span>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+                    <h3 className="font-brand font-bold text-lg text-slate-900">El Puesto</h3>
+                </div>
+                <p className="text-slate-500 text-sm leading-relaxed">
+                    Si no existe la Descripción de Puesto, la creamos juntos. Es el mapa de ruta.
+                </p>
+             </div>
+
+             <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-pink-300 transition-all group">
+                <div className="flex items-center gap-4 mb-3">
+                    <div className="p-3 bg-pink-100 rounded-xl text-pink-600">
+                        <Users className="w-6 h-6" />
+                    </div>
+                    <h3 className="font-brand font-bold text-lg text-slate-900">El Perfil</h3>
+                </div>
+                <p className="text-slate-500 text-sm leading-relaxed">
+                    Skills técnicos (Hard) + Culturales (Soft). No buscamos solo aptitud, sino actitud.
+                </p>
+             </div>
+
+             <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-orange-300 transition-all group">
+                <div className="flex items-center gap-4 mb-3">
+                    <div className="p-3 bg-orange-100 rounded-xl text-orange-600">
+                        <Calendar className="w-6 h-6" />
+                    </div>
+                    <h3 className="font-brand font-bold text-lg text-slate-900">El Tiempo</h3>
+                </div>
+                <p className="text-slate-500 text-sm leading-relaxed">
+                    Fechas claras. ¿Cuándo necesitamos que ingrese? Planificamos hacia atrás.
+                </p>
+             </div>
         </div>
 
-        {/* Right Cards / Visuals */}
-        <div className="space-y-4 lg:space-y-6">
-          <div className="bg-gradient-to-r from-purple-600 to-indigo-600 p-6 lg:p-10 rounded-3xl text-white shadow-lg transform hover:scale-105 transition-transform duration-300">
-             <div className="flex items-start gap-4 lg:gap-6">
-                <div className="p-3 lg:p-4 bg-white/20 rounded-2xl backdrop-blur-sm">
-                   <FileText className="w-6 h-6 lg:w-8 lg:h-8 text-white" />
+        {/* Column 2 & 3: Interactive Checklist */}
+        <div className="lg:col-span-2 bg-slate-50 rounded-[2.5rem] p-8 lg:p-12 relative overflow-hidden border border-slate-200 flex flex-col justify-center">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-purple-200 rounded-full blur-[80px] -mr-20 -mt-20 opacity-50"></div>
+            
+            <div className="relative z-10">
+                <div className="flex items-center gap-3 mb-8">
+                    <span className="bg-slate-900 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Tu Rol como Líder</span>
+                    <h4 className="font-brand font-bold text-2xl lg:text-3xl text-slate-900">Checklist de Inicio</h4>
                 </div>
-                <div>
-                   <h3 className="font-brand font-bold text-lg lg:text-2xl mb-2">Descripción de Puesto</h3>
-                   <p className="text-white/80 text-sm lg:text-base leading-relaxed">Si no existe, ¡la armamos juntos! Es la base de todo el proceso.</p>
-                </div>
-             </div>
-          </div>
 
-          <div className="bg-white p-6 lg:p-10 rounded-3xl border border-slate-100 shadow-md transform hover:scale-105 transition-transform duration-300">
-             <div className="flex items-start gap-4 lg:gap-6">
-                <div className="p-3 lg:p-4 bg-pink-50 rounded-2xl">
-                   <Users className="w-6 h-6 lg:w-8 lg:h-8 text-pink-500" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+                    {CHECKLIST_ITEMS.map((item, i) => {
+                        const isChecked = checkedItems.includes(i);
+                        return (
+                        <div 
+                            key={i} 
+                            onClick={() => toggleItem(i)}
+                            className={`
+                                group flex items-center gap-4 p-4 rounded-xl cursor-pointer transition-all duration-300 border
+                                ${isChecked ? 'bg-white border-purple-200 shadow-sm' : 'bg-transparent border-transparent hover:bg-white/60'}
+                            `}
+                        >
+                            <div className={`transition-all duration-300 transform group-hover:scale-110 ${isChecked ? 'text-purple-600' : 'text-slate-400'}`}>
+                            {isChecked ? <CheckSquare className="w-6 h-6" /> : <Square className="w-6 h-6" />}
+                            </div>
+                            <span className={`text-sm lg:text-base font-medium transition-colors ${isChecked ? 'text-slate-800' : 'text-slate-500'}`}>
+                                {item.replace(/ .*/,'')} <span className={isChecked ? '' : 'text-slate-400'}>{item.substring(item.indexOf(' '))}</span>
+                            </span>
+                        </div>
+                        );
+                    })}
                 </div>
-                <div>
-                   <h3 className="font-brand font-bold text-slate-900 text-lg lg:text-2xl mb-2">Perfil Técnico + Actitudinal</h3>
-                   <p className="text-slate-500 text-sm lg:text-base leading-relaxed">No solo importan los skills, sino cómo encaja en la cultura del equipo.</p>
+                
+                <div className="mt-8 flex items-center gap-2 text-purple-700 text-sm font-bold bg-purple-50 inline-flex px-4 py-2 rounded-lg">
+                    <ArrowRight className="w-4 h-4" />
+                    <span>Completar este checklist garantiza un inicio exitoso.</span>
                 </div>
-             </div>
-          </div>
-
-          <div className="bg-white p-6 lg:p-10 rounded-3xl border border-slate-100 shadow-md transform hover:scale-105 transition-transform duration-300">
-             <div className="flex items-start gap-4 lg:gap-6">
-                <div className="p-3 lg:p-4 bg-orange-50 rounded-2xl">
-                   <Calendar className="w-6 h-6 lg:w-8 lg:h-8 text-orange-500" />
-                </div>
-                <div>
-                   <h3 className="font-brand font-bold text-slate-900 text-lg lg:text-2xl mb-2">Cronograma</h3>
-                   <p className="text-slate-500 text-sm lg:text-base leading-relaxed">Establecemos fechas claras para entrevistas y feedback desde el inicio.</p>
-                </div>
-             </div>
-          </div>
+            </div>
         </div>
       </div>
     </section>

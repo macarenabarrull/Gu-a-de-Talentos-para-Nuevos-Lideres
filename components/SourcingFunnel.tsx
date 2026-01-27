@@ -4,57 +4,55 @@ import { SOURCING_CHANNELS } from '../constants';
 
 export const SourcingFunnel: React.FC = () => {
   return (
-    <section className="h-full flex flex-col justify-center max-w-7xl mx-auto w-full">
+    <section className="h-full flex flex-col justify-center max-w-7xl mx-auto w-full px-4">
       <SectionHeading 
-          title="Embudo de Atracción 🌪️" 
-          subtitle="No dependemos de una sola fuente. Activamos varios canales para encontrar a los mejores."
-          center
+          title="ACCIONES DE ATRACCIÓN 📣" 
+          subtitle="No es solo publicar un aviso. Activamos múltiples canales en simultáneo para captar talento."
       />
 
-      <div className="flex flex-col items-center mt-6 lg:mt-10 w-full max-w-4xl lg:max-w-5xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8 lg:mt-12">
          {SOURCING_CHANNELS.map((channel, index) => {
-            // Widths to create funnel shape container
-            const widthClass = ['w-full', 'w-[85%]', 'w-[70%]', 'w-[55%]'][index];
-            
-            // Gradients
-            const gradientClass = [
-                'bg-gradient-to-r from-purple-700 to-indigo-700', 
-                'bg-gradient-to-r from-purple-600 to-indigo-600', 
-                'bg-gradient-to-r from-purple-500 to-indigo-500', 
-                'bg-gradient-to-r from-purple-400 to-indigo-400'
-            ][index];
-
-            // Stack index to ensure top is 'behind' visually or 'front' depending on desired effect.
-            // For a funnel, typically the wider top part sits "behind" the lower part if we want depth,
-            // OR sits "above" to cast shadow down. Let's try sitting above.
-            const zIndex = `z-[${40 - index * 10}]`;
+             // Distinct colors for each card to show independence
+             const colors = [
+                 { bg: 'bg-purple-50', border: 'border-purple-100', iconBg: 'bg-purple-100', iconColor: 'text-purple-600', hover: 'hover:border-purple-300' },
+                 { bg: 'bg-pink-50', border: 'border-pink-100', iconBg: 'bg-pink-100', iconColor: 'text-pink-600', hover: 'hover:border-pink-300' },
+                 { bg: 'bg-blue-50', border: 'border-blue-100', iconBg: 'bg-blue-100', iconColor: 'text-blue-600', hover: 'hover:border-blue-300' },
+                 { bg: 'bg-orange-50', border: 'border-orange-100', iconBg: 'bg-orange-100', iconColor: 'text-orange-600', hover: 'hover:border-orange-300' }
+             ][index];
 
             return (
               <div 
                 key={index}
                 className={`
-                    animate-enter 
-                    ${widthClass} 
-                    ${gradientClass} 
-                    ${zIndex}
-                    text-white p-4 lg:p-6 shadow-xl flex items-center justify-between 
-                    transform transition-transform hover:scale-[1.02] cursor-default relative overflow-hidden group
-                    rounded-2xl lg:rounded-3xl
-                    -mt-4 first:mt-0
+                    animate-enter
+                    flex flex-col
+                    p-6 lg:p-8
+                    rounded-3xl
+                    bg-white border-2 border-slate-100
+                    ${colors.hover}
+                    shadow-sm hover:shadow-xl
+                    transition-all duration-300
+                    group
+                    cursor-default
                 `}
-                style={{ animationDelay: `${index * 150}ms` }}
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                 <div className="flex items-center gap-3 lg:gap-6 relative z-10 pl-4 lg:pl-8">
-                    <div className="p-2 lg:p-3 bg-white/20 rounded-full backdrop-blur-md shadow-inner">
-                       <channel.icon className="w-5 h-5 lg:w-7 lg:h-7" />
+                 <div className="flex justify-between items-start mb-6">
+                    <div className={`p-4 rounded-2xl ${colors.iconBg} ${colors.iconColor} group-hover:scale-110 transition-transform duration-300`}>
+                       <channel.icon className="w-8 h-8" />
                     </div>
-                    <div>
-                      <h3 className="font-bold text-sm lg:text-2xl tracking-tight">{channel.title}</h3>
-                      <p className="text-white/80 text-[10px] lg:text-sm font-medium">{channel.description}</p>
-                    </div>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-300">{index + 1}</span>
                  </div>
                  
-                 <div className="text-2xl lg:text-4xl font-black opacity-30 group-hover:opacity-100 transition-opacity pr-6 lg:pr-10 italic">
+                 <h3 className="font-brand font-bold text-xl lg:text-2xl text-slate-900 mb-3 leading-tight">
+                     {channel.title}
+                 </h3>
+                 
+                 <p className="text-slate-500 text-sm leading-relaxed mb-6 flex-1">
+                     {channel.description}
+                 </p>
+
+                 <div className={`mt-auto py-2 px-3 rounded-lg ${colors.bg} ${colors.iconColor} text-xs font-bold uppercase tracking-wide inline-block self-start`}>
                     {channel.percentage}
                  </div>
               </div>
@@ -62,9 +60,9 @@ export const SourcingFunnel: React.FC = () => {
          })}
       </div>
       
-      <div className="mt-12 lg:mt-16 text-center animate-enter delay-500">
-        <p className="text-slate-400 text-xs lg:text-base font-medium">
-           Cuanta más calidad tengamos arriba en el embudo, más fácil será elegir al final.
+      <div className="mt-10 lg:mt-16 bg-slate-50 p-6 rounded-2xl border border-slate-200 text-center animate-enter delay-500">
+        <p className="text-slate-600 text-sm lg:text-base font-medium">
+           💡 <span className="font-bold">Estrategia 360:</span> No dependemos de una sola fuente. Atacamos el mercado desde todos los ángulos.
         </p>
       </div>
     </section>

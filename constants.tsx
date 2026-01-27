@@ -12,7 +12,7 @@ import {
 } from 'lucide-react';
 import { ProcessStep, TimingStat, SourcingChannel, EvaluationType, KanbanColumn, StarStep, OnboardingTip } from './types';
 
-// Slide: Process Roadmap (PDF Page 3)
+// Slide: Process Roadmap
 export const PROCESS_STEPS: ProcessStep[] = [
   { id: 1, phase: "Inicio", title: "Detección", description: "Datos generales y claves del perfil.", icon: Search },
   { id: 2, phase: "Difusión", title: "Comunicación", description: "Interna y Referidos.", icon: Megaphone },
@@ -22,30 +22,30 @@ export const PROCESS_STEPS: ProcessStep[] = [
   { id: 6, phase: "Ingreso", title: "Onboarding", description: "El 1er día fyo.", icon: PartyPopper }
 ];
 
-// Slide: Timing SLA (PDF Page 4)
+// Slide: Timing SLA
 export const TIMING_STATS: TimingStat[] = [
-  { role: "Referidos / Junior", range: "35-45 días", color: "bg-green-50 border-green-100 text-green-700" },
-  { role: "Semi Senior", range: "40-60 días", color: "bg-blue-50 border-blue-100 text-blue-700" },
-  { role: "Senior", range: "55-75 días", color: "bg-purple-50 border-purple-100 text-purple-700" },
-  { role: "Liderazgo", range: "70-90 días", color: "bg-orange-50 border-orange-100 text-orange-700" },
+  { role: "Referidos / Junior", range: "35-45 días", color: "bg-green-50 border-green-200 text-green-800" },
+  { role: "Semi Senior", range: "40-60 días", color: "bg-blue-50 border-blue-200 text-blue-800" },
+  { role: "Senior", range: "55-75 días", color: "bg-purple-50 border-purple-200 text-purple-800" },
+  { role: "Liderazgo", range: "70-90 días", color: "bg-orange-50 border-orange-200 text-orange-800" },
 ];
 
-// Slide: Sourcing Funnel (PDF Page 6)
+// Slide: Sourcing Actions (Not a funnel anymore)
 export const SOURCING_CHANNELS: SourcingChannel[] = [
-  { title: "Promoción Interna", description: "1 año antigüedad + buena performance.", icon: UserPlus, percentage: "1º" },
-  { title: "Programa Referidos", description: "Si pasa la prueba, ¡Gift Card para vos!", icon: Gift, percentage: "2º" },
-  { title: "Jóvenes Profesionales", description: "Semillero de formación comercial.", icon: Briefcase, percentage: "3º" },
-  { title: "Búsqueda Externa", description: "Consultoras y Mercado.", icon: Globe, percentage: "4º" }
+  { title: "Promoción Interna", description: "1 año antigüedad + buena performance.", icon: UserPlus, percentage: "Talento Interno" },
+  { title: "Programa Referidos", description: "Si pasa la prueba, ¡Gift Card para vos!", icon: Gift, percentage: "Red de Contactos" },
+  { title: "Jóvenes Profesionales", description: "Semillero de formación comercial.", icon: Briefcase, percentage: "Semillero" },
+  { title: "Búsqueda Externa", description: "Consultoras y Mercado.", icon: Globe, percentage: "Mercado Abierto" }
 ];
 
-// Slide: Evaluation Matrix (PDF Page 7)
+// Slide: Evaluation Matrix
 export const EVALUATION_MATRIX: EvaluationType[] = [
   { role: "Analistas", method: "Psicotécnico", focus: "Técnico + Cultural" },
   { role: "Líderes / Coord.", method: "Competencias", focus: "Gestión + Liderazgo" },
   { role: "Programa JP", method: "Assessment Center", focus: "Potencial + Psicotécnico" }
 ];
 
-// Slide: Closing / Medical (Replacing STAR Model with Recta Final info form Page 8)
+// Slide: Closing / Medical
 export const STAR_MODEL: StarStep[] = [
   { letter: "1", meaning: "Propuesta", question: "Mirada 360º + Equidad Interna + 'Queremos que seas parte'.", color: "bg-purple-50 text-purple-900 border-purple-100" },
   { letter: "2", meaning: "Médico", question: "Exámenes obligatorios pre-ocupacionales.", color: "bg-blue-50 text-blue-900 border-blue-100" },
@@ -53,7 +53,7 @@ export const STAR_MODEL: StarStep[] = [
   { letter: "4", meaning: "Bienvenida", question: "Coordinación de fecha y Onboarding.", color: "bg-pink-50 text-pink-900 border-pink-100" }
 ];
 
-// Slide: Onboarding Kanban (Tasks from Page 11)
+// Slide: Onboarding Kanban
 export const ONBOARDING_KANBAN: KanbanColumn[] = [
   {
     id: "pre",
@@ -81,19 +81,19 @@ export const ONBOARDING_KANBAN: KanbanColumn[] = [
     title: "Seguimiento",
     emoji: "🤝",
     tasks: [
-      { id: "8", content: "Buscar un aliado (Buddy)", tag: "Equipo" },
+      { id: "8", content: "Buscar un Aliado (Referente)", tag: "Equipo" },
       { id: "9", content: "Compartí tiempo (no lo dejes solo)", tag: "Líder" },
       { id: "10", content: "Feedback Período Prueba", tag: "RRHH" }
     ]
   }
 ];
 
-// Slide: Onboarding Tips (PDF Page 10 & 11)
+// Slide: Onboarding Tips
 export const ONBOARDING_TIPS: OnboardingTip[] = [
   { title: "Presencia", description: "Tu cercanía hace la diferencia. El objetivo es que sienta: 'Me estaban esperando'." },
   { title: "Pertenencia", description: "Como líder, sos el primer referente. Transmitís cultura y confianza desde el minuto cero." },
   { title: "Sembrar", description: "Lo que hacés el primer día impacta directamente en su motivación y adaptación futura." },
-  { title: "El Aliado", description: "Busca a alguien cercano que acompañe dudas y momentos (Buddy system)." },
+  { title: "El Aliado", description: "Busca a alguien cercano que acompañe dudas y momentos." },
   { title: "Almuerzo", description: "Organizá con quiénes, qué y cuándo. No dejes que almuerce solo/a el primer día." },
   { title: "Cierre", description: "Terminá el día con una pregunta simple pero poderosa: '¿Cómo te sentiste hoy?'." }
 ];
