@@ -115,7 +115,10 @@ const App: React.FC = () => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (viewMode === 'vertical') return;
-      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault(); // Prevent page scroll on space
+        nextSlide();
+      }
       if (e.key === 'ArrowLeft') prevSlide();
     };
 
@@ -152,21 +155,21 @@ const App: React.FC = () => {
         
         {/* Header */}
         <header className={`
-            sticky top-0 left-0 w-full px-4 md:px-6 py-4 z-50 flex justify-between items-center transition-all duration-300
+            sticky top-0 left-0 w-full px-4 md:px-8 py-4 z-50 flex justify-between items-center transition-all duration-300
             ${viewMode === 'vertical' ? 'bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm' : 'absolute pointer-events-none'}
         `}>
           <div className="pointer-events-auto flex items-center gap-3">
              <button onClick={() => setShowMenu(true)} className="p-2 rounded-full hover:bg-slate-100 text-slate-700 transition-colors">
-                <Menu className="w-5 h-5" />
+                <Menu className="w-5 h-5 md:w-6 md:h-6" />
              </button>
              
              <div>
-                <div className="font-brand font-black text-xl tracking-tighter text-slate-900 flex items-baseline gap-1">
+                <div className="font-brand font-black text-xl md:text-2xl tracking-tighter text-slate-900 flex items-baseline gap-1">
                 fyo<span className="w-2 h-2 rounded-full bg-gradient-to-tr from-purple-600 to-pink-500"></span>
                 </div>
                 {viewMode === 'slides' && (
                     <div className="animate-enter key={currentSlide}">
-                        <span className="text-[10px] font-bold tracking-widest text-slate-400 uppercase">
+                        <span className="text-[10px] md:text-xs font-bold tracking-widest text-slate-400 uppercase">
                             {currentPhase}
                         </span>
                     </div>
@@ -180,7 +183,7 @@ const App: React.FC = () => {
                 className="p-2 rounded-full bg-white/60 backdrop-blur-md border border-slate-200 text-slate-500 hover:bg-purple-50 hover:text-purple-600 hover:border-purple-200 transition-all shadow-sm group hidden md:flex"
                 title={viewMode === 'slides' ? "Modo Lectura" : "Modo Presentación"}
              >
-                {viewMode === 'slides' ? <ScrollText className="w-4 h-4" /> : <Presentation className="w-4 h-4" />}
+                {viewMode === 'slides' ? <ScrollText className="w-4 h-4 md:w-5 md:h-5" /> : <Presentation className="w-4 h-4 md:w-5 md:h-5" />}
              </button>
 
              {viewMode === 'slides' && (
@@ -189,7 +192,7 @@ const App: React.FC = () => {
                     className="p-2 rounded-full bg-white/60 backdrop-blur-md border border-slate-200 text-slate-500 hover:bg-white hover:text-purple-600 transition-all shadow-sm group hidden md:flex"
                     title="Pantalla Completa"
                 >
-                    {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
+                    {isFullscreen ? <Minimize2 className="w-4 h-4 md:w-5 md:h-5" /> : <Maximize2 className="w-4 h-4 md:w-5 md:h-5" />}
                 </button>
              )}
           </div>
@@ -244,10 +247,18 @@ const App: React.FC = () => {
 
           {/* Render Mode: SLIDES */}
           {viewMode === 'slides' && (
-            <div className="flex-1 w-full h-full flex items-center justify-center p-6 md:p-12 pb-20 overflow-hidden">
+            <div className={`flex-1 w-full h-full flex items-center justify-center overflow-hidden transition-all duration-500
+                ${isFullscreen ? 'p-6 pb-24' : 'p-6 md:p-12 pb-20'}
+            `}>
+                {/* 
+                  1. Removed scale-[1.02] to fix blurry text in fullscreen
+                  2. Added key={currentSlide} and animate-enter to wrapper for smooth transitions
+                */}
                 <div 
                     key={currentSlide} 
-                    className="w-full h-full max-w-6xl mx-auto relative z-10 flex flex-col justify-center"
+                    className={`w-full h-full mx-auto relative z-10 flex flex-col justify-center transition-all duration-500 animate-enter
+                        ${isFullscreen ? 'max-w-screen-2xl' : 'max-w-6xl'}
+                    `}
                 >
                     <CurrentComponent />
                 </div>
@@ -256,7 +267,7 @@ const App: React.FC = () => {
 
           {/* Render Mode: VERTICAL (Web) */}
           {viewMode === 'vertical' && (
-            <div className="w-full max-w-4xl mx-auto relative z-10 px-6 py-12 space-y-24">
+            <div className="w-full max-w-5xl mx-auto relative z-10 px-6 py-12 space-y-24">
                 {SLIDES.map((slide, index) => {
                     const Component = slide.component;
                     return (
@@ -275,7 +286,9 @@ const App: React.FC = () => {
 
         {/* Footer (Only in Slides mode) */}
         {viewMode === 'slides' && (
-            <footer className="absolute bottom-0 left-0 w-full px-4 md:px-6 py-5 z-40 flex items-end justify-between pointer-events-none">
+            <footer className={`absolute bottom-0 left-0 w-full z-40 flex items-end justify-between pointer-events-none transition-all duration-300
+                ${isFullscreen ? 'px-8 py-8' : 'px-4 md:px-6 py-5'}
+            `}>
             
             {/* Progress Bar */}
             <div className="absolute bottom-0 left-0 w-full h-1 bg-slate-50 group pointer-events-auto">
@@ -287,7 +300,7 @@ const App: React.FC = () => {
 
             {/* Page Counter */}
             <div className="hidden md:flex items-center gap-2 pointer-events-auto animate-enter delay-200">
-                <span className="text-3xl font-black text-slate-100 select-none -mb-1 tracking-tighter">
+                <span className="text-3xl lg:text-4xl font-black text-slate-100 select-none -mb-1 tracking-tighter">
                 {(currentSlide + 1).toString().padStart(2, '0')}
                 </span>
                 <span className="text-xs font-bold text-slate-300 uppercase tracking-widest">
@@ -300,17 +313,17 @@ const App: React.FC = () => {
                 <button 
                     onClick={prevSlide}
                     disabled={currentSlide === 0}
-                    className="group relative w-12 h-12 md:w-10 md:h-10 rounded-full flex items-center justify-center border border-slate-200 bg-white/80 backdrop-blur text-slate-500 hover:bg-white hover:border-purple-200 hover:text-purple-600 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-purple-100 hover:scale-105 active:scale-95"
+                    className="group relative w-12 h-12 md:w-12 md:h-12 rounded-full flex items-center justify-center border border-slate-200 bg-white/80 backdrop-blur text-slate-500 hover:bg-white hover:border-purple-200 hover:text-purple-600 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-purple-100 hover:scale-105 active:scale-95"
                 >
-                <ArrowLeft className="w-5 h-5 md:w-4 md:h-4" />
+                <ArrowLeft className="w-5 h-5 md:w-5 md:h-5" />
                 </button>
                 
                 <button 
                     onClick={nextSlide}
                     disabled={currentSlide === SLIDES.length - 1}
-                    className="group relative w-12 h-12 md:w-10 md:h-10 rounded-full flex items-center justify-center bg-slate-900 border border-slate-900 text-white hover:bg-purple-600 hover:border-purple-600 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-xl hover:shadow-purple-200 hover:scale-105 active:scale-95"
+                    className="group relative w-12 h-12 md:w-12 md:h-12 rounded-full flex items-center justify-center bg-slate-900 border border-slate-900 text-white hover:bg-purple-600 hover:border-purple-600 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-xl hover:shadow-purple-200 hover:scale-105 active:scale-95"
                 >
-                <ArrowRight className="w-5 h-5 md:w-4 md:h-4" />
+                <ArrowRight className="w-5 h-5 md:w-5 md:h-5" />
                 </button>
             </div>
             </footer>
