@@ -9,12 +9,41 @@
     <style>
       body {
         font-family: 'Inter', sans-serif;
+        cursor: none; /* Hide default cursor */
       }
       
       .font-brand {
         font-family: 'Montserrat', sans-serif;
       }
       
+      /* Custom Cursor */
+      .cursor-dot {
+        width: 8px;
+        height: 8px;
+        background-color: #9333ea;
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        z-index: 9999;
+        pointer-events: none;
+      }
+      
+      .cursor-outline {
+        width: 32px;
+        height: 32px;
+        border: 1px solid rgba(147, 51, 234, 0.4);
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        z-index: 9999;
+        pointer-events: none;
+        transition: width 0.2s, height 0.2s, background-color 0.2s;
+      }
+
       /* Noise Texture Overlay */
       .bg-noise {
         position: fixed;
@@ -50,6 +79,23 @@
       .delay-300 { animation-delay: 300ms; }
       .delay-500 { animation-delay: 500ms; }
       .delay-700 { animation-delay: 700ms; }
+
+      /* Slide Transitions */
+      .slide-anim-next {
+        animation: slideInRight 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+      .slide-anim-prev {
+        animation: slideInLeft 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      }
+
+      @keyframes slideInRight {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      @keyframes slideInLeft {
+        from { transform: translateX(-100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
 
       /* Background Breathing */
       @keyframes breathe {
@@ -95,9 +141,31 @@
         border-radius: 20px;
       }
       
-      /* Funnel Shape helper */
-      .clip-trapezoid {
-        clip-path: polygon(2% 0, 98% 0, 100% 100%, 0% 100%);
+      /* Print Styles */
+      @media print {
+        @page { 
+          margin: 0; 
+          size: A4; 
+        }
+        body { 
+          background: white; 
+          -webkit-print-color-adjust: exact; 
+          print-color-adjust: exact;
+          cursor: auto;
+        }
+        .cursor-dot, .cursor-outline, .bg-noise { display: none !important; }
+        .no-print { display: none !important; }
+        .print-only { display: block !important; }
+        
+        /* Ensure background colors print */
+        * {
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+      }
+      
+      .print-only {
+        display: none;
       }
     </style>
   <script type="importmap">
@@ -115,7 +183,42 @@
 </head>
   <body>
     <div id="root"></div>
-    <div class="bg-noise"></div>
+    <div class="bg-noise no-print"></div>
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
     <script type="module" src="/index.tsx"></script>
+    <script>
+      // Cursor Logic
+      const dot = document.querySelector('.cursor-dot');
+      const outline = document.querySelector('.cursor-outline');
+      
+      window.addEventListener('mousemove', (e) => {
+        const posX = e.clientX;
+        const posY = e.clientY;
+        
+        dot.style.left = `${posX}px`;
+        dot.style.top = `${posY}px`;
+        
+        outline.animate({
+          left: `${posX}px`,
+          top: `${posY}px`
+        }, { duration: 500, fill: "forwards" });
+      });
+
+      // Show cursor on interactive elements
+      const interactiveElements = document.querySelectorAll('button, a, .cursor-pointer');
+      interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          outline.style.width = '50px';
+          outline.style.height = '50px';
+          outline.style.backgroundColor = 'rgba(147, 51, 234, 0.1)';
+        });
+        el.addEventListener('mouseleave', () => {
+          outline.style.width = '32px';
+          outline.style.height = '32px';
+          outline.style.backgroundColor = 'transparent';
+        });
+      });
+    </script>
   </body>
 </html>

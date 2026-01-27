@@ -22,14 +22,6 @@ export const TimingSection: React.FC = () => {
                     subtitle="El tiempo es el enemigo. La agilidad en tu feedback define si contratamos al mejor o lo perdemos."
                 />
             </div>
-            <div className="bg-white/60 backdrop-blur-md border border-white p-4 rounded-2xl flex items-center gap-4 max-w-md shadow-sm">
-                <div className="p-2 bg-orange-100 text-orange-600 rounded-lg">
-                    <TrendingUp className="w-5 h-5" />
-                </div>
-                <p className="text-xs text-slate-600 font-medium leading-tight">
-                    <span className="font-bold text-orange-600">Insight:</span> Los mejores candidatos están disponibles menos de 10 días.
-                </p>
-            </div>
         </div>
 
         {/* Cards Grid - Fit to Screen */}

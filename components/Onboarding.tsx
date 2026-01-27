@@ -49,28 +49,30 @@ export const Onboarding: React.FC = () => {
             ))}
             </div>
 
-            {/* Premium Trial Period Block */}
-            <div className="shrink-0 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 rounded-[2rem] p-6 lg:p-8 flex flex-col md:flex-row gap-8 items-center justify-between relative overflow-hidden shadow-2xl border border-slate-700/50">
-                {/* Background Glow */}
-                <div className="absolute top-0 right-0 w-80 h-80 bg-purple-500/20 rounded-full blur-[80px] -mr-20 -mt-20"></div>
+            {/* Premium Trial Period Block (Refined: No longer black) */}
+            <div className="shrink-0 bg-white rounded-[2rem] p-6 lg:p-8 flex flex-col md:flex-row gap-8 items-center justify-between relative overflow-hidden shadow-xl border-2 border-slate-100 group">
                 
+                {/* Subtle Gradient Accent */}
+                <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-r from-transparent via-purple-50/50 to-pink-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute left-0 top-0 bottom-0 w-2 bg-gradient-to-b from-purple-500 to-pink-500"></div>
+
                 <div className="flex items-center gap-5 relative z-10">
-                    <div className="w-14 h-14 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center text-white shrink-0 border border-white/10 shadow-inner">
-                        <ShieldCheck className="w-7 h-7 text-green-400" />
+                    <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center text-green-600 shrink-0 border border-slate-100 shadow-inner group-hover:scale-110 transition-transform">
+                        <ShieldCheck className="w-8 h-8" />
                     </div>
                     <div>
                         <div className="flex items-center gap-2 mb-1">
-                            <h3 className="text-xl lg:text-2xl font-brand font-black text-white uppercase tracking-wide">Período de Prueba</h3>
-                            <span className="bg-green-500/20 text-green-300 text-[10px] font-bold px-2 py-0.5 rounded border border-green-500/30">Hito Crítico</span>
+                            <h3 className="text-xl lg:text-2xl font-brand font-black text-slate-900 uppercase tracking-wide">Período de Prueba</h3>
+                            <span className="bg-green-100 text-green-700 text-[10px] font-bold px-2 py-0.5 rounded border border-green-200">Hito Crítico</span>
                         </div>
-                        <p className="text-slate-300 text-xs lg:text-sm leading-relaxed max-w-lg">
-                            Un mes antes de finalizar, <strong className="text-white">Talento</strong> te contactará. Es el momento de validar el fit cultural y técnico.
+                        <p className="text-slate-500 text-xs lg:text-sm leading-relaxed max-w-lg font-medium">
+                            Un mes antes de finalizar, <strong className="text-purple-600">Talento</strong> te contactará. Es el momento de validar el fit cultural y técnico.
                         </p>
                     </div>
                 </div>
                 
                 <div className="relative z-10">
-                    <button className="bg-white text-slate-900 text-xs lg:text-sm font-bold px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-purple-50 hover:text-purple-700 transition-all shadow-lg transform hover:scale-105 active:scale-95">
+                    <button className="bg-slate-900 text-white text-xs lg:text-sm font-bold px-6 py-3 rounded-xl flex items-center gap-2 hover:bg-purple-600 transition-all shadow-lg hover:shadow-purple-200 transform hover:scale-105 active:scale-95">
                     <HeartHandshake className="w-4 h-4" />
                     Agendar Feedback
                     </button>
