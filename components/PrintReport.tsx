@@ -5,7 +5,7 @@ import {
   SOURCING_CHANNELS, 
   ONBOARDING_TIPS 
 } from '../constants';
-import { Square, CheckSquare } from 'lucide-react';
+import { Square } from 'lucide-react';
 
 export const PrintReport: React.FC = () => {
   return (

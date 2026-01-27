@@ -23,7 +23,7 @@ export const SectionHeading: React.FC<Props> = ({ title, subtitle, center = fals
       )}
 
       {subtitle && (
-        <p className={`text-xs md:text-sm lg:text-base text-slate-500 max-w-3xl leading-relaxed font-normal delay-100 animate-enter ${center ? 'text-left self-center text-center' : 'text-left'}`}>
+        <p className={`text-base md:text-lg lg:text-xl text-slate-600 max-w-4xl leading-relaxed font-normal delay-100 animate-enter ${center ? 'text-left self-center text-center' : 'text-left'}`}>
           {subtitle}
         </p>
       )}

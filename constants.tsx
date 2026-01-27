@@ -1,8 +1,6 @@
 import { 
-  Search, 
   Megaphone, 
   Users, 
-  MessageSquare, 
   FileCheck, 
   PartyPopper, 
   UserPlus, 
@@ -18,7 +16,7 @@ import { ProcessStep, TimingStat, SourcingChannel, EvaluationType, KanbanColumn,
 
 // Slide: Process Roadmap (Updated to 8 steps)
 export const PROCESS_STEPS: ProcessStep[] = [
-  { id: 1, phase: "Paso 1", title: "Reunión TBP", description: "Alineación inicial sobre el perfil buscado.", icon: Target },
+  { id: 1, phase: "Paso 1", title: "Alineación", description: "Alineación inicial sobre el perfil buscado.", icon: Target },
   { id: 2, phase: "Paso 2", title: "Comunicación", description: "Difusión interna y referidos.", icon: Megaphone },
   { id: 3, phase: "Paso 3", title: "KickOff", description: "Validación con consultoras.", icon: Handshake },
   { id: 4, phase: "Paso 4", title: "Entrevistas", description: "Junto a Líderes y Gerentes.", icon: Users },
@@ -39,7 +37,7 @@ export const TIMING_STATS: TimingStat[] = [
 // Slide: Sourcing Actions
 export const SOURCING_CHANNELS: SourcingChannel[] = [
   { title: "Postulación Interna", description: "1 año antigüedad + performance.", icon: UserPlus, percentage: "Talento Interno" },
-  { title: "Programa Referidos", description: "Si pasa la prueba, ¡Premio!", icon: Gift, percentage: "Red de Contactos" },
+  { title: "Programa Referidos", description: "Si la persona pasa el período de prueba ¡giftcard!", icon: Gift, percentage: "Red de Contactos" },
   { title: "Jóvenes Profesionales", description: "Semillero comercial.", icon: Briefcase, percentage: "Semillero" },
   { title: "Búsqueda Externa", description: "Consultoras y Mercado.", icon: Globe, percentage: "Mercado Abierto" }
 ];
@@ -100,10 +98,10 @@ export const ALL_ONBOARDING_TASKS: OnboardingTask[] = [
 
 // Slide: Onboarding Tips
 export const ONBOARDING_TIPS: OnboardingTip[] = [
-  { title: "Presencia", description: "Tu cercanía hace la diferencia. Que sienta: 'Me estaban esperando'.", leaderTip: "Despejá tu agenda la primera hora del día." },
+  { title: "Presencia", description: "Tu cercanía hace la diferencia. Que sienta: 'Me estaban esperando'." },
   { title: "Pertenencia", description: "Sos el primer referente. Transmitís cultura desde el minuto cero.", leaderTip: "Contale historia y anécdotas de fyo." },
   { title: "Sembrar", description: "Lo que hacés el primer día impacta en su motivación futura.", leaderTip: "Mostrale cómo su trabajo impacta en el negocio." },
   { title: "El Aliado", description: "Busca a alguien cercano que acompañe dudas y momentos.", leaderTip: "Elegí a alguien empático, no necesariamente el más técnico." },
-  { title: "Almuerzo", description: "Organizá con quiénes y qué. No dejes que almuerce solo/a.", leaderTip: "El primer almuerzo paga la casa (o el equipo)." },
+  { title: "Almuerzo", description: "Organizá con quiénes y qué. No dejes que almuerce solo/a." },
   { title: "Cierre", description: "Terminá el día preguntando: '¿Cómo te sentiste hoy?'.", leaderTip: "Escuchá activamente, sin justificar si algo salió mal." }
 ];

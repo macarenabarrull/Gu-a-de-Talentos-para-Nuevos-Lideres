@@ -184,7 +184,8 @@ const App: React.FC = () => {
                 key={currentSlide} 
                 className={`w-full h-full flex flex-col justify-center ${direction === 'next' ? 'slide-anim-next' : 'slide-anim-prev'}`}
             >
-                <CurrentComponent />
+                {/* We pass nextSlide specifically for the Hero component */}
+                <CurrentComponent onStart={nextSlide} onRestart={() => goToSlide(0)} />
             </div>
         </div>
 
