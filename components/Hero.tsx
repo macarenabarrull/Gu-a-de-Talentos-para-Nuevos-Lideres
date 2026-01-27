@@ -12,8 +12,9 @@ export const Hero: React.FC = () => {
 
       {/* Main Title - Staggered */}
       <div className="animate-enter delay-100 mb-6 lg:mb-10">
-        <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-brand font-black text-slate-900 tracking-widest leading-none ml-[-0.05em]">
+        <h1 className="text-6xl md:text-8xl lg:text-[10rem] font-brand font-black text-slate-900 tracking-tighter leading-none flex items-baseline gap-2 md:gap-4 justify-center md:justify-start">
           fyo
+          <span className="w-6 h-6 md:w-12 md:h-12 lg:w-16 lg:h-16 rounded-full bg-gradient-to-tr from-purple-600 to-pink-500 block"></span>
         </h1>
         <h2 className="text-3xl md:text-5xl lg:text-7xl font-brand font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 tracking-tight mt-2 lg:mt-6">
           PROCESO DE SELECCIÓN

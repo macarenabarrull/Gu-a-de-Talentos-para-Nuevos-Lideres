@@ -10,7 +10,7 @@ import { TimingSection } from './components/TimingSection';
 import { OnboardingKanban } from './components/OnboardingKanban';
 import { Onboarding } from './components/Onboarding';
 import { Closing } from './components/Closing';
-import { ArrowLeft, ArrowRight, MousePointer2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, MousePointer2, Maximize2, Minimize2 } from 'lucide-react';
 
 const SLIDES = [
   { component: Hero, title: "Inicio", phase: "Intro" },
@@ -29,6 +29,7 @@ const SLIDES = [
 const App: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [showSwipeHint, setShowSwipeHint] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   
   // Swipe State
   const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -47,6 +48,24 @@ const App: React.FC = () => {
         return () => clearTimeout(timer);
     }
   }, []);
+
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
+  }, []);
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch((e) => {
+        console.error("Failed to enter fullscreen", e);
+      });
+    } else {
+      document.exitFullscreen();
+    }
+  };
 
   const nextSlide = () => {
     setCurrentSlide((prev) => Math.min(prev + 1, SLIDES.length - 1));
@@ -114,6 +133,14 @@ const App: React.FC = () => {
                 </div>
              </div>
           </div>
+
+          <button 
+            onClick={toggleFullscreen}
+            className="p-2 rounded-full bg-white/50 backdrop-blur-sm border border-slate-200 text-slate-500 hover:bg-white hover:text-purple-600 hover:border-purple-200 transition-all shadow-sm group"
+            title={isFullscreen ? "Salir de pantalla completa" : "Pantalla completa"}
+          >
+            {isFullscreen ? <Minimize2 className="w-5 h-5" /> : <Maximize2 className="w-5 h-5" />}
+          </button>
       </header>
 
       {/* Swipe Hint Overlay (Mobile Only) */}

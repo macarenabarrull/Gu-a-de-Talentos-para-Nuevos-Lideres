@@ -38,9 +38,9 @@ export const StrategicImpact: React.FC = () => {
            <div className="w-12 h-12 lg:w-16 lg:h-16 bg-orange-50 rounded-2xl flex items-center justify-center text-orange-600 mb-6 group-hover:scale-110 transition-transform">
              <AlertOctagon className="w-6 h-6 lg:w-8 lg:h-8" />
            </div>
-           <h3 className="text-lg lg:text-2xl font-brand font-bold text-slate-900 mb-3">Fuera de Presu</h3>
+           <h3 className="text-lg lg:text-2xl font-brand font-bold text-slate-900 mb-3">Fuera de presu</h3>
            <p className="text-slate-500 text-sm lg:text-lg leading-relaxed mt-auto">
-             Una nueva necesidad no contemplada. Requiere <strong>aprobación especial</strong> antes de iniciar.
+             Una nueva necesidad no contemplada. Requiere <strong>aprobación</strong> antes de iniciar.
            </p>
         </div>
       </div>
