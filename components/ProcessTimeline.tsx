@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { SectionHeading } from './SectionHeading';
 import { PROCESS_STEPS } from '../constants';
 import { ArrowRight } from 'lucide-react';
@@ -18,14 +18,14 @@ export const ProcessTimeline: React.FC = () => {
 
   return (
     <section className="h-full flex flex-col justify-center max-w-7xl mx-auto w-full px-4 pt-4 md:pt-0 relative">
-      <div className="mb-4 lg:mb-8 shrink-0 relative z-10">
+      <div className="mb-4 shrink-0 relative z-10">
         <SectionHeading 
             title="Roadmap del Proceso 🗺️" 
             subtitle="El camino que recorremos juntos: cada paso construye el éxito del siguiente."
         />
       </div>
 
-      <div className="flex-1 overflow-y-auto lg:overflow-visible flex items-center justify-center relative p-4">
+      <div className="flex-1 overflow-y-auto lg:overflow-visible flex items-center justify-center relative p-2">
           
           <div className="relative w-full z-10">
             
@@ -45,12 +45,12 @@ export const ProcessTimeline: React.FC = () => {
                     fill="none" 
                     stroke="#cbd5e1" 
                     strokeWidth="2" 
-                    strokeDasharray="6 6"
+                    strokeDasharray="4 4"
                     className="opacity-50"
                 />
             </svg>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 gap-y-16 w-full relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 gap-y-12 w-full relative z-10">
                 {PROCESS_STEPS.map((step, index) => {
                 const isLast = index === PROCESS_STEPS.length - 1;
                 const isRow1 = index < 3; // 0, 1, 2 connect to right
@@ -69,43 +69,43 @@ export const ProcessTimeline: React.FC = () => {
                     <div className="hidden lg:block absolute pointer-events-none z-0 w-full h-full">
                         {(isRow1 || isRow2) && (
                             <div className="absolute top-1/2 -right-6 -translate-y-1/2 text-slate-300">
-                                <ArrowRight className="w-5 h-5" />
+                                <ArrowRight className="w-4 h-4" />
                             </div>
                         )}
                     </div>
 
                     {/* Mobile Connector (Down Arrow) */}
-                    <div className="lg:hidden absolute bottom-[-40px] left-1/2 -translate-x-1/2 text-slate-300 z-0">
+                    <div className="lg:hidden absolute bottom-[-30px] left-1/2 -translate-x-1/2 text-slate-300 z-0">
                         {!isLast && (
-                            <ArrowRight className="w-5 h-5 rotate-90" />
+                            <ArrowRight className="w-4 h-4 rotate-90" />
                         )}
                     </div>
 
                     {/* Card */}
                     <div className={`
-                        p-6 rounded-[1.5rem] border border-white/60 bg-white/60 backdrop-blur-xl transition-all duration-300 flex flex-col relative z-10 
-                        shadow-sm hover:shadow-xl ${getCardColor(index)} hover:-translate-y-1 min-h-[11rem] justify-between
+                        p-4 rounded-xl border border-white/60 bg-white/60 backdrop-blur-xl transition-all duration-300 flex flex-col relative z-10 
+                        shadow-sm hover:shadow-lg ${getCardColor(index)} hover:-translate-y-1 min-h-[9rem] justify-between
                     `}>
                     
-                    <div className="flex justify-between items-start mb-2">
-                        <div className="flex items-center gap-3">
-                            <div className="p-2.5 bg-white rounded-xl shadow-sm border border-slate-100 text-purple-600">
-                                <step.icon className="w-5 h-5" />
+                    <div className="flex justify-between items-start mb-1">
+                        <div className="flex items-center gap-2">
+                            <div className="p-1.5 bg-white rounded-lg shadow-sm border border-slate-100 text-purple-600">
+                                <step.icon className="w-4 h-4" />
                             </div>
-                            <span className="text-xs font-black text-slate-400 uppercase tracking-widest">
+                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
                                 {step.phase}
                             </span>
                         </div>
-                        <span className="text-3xl font-brand font-black text-slate-200 select-none">
+                        <span className="text-2xl font-brand font-black text-slate-200 select-none">
                             {step.id}
                         </span>
                     </div>
                     
                     <div>
-                        <h3 className="text-lg font-brand font-bold leading-tight text-slate-900 mb-1">
+                        <h3 className="text-sm font-brand font-bold leading-tight text-slate-900 mb-1">
                         {step.title}
                         </h3>
-                        <p className="text-sm font-medium text-slate-600 leading-snug">
+                        <p className="text-xs font-medium text-slate-600 leading-snug">
                             {step.description}
                         </p>
                     </div>
