@@ -10,94 +10,90 @@ import {
   Briefcase, 
   Globe 
 } from 'lucide-react';
-import { ProcessStep, TimingStat, SourcingChannel, EvaluationType, OnboardingTip } from './types';
+import { ProcessStep, TimingStat, SourcingChannel, EvaluationType, KanbanColumn, StarStep, OnboardingTip } from './types';
 
-// Slide 3: Etapas del Proceso
+// Slide: Process Roadmap (PDF Page 3)
 export const PROCESS_STEPS: ProcessStep[] = [
-  {
-    id: 1,
-    title: "1. Definir",
-    description: "Clarificamos el 'para qué'. Armamos perfil técnico y cultural.",
-    icon: Search
-  },
-  {
-    id: 2,
-    title: "2. Publicar",
-    description: "Activamos canales internos y redes externas.",
-    icon: Megaphone
-  },
-  {
-    id: 3,
-    title: "3. Buscar",
-    description: "Filtramos y contactamos proactivamente (Hunting).",
-    icon: Users
-  },
-  {
-    id: 4,
-    title: "4. Conocer",
-    description: "Entrevistas con Talento y con vos (Líder del área).",
-    icon: MessageSquare
-  },
-  {
-    id: 5,
-    title: "5. Ofertar",
-    description: "Validamos equidad interna y presentamos la propuesta.",
-    icon: FileCheck
-  },
-  {
-    id: 6,
-    title: "6. Celebrar",
-    description: "¡Es un sí! Coordinamos su ingreso y bienvenida.",
-    icon: PartyPopper
-  }
+  { id: 1, phase: "Inicio", title: "Detección", description: "Datos generales y claves del perfil.", icon: Search },
+  { id: 2, phase: "Difusión", title: "Comunicación", description: "Interna y Referidos.", icon: Megaphone },
+  { id: 3, phase: "Hunting", title: "Selección", description: "Perfiles acordes al KickOff.", icon: Users },
+  { id: 4, phase: "Conocer", title: "Entrevistas", description: "Individuales con Líder/Gerente.", icon: MessageSquare },
+  { id: 5, phase: "Cierre", title: "Propuesta", description: "Armado y análisis de equipo.", icon: FileCheck },
+  { id: 6, phase: "Ingreso", title: "Onboarding", description: "El 1er día fyo.", icon: PartyPopper }
 ];
 
-// Slide 4: Tiempos estimados (Light mode branding)
+// Slide: Timing SLA (PDF Page 4)
 export const TIMING_STATS: TimingStat[] = [
-  { role: "Referidos", range: "30 días", color: "bg-purple-50 border-purple-100 text-purple-700" },
-  { role: "Junior", range: "45 días", color: "bg-pink-50 border-pink-100 text-pink-700" },
-  { role: "Semi Senior", range: "60 días", color: "bg-indigo-50 border-indigo-100 text-indigo-700" },
-  { role: "Senior", range: "75 días", color: "bg-slate-50 border-slate-200 text-slate-700" },
-  { role: "Liderazgo", range: "90 días", color: "bg-white border-slate-200 text-slate-900 shadow-sm" },
+  { role: "Referidos / Junior", range: "35-45 días", color: "bg-green-50 border-green-100 text-green-700" },
+  { role: "Semi Senior", range: "40-60 días", color: "bg-blue-50 border-blue-100 text-blue-700" },
+  { role: "Senior", range: "55-75 días", color: "bg-purple-50 border-purple-100 text-purple-700" },
+  { role: "Liderazgo", range: "70-90 días", color: "bg-orange-50 border-orange-100 text-orange-700" },
 ];
 
-// Slide 6: Estrategia de Atracción
+// Slide: Sourcing Funnel (PDF Page 6)
 export const SOURCING_CHANNELS: SourcingChannel[] = [
+  { title: "Promoción Interna", description: "1 año antigüedad + buena performance.", icon: UserPlus, percentage: "1º" },
+  { title: "Programa Referidos", description: "Si pasa la prueba, ¡Gift Card para vos!", icon: Gift, percentage: "2º" },
+  { title: "Jóvenes Profesionales", description: "Semillero de formación comercial.", icon: Briefcase, percentage: "3º" },
+  { title: "Búsqueda Externa", description: "Consultoras y Mercado.", icon: Globe, percentage: "4º" }
+];
+
+// Slide: Evaluation Matrix (PDF Page 7)
+export const EVALUATION_MATRIX: EvaluationType[] = [
+  { role: "Analistas", method: "Psicotécnico", focus: "Técnico + Cultural" },
+  { role: "Líderes / Coord.", method: "Competencias", focus: "Gestión + Liderazgo" },
+  { role: "Programa JP", method: "Assessment Center", focus: "Potencial + Psicotécnico" }
+];
+
+// Slide: Closing / Medical (Replacing STAR Model with Recta Final info form Page 8)
+export const STAR_MODEL: StarStep[] = [
+  { letter: "1", meaning: "Propuesta", question: "Mirada 360º + Equidad Interna + 'Queremos que seas parte'.", color: "bg-purple-50 text-purple-900 border-purple-100" },
+  { letter: "2", meaning: "Médico", question: "Exámenes obligatorios pre-ocupacionales.", color: "bg-blue-50 text-blue-900 border-blue-100" },
+  { letter: "3", meaning: "Alta", question: "Carga en ServiceDesk para accesos y licencias.", color: "bg-green-50 text-green-900 border-green-100" },
+  { letter: "4", meaning: "Bienvenida", question: "Coordinación de fecha y Onboarding.", color: "bg-pink-50 text-pink-900 border-pink-100" }
+];
+
+// Slide: Onboarding Kanban (Tasks from Page 11)
+export const ONBOARDING_KANBAN: KanbanColumn[] = [
   {
-    title: "Mercado Interno",
-    description: "Miramos adentro primero. Talento fyo con +1 año y buen desempeño.",
-    icon: UserPlus
+    id: "pre",
+    title: "Antes de llegar",
+    emoji: "🎒",
+    tasks: [
+      { id: "1", content: "Asegurar accesos y notebook", tag: "Líder" },
+      { id: "2", content: "Ficha de inducción lista", tag: "RRHH" },
+      { id: "3", content: "Evitar el desorden", tag: "Equipo" }
+    ]
   },
   {
-    title: "Red de Referidos",
-    description: "El equipo atrae equipo. Bonificación por referir talento exitoso.",
-    icon: Gift
+    id: "day1",
+    title: "El Primer Día",
+    emoji: "👋",
+    tasks: [
+      { id: "4", content: "Bienvenida cálida (sonrisa)", tag: "Líder" },
+      { id: "5", content: "Presentalo con intención", tag: "Líder" },
+      { id: "6", content: "Gestión del almuerzo", tag: "Equipo" },
+      { id: "7", content: "Cerrar el día: '¿Cómo te sentiste?'", tag: "Líder" }
+    ]
   },
   {
-    title: "Semillero JP",
-    description: "Jóvenes Profesionales formados en nuestra cultura comercial.",
-    icon: Briefcase
-  },
-  {
-    title: "Partners Externos",
-    description: "Consultoras especializadas para perfiles de nicho o alta complejidad.",
-    icon: Globe
+    id: "month1",
+    title: "Seguimiento",
+    emoji: "🤝",
+    tasks: [
+      { id: "8", content: "Buscar un aliado (Buddy)", tag: "Equipo" },
+      { id: "9", content: "Compartí tiempo (no lo dejes solo)", tag: "Líder" },
+      { id: "10", content: "Feedback Período Prueba", tag: "RRHH" }
+    ]
   }
 ];
 
-// Slide 7: Evaluaciones
-export const EVALUATION_MATRIX: EvaluationType[] = [
-  { role: "Analistas", method: "Test Psicotécnico" },
-  { role: "Líderes / Coord.", method: "Evaluación x Competencias" },
-  { role: "Programa JP", method: "Assessment Center" }
-];
-
-// Slide 11: Onboarding Tips
+// Slide: Onboarding Tips (PDF Page 10 & 11)
 export const ONBOARDING_TIPS: OnboardingTip[] = [
-  { title: "Calidez Inmediata", description: "Un mensaje de WhatsApp antes del primer día baja la ansiedad." },
-  { title: "Contexto Real", description: "Al presentarlo, contá algo personal (hobbies), no solo su CV." },
-  { title: "El 'Buddy'", description: "Asignale un compañero guía para las preguntas informales." },
-  { title: "Almuerzo de Equipo", description: "Bloqueá la agenda del equipo. El primer almuerzo no se negocia." },
-  { title: "Kit de Bienvenida", description: "Asegurate que tenga su notebook y accesos listos al llegar." },
-  { title: "Check-in de Cierre", description: "5 minutos al final del día: '¿Cómo te sentiste?'" },
+  { title: "Presencia", description: "Tu cercanía hace la diferencia. El objetivo es que sienta: 'Me estaban esperando'." },
+  { title: "Pertenencia", description: "Como líder, sos el primer referente. Transmitís cultura y confianza desde el minuto cero." },
+  { title: "Sembrar", description: "Lo que hacés el primer día impacta directamente en su motivación y adaptación futura." },
+  { title: "El Aliado", description: "Busca a alguien cercano que acompañe dudas y momentos (Buddy system)." },
+  { title: "Almuerzo", description: "Organizá con quiénes, qué y cuándo. No dejes que almuerce solo/a el primer día." },
+  { title: "Cierre", description: "Terminá el día con una pregunta simple pero poderosa: '¿Cómo te sentiste hoy?'." }
 ];

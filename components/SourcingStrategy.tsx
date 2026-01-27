@@ -1,66 +1,66 @@
 import React from 'react';
 import { SectionHeading } from './SectionHeading';
-import { SOURCING_CHANNELS, EVALUATION_MATRIX } from '../constants';
+import { EVALUATION_MATRIX } from '../constants';
+import { Filter, Users, ClipboardCheck } from 'lucide-react';
 
 export const SourcingStrategy: React.FC = () => {
   return (
     <section className="h-full flex flex-col justify-center">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 h-full lg:h-auto items-center">
+      <div className="max-w-5xl mx-auto w-full">
         
-        {/* Left: Channels */}
-        <div className="lg:col-span-5 flex flex-col justify-center pr-8">
+        <div className="text-center mb-8">
              <SectionHeading 
-              title="Atracción & Fuentes 🧲" 
-              subtitle="Un ecosistema que combina marca empleadora con búsqueda proactiva."
+              title="FILTRAR Y ELEGIR 🎯" 
+              subtitle="Hacemos una preselección con mirada técnica y cultural. Si el perfil no aparece, redefinimos el enfoque."
+              center
             />
-           <div className="grid grid-cols-1 gap-4 mt-6">
-              {SOURCING_CHANNELS.map((channel, i) => (
-                <div key={i} className="bg-white p-6 rounded-2xl border border-slate-100 hover:border-purple-300 hover:ring-4 hover:ring-purple-50 shadow-sm hover:shadow-lg transition-all group flex items-start gap-5 cursor-pointer">
-                    <div className="p-3 bg-purple-50 rounded-xl text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors shrink-0 shadow-sm">
-                      <channel.icon className="w-6 h-6" />
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-slate-900 text-lg mb-1">{channel.title}</h3>
-                      <p className="text-sm text-slate-500 leading-relaxed font-medium">{channel.description}</p>
-                    </div>
-                </div>
-              ))}
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+           <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center text-center hover:border-purple-200 transition-colors">
+              <div className="w-10 h-10 bg-purple-50 text-purple-600 rounded-full flex items-center justify-center mb-3">
+                 <Filter className="w-5 h-5" />
+              </div>
+              <h4 className="font-bold text-slate-900 text-sm">Preselección</h4>
+              <p className="text-xs text-slate-500 mt-1">Mirada técnica + cultural de informes.</p>
+           </div>
+           <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center text-center hover:border-purple-200 transition-colors">
+              <div className="w-10 h-10 bg-pink-50 text-pink-600 rounded-full flex items-center justify-center mb-3">
+                 <ClipboardCheck className="w-5 h-5" />
+              </div>
+              <h4 className="font-bold text-slate-900 text-sm">Feedback</h4>
+              <p className="text-xs text-slate-500 mt-1">Clave para pulir el perfil buscado.</p>
+           </div>
+           <div className="bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex flex-col items-center text-center hover:border-purple-200 transition-colors">
+              <div className="w-10 h-10 bg-orange-50 text-orange-600 rounded-full flex items-center justify-center mb-3">
+                 <Users className="w-5 h-5" />
+              </div>
+              <h4 className="font-bold text-slate-900 text-sm">Entrevistas</h4>
+              <p className="text-xs text-slate-500 mt-1">Presenciales o virtuales con líderes.</p>
            </div>
         </div>
 
-        {/* Right: Evaluation (Dark Card for Contrast) */}
-        <div className="lg:col-span-7 h-full">
-          <div className="h-full min-h-[500px] bg-slate-900 rounded-[3rem] p-12 text-white relative overflow-hidden flex flex-col justify-center shadow-2xl">
+        <div className="bg-slate-50 rounded-3xl p-6 md:p-8 border border-slate-200">
+            <h3 className="font-brand font-bold text-slate-900 text-center mb-6 uppercase tracking-wider text-sm">¿Qué evaluaciones usamos?</h3>
             
-            {/* Abstract bg */}
-            <div className="absolute top-0 right-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay"></div>
-            <div className="absolute -top-20 -right-20 w-96 h-96 bg-purple-600 rounded-full blur-[100px] opacity-40 animate-pulse"></div>
-            <div className="absolute bottom-0 left-0 w-80 h-80 bg-pink-600 rounded-full blur-[100px] opacity-30"></div>
-
-            <div className="relative z-10 mb-12">
-               <div className="inline-block px-4 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-xs font-bold uppercase tracking-widest mb-6">
-                 ⚖️ Calidad vs Velocidad
-               </div>
-               <h3 className="text-4xl lg:text-5xl font-bold mb-4">Evaluación de <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Potencial</span> 💎</h3>
-               <p className="text-slate-400 font-light text-xl leading-relaxed">No buscamos al candidato perfecto en papel, sino el mejor <span className="text-white font-medium">culture-fit</span> para el desafío.</p>
-            </div>
-
-            <div className="space-y-4 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {EVALUATION_MATRIX.map((item, i) => (
-                  <div key={i} className="flex items-center justify-between p-5 bg-white/5 rounded-2xl border border-white/5 hover:bg-white/10 transition-colors group">
-                    <div className="flex items-center gap-4">
-                        <span className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-xs text-slate-300 font-bold group-hover:bg-purple-500 group-hover:text-white transition-colors">
-                            {i + 1}
-                        </span>
-                        <span className="font-bold text-xl text-slate-100">{item.role}</span>
+                <div key={i} className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all group hover:-translate-y-1">
+                    <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Para...</div>
+                    <h3 className="font-brand font-bold text-slate-900 text-lg mb-3 group-hover:text-purple-600 transition-colors">{item.role}</h3>
+                    <div className="h-px w-full bg-slate-100 mb-3"></div>
+                    <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 rounded-full bg-purple-500"></span>
+                            <span className="text-xs font-bold text-slate-700">{item.method}</span>
+                        </div>
+                        <p className="text-[10px] text-slate-500 pl-3.5 leading-snug">
+                            Foco en {item.focus}
+                        </p>
                     </div>
-                    <span className="text-xs font-bold font-mono text-purple-300 bg-purple-900/50 px-4 py-2 rounded-full border border-purple-500/30">
-                        {item.method}
-                   </span>
-                  </div>
+                </div>
                 ))}
             </div>
-          </div>
         </div>
 
       </div>
