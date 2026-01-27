@@ -50,4 +50,5 @@ export interface StarStep {
 export interface OnboardingTip {
   title: string;
   description: string;
+  leaderTip?: string; // Added for specific advice
 }

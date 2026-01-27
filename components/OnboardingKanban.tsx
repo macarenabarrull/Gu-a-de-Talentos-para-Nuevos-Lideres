@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { SectionHeading } from './SectionHeading';
 import { ONBOARDING_KANBAN_STRUCTURE, ALL_ONBOARDING_TASKS } from '../constants';
 import { KanbanColumn, OnboardingTask } from '../types';
-import { Plus, Trash2, GripVertical, ListPlus, RotateCcw, ChevronDown } from 'lucide-react';
+import { Plus, Trash2, GripVertical, ListPlus, RotateCcw, ChevronDown, Pencil, X } from 'lucide-react';
 
 export const OnboardingKanban: React.FC = () => {
   // Init empty board structure
@@ -14,11 +14,16 @@ export const OnboardingKanban: React.FC = () => {
   const [newTaskTag, setNewTaskTag] = useState<'Líder' | 'TBP' | 'Equipo'>('Líder');
   const [isComplete, setIsComplete] = useState(false);
   const [dragOverCol, setDragOverCol] = useState<string | null>(null);
+  
+  // Edit Mode State
+  const [editingTaskId, setEditingTaskId] = useState<string | null>(null);
+  const [editContent, setEditContent] = useState("");
+  const editInputRef = useRef<HTMLInputElement>(null);
 
   // Load state or Defaults
   useEffect(() => {
-    const savedCols = localStorage.getItem('fyo_kanban_cols_v4');
-    const savedPool = localStorage.getItem('fyo_kanban_pool_v4');
+    const savedCols = localStorage.getItem('fyo_kanban_cols_v5');
+    const savedPool = localStorage.getItem('fyo_kanban_pool_v5');
     
     if (savedCols) setColumns(JSON.parse(savedCols));
     if (savedPool) setPoolTasks(JSON.parse(savedPool));
@@ -26,18 +31,23 @@ export const OnboardingKanban: React.FC = () => {
 
   // Save state
   useEffect(() => {
-    localStorage.setItem('fyo_kanban_cols_v4', JSON.stringify(columns));
-    localStorage.setItem('fyo_kanban_pool_v4', JSON.stringify(poolTasks));
+    localStorage.setItem('fyo_kanban_cols_v5', JSON.stringify(columns));
+    localStorage.setItem('fyo_kanban_pool_v5', JSON.stringify(poolTasks));
     
-    // Check if pool is empty and columns have items (simple gamification check)
     const hasTasksInBoard = columns.some(c => c.tasks.length > 0);
     const poolEmpty = poolTasks.length === 0;
     if (poolEmpty && hasTasksInBoard) setIsComplete(true);
     else setIsComplete(false);
-
   }, [columns, poolTasks]);
 
+  useEffect(() => {
+    if (editingTaskId && editInputRef.current) {
+        editInputRef.current.focus();
+    }
+  }, [editingTaskId]);
+
   const handleDragStart = (e: React.DragEvent, taskId: string, sourceColId: string) => {
+    if (editingTaskId) return; // Disable drag while editing
     e.dataTransfer.setData('taskId', taskId);
     e.dataTransfer.setData('sourceColId', sourceColId);
     e.dataTransfer.effectAllowed = 'move';
@@ -103,6 +113,24 @@ export const OnboardingKanban: React.FC = () => {
     }
   };
 
+  const startEditing = (task: OnboardingTask) => {
+      setEditingTaskId(task.id);
+      setEditContent(task.content);
+  };
+
+  const saveEdit = (taskId: string, colId: string) => {
+      if (!editContent.trim()) return;
+
+      if (colId === 'pool') {
+          setPoolTasks(prev => prev.map(t => t.id === taskId ? { ...t, content: editContent } : t));
+      } else {
+          setColumns(prev => prev.map(c => 
+              c.id === colId ? { ...c, tasks: c.tasks.map(t => t.id === taskId ? { ...t, content: editContent } : t) } : c
+          ));
+      }
+      setEditingTaskId(null);
+  };
+
   const resetBoard = () => {
     if (confirm('¿Reiniciar el tablero? Todas las tareas volverán al banco.')) {
         setColumns(ONBOARDING_KANBAN_STRUCTURE);
@@ -146,7 +174,6 @@ export const OnboardingKanban: React.FC = () => {
                     Banco de Tareas
                 </h3>
                 
-                {/* Add Task Input Group */}
                 <div className="flex flex-col gap-2">
                     <input 
                         type="text" 
@@ -180,29 +207,43 @@ export const OnboardingKanban: React.FC = () => {
                 {poolTasks.map(task => (
                     <div 
                         key={task.id} 
-                        draggable 
+                        draggable={editingTaskId !== task.id}
                         onDragStart={(e) => handleDragStart(e, task.id, 'pool')}
                         className="bg-white p-2.5 rounded-xl border border-slate-100 shadow-sm cursor-grab active:cursor-grabbing group hover:border-purple-300 hover:shadow-md transition-all flex justify-between items-start"
                     >
-                        <div className="flex items-start gap-2">
-                            <GripVertical className="w-3 h-3 text-slate-300 mt-0.5 shrink-0" />
-                            <div>
-                                <span className={`text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded mr-1.5 align-middle
-                                    ${task.tag === 'Líder' ? 'bg-purple-100 text-purple-700' : 
-                                      task.tag === 'TBP' ? 'bg-blue-100 text-blue-700' : 
-                                      'bg-green-100 text-green-700'}`}>
-                                    {task.tag}
-                                </span>
-                                <span className="text-xs font-medium text-slate-700">{task.content}</span>
+                         {editingTaskId === task.id ? (
+                             <input 
+                                ref={editInputRef}
+                                value={editContent}
+                                onChange={(e) => setEditContent(e.target.value)}
+                                onBlur={() => saveEdit(task.id, 'pool')}
+                                onKeyDown={(e) => e.key === 'Enter' && saveEdit(task.id, 'pool')}
+                                className="w-full text-xs font-medium text-slate-700 bg-purple-50 p-1 rounded focus:outline-none"
+                             />
+                         ) : (
+                            <div className="flex items-start gap-2 w-full">
+                                <GripVertical className="w-3 h-3 text-slate-300 mt-0.5 shrink-0" />
+                                <div className="flex-1" onDoubleClick={() => startEditing(task)}>
+                                    <span className={`text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded mr-1.5 align-middle
+                                        ${task.tag === 'Líder' ? 'bg-purple-100 text-purple-700' : 
+                                        task.tag === 'TBP' ? 'bg-blue-100 text-blue-700' : 
+                                        'bg-green-100 text-green-700'}`}>
+                                        {task.tag}
+                                    </span>
+                                    <span className="text-xs font-medium text-slate-700">{task.content}</span>
+                                </div>
+                                <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <button onClick={() => startEditing(task)} className="text-slate-300 hover:text-purple-600">
+                                        <Pencil className="w-3 h-3" />
+                                    </button>
+                                    <button onClick={() => deleteTask(task.id, 'pool')} className="text-slate-300 hover:text-red-500">
+                                        <Trash2 className="w-3 h-3" />
+                                    </button>
+                                </div>
                             </div>
-                        </div>
+                         )}
                     </div>
                 ))}
-                {poolTasks.length === 0 && (
-                    <div className="text-center py-8 text-slate-400 text-xs italic">
-                        ¡Excelente! Tablero lleno.
-                    </div>
-                )}
             </div>
         </div>
 
@@ -237,32 +278,44 @@ export const OnboardingKanban: React.FC = () => {
                         {column.tasks.map((task) => (
                             <div 
                                 key={task.id} 
-                                draggable
+                                draggable={editingTaskId !== task.id}
                                 onDragStart={(e) => handleDragStart(e, task.id, column.id)}
                                 className="bg-white p-3 rounded-xl shadow-sm border border-slate-100 hover:border-purple-300 hover:shadow-md cursor-grab active:cursor-grabbing group relative transition-all"
                             >
-                                <div className="flex justify-between items-start mb-1">
-                                    <span className={`text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded
-                                    ${task.tag === 'Líder' ? 'bg-purple-50 text-purple-700' : 
-                                        task.tag === 'TBP' ? 'bg-blue-50 text-blue-700' : 
-                                        'bg-green-50 text-green-700'}`}>
-                                    {task.tag}
-                                    </span>
-                                    <button onClick={() => deleteTask(task.id, column.id)} className="text-slate-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity">
-                                        <Trash2 className="w-3 h-3" />
-                                    </button>
-                                </div>
-                                <p className="text-slate-700 text-xs font-bold leading-tight">
-                                    {task.content}
-                                </p>
+                                {editingTaskId === task.id ? (
+                                    <input 
+                                        ref={editInputRef}
+                                        value={editContent}
+                                        onChange={(e) => setEditContent(e.target.value)}
+                                        onBlur={() => saveEdit(task.id, column.id)}
+                                        onKeyDown={(e) => e.key === 'Enter' && saveEdit(task.id, column.id)}
+                                        className="w-full text-xs font-medium text-slate-700 bg-purple-50 p-1 rounded focus:outline-none"
+                                    />
+                                ) : (
+                                    <>
+                                        <div className="flex justify-between items-start mb-1">
+                                            <span className={`text-[8px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded
+                                            ${task.tag === 'Líder' ? 'bg-purple-50 text-purple-700' : 
+                                                task.tag === 'TBP' ? 'bg-blue-50 text-blue-700' : 
+                                                'bg-green-50 text-green-700'}`}>
+                                            {task.tag}
+                                            </span>
+                                            <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                                <button onClick={() => startEditing(task)} className="text-slate-300 hover:text-purple-600">
+                                                    <Pencil className="w-3 h-3" />
+                                                </button>
+                                                <button onClick={() => deleteTask(task.id, column.id)} className="text-slate-300 hover:text-red-500">
+                                                    <Trash2 className="w-3 h-3" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <p className="text-slate-700 text-xs font-bold leading-tight" onDoubleClick={() => startEditing(task)}>
+                                            {task.content}
+                                        </p>
+                                    </>
+                                )}
                             </div>
                         ))}
-                        {column.tasks.length === 0 && (
-                            <div className="h-full min-h-[100px] border-2 border-dashed border-slate-200/50 rounded-xl flex flex-col items-center justify-center text-slate-300 text-[10px] font-medium p-4 text-center">
-                                <ListPlus className="w-6 h-6 mb-2 opacity-50" />
-                                Arrastrá tareas aquí
-                            </div>
-                        )}
                     </div>
                 </div>
             )})}

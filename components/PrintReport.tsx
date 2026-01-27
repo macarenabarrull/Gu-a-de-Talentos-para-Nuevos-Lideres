@@ -5,10 +5,11 @@ import {
   SOURCING_CHANNELS, 
   ONBOARDING_TIPS 
 } from '../constants';
+import { Square, CheckSquare } from 'lucide-react';
 
 export const PrintReport: React.FC = () => {
   return (
-    <div className="print-only w-[210mm] min-h-[297mm] mx-auto bg-white p-[10mm] text-slate-900 font-sans text-xs leading-normal">
+    <div className="print-only w-[210mm] min-h-[297mm] mx-auto bg-white p-[10mm] text-slate-900 font-sans text-xs leading-normal flex flex-col">
       
       {/* HEADER */}
       <div className="flex justify-between items-end border-b-2 border-slate-900 pb-4 mb-8">
@@ -151,9 +152,33 @@ export const PrintReport: React.FC = () => {
             </div>
         </div>
       </div>
+      
+      {/* 6. COMPROMISO (New Section) */}
+      <div className="mt-auto mb-6 break-inside-avoid bg-slate-900 text-white p-6 rounded-xl">
+            <h3 className="text-sm font-black uppercase mb-3 text-white border-b border-slate-700 pb-2 flex items-center gap-2">
+                TU COMPROMISO COMO LÍDER
+            </h3>
+            <p className="text-[9px] text-slate-400 mb-4">
+                Para cumplir con estos tiempos y calidad, necesitamos tu partnership activo en estos 3 puntos críticos:
+            </p>
+            <div className="flex justify-between gap-4 text-[10px] font-bold">
+                <div className="flex items-center gap-3">
+                    <Square className="w-4 h-4 text-slate-500" />
+                    <span>Daré feedback en 48hs</span>
+                </div>
+                <div className="flex items-center gap-3">
+                    <Square className="w-4 h-4 text-slate-500" />
+                    <span>Venderé el proyecto en la entrevista</span>
+                </div>
+                <div className="flex items-center gap-3">
+                    <Square className="w-4 h-4 text-slate-500" />
+                    <span>Garantizaré mi presencia el Día 1</span>
+                </div>
+            </div>
+      </div>
 
       {/* FOOTER */}
-      <div className="mt-auto pt-4 border-t-2 border-slate-900 flex justify-between items-center text-[8px] text-slate-500">
+      <div className="pt-4 border-t-2 border-slate-900 flex justify-between items-center text-[8px] text-slate-500">
          <div>
              <span className="font-bold text-slate-900 uppercase">Talento y Cultura fyo</span>
          </div>

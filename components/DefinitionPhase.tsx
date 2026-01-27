@@ -1,89 +1,97 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SectionHeading } from './SectionHeading';
-import { HelpCircle, Lightbulb, Target, Users, Search } from 'lucide-react';
-
-const REFLECTION_CARDS = [
-  {
-    id: 1,
-    icon: Search,
-    question: "¿Tengo clara la 'Misión' real del puesto?",
-    insight: "No copies una JD vieja. Pensá: ¿Qué problema viene a resolver esta persona en los primeros 6 meses? Ese es tu verdadero norte."
-  },
-  {
-    id: 2,
-    icon: Users,
-    question: "¿Busco un clon o alguien que complemente?",
-    insight: "Buscamos diversidad cognitiva. Si todos piensan igual, el equipo no crece. Definí qué 'superpoder' le falta hoy a tu equipo."
-  },
-  {
-    id: 3,
-    icon: Target,
-    question: "¿Qué es negociable y qué es excluyente?",
-    insight: "La lista de deseos infinita ahuyenta talento. Priorizá: ¿Actitud sobre técnica? ¿Potencial sobre experiencia? Elegí tus batallas."
-  }
-];
+import { FileCheck, PenTool, Megaphone, Armchair, SearchCheck, Users } from 'lucide-react';
 
 export const DefinitionPhase: React.FC = () => {
-  const [activeCard, setActiveCard] = useState<number | null>(null);
-
   return (
-    <section className="h-full flex flex-col justify-center max-w-7xl mx-auto w-full px-4">
+    <section className="h-full flex flex-col justify-center max-w-6xl mx-auto w-full px-4">
       
-      <div className="shrink-0 mb-6 lg:mb-10">
+      <div className="shrink-0 mb-8 lg:mb-12">
         <SectionHeading 
-            title="INTROSPECCIÓN DEL LÍDER 🤔" 
-            subtitle="Antes de pedir, hay que definir. El éxito de la búsqueda depende de la claridad de tu pedido."
+            title="DEFINICIÓN DEL PERFIL 📝" 
+            subtitle="Antes de salir a buscar, tenemos que saber qué estamos buscando. Por eso, el primer paso es estratégico."
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8">
-        {REFLECTION_CARDS.map((card) => {
-            const isActive = activeCard === card.id;
-            return (
-                <div 
-                    key={card.id}
-                    onClick={() => setActiveCard(isActive ? null : card.id)}
-                    className={`
-                        relative cursor-pointer group h-64 lg:h-80 perspective-1000
-                    `}
-                >
-                    <div className={`
-                        w-full h-full relative preserve-3d transition-transform duration-700 rounded-[2rem] shadow-lg
-                        ${isActive ? 'rotate-y-180' : ''}
-                    `}>
-                        {/* Front */}
-                        <div className="absolute inset-0 backface-hidden bg-white border border-slate-100 rounded-[2rem] p-6 flex flex-col items-center justify-center text-center hover:border-purple-200 hover:shadow-xl transition-all">
-                            <div className="w-14 h-14 bg-slate-50 text-slate-400 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-purple-50 group-hover:text-purple-600 transition-all">
-                                <card.icon className="w-7 h-7" />
-                            </div>
-                            <h3 className="text-lg font-brand font-bold text-slate-900 leading-tight mb-4">
-                                {card.question}
-                            </h3>
-                            <span className="text-xs font-bold text-purple-600 uppercase tracking-widest flex items-center gap-1 bg-purple-50 px-3 py-1 rounded-full">
-                                <HelpCircle className="w-3 h-3" />
-                                Toca para reflexionar
-                            </span>
-                        </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center">
+          
+          {/* Left Column: Visual/Conceptual */}
+          <div className="space-y-6">
+              <div className="bg-white/60 backdrop-blur-xl p-6 rounded-[2rem] border border-white/50 shadow-xl relative overflow-hidden group hover:shadow-2xl transition-all">
+                  <div className="absolute right-0 top-0 w-32 h-32 bg-purple-50 rounded-bl-[4rem] -mr-8 -mt-8 z-0 transition-transform group-hover:scale-110"></div>
+                  
+                  <div className="relative z-10 flex items-start gap-4">
+                      <div className="p-4 bg-purple-100 text-purple-600 rounded-2xl shadow-inner">
+                          <Armchair className="w-8 h-8" />
+                      </div>
+                      <div>
+                          <h3 className="text-lg font-brand font-black text-slate-900 mb-2">Estrategia de la Silla Vacía</h3>
+                          <p className="text-slate-600 text-sm leading-relaxed font-medium">
+                              No se trata solo de llenar un hueco. Imaginamos quién se sienta ahí: 
+                              <br/>
+                              <span className="font-bold text-purple-700">¿Qué valor agrega? ¿Cómo complementa al equipo actual?</span>
+                          </p>
+                      </div>
+                  </div>
+              </div>
 
-                        {/* Back */}
-                        <div className="absolute inset-0 backface-hidden rotate-y-180 bg-gradient-to-br from-purple-600 to-indigo-700 rounded-[2rem] p-6 flex flex-col items-center justify-center text-center text-white">
-                            <Lightbulb className="w-8 h-8 text-yellow-300 mb-4 animate-pulse" />
-                            <p className="text-sm lg:text-base font-medium leading-relaxed">
-                                {card.insight}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            );
-        })}
-      </div>
-      
-      <div className="mt-8 text-center animate-enter delay-500">
-         <p className="text-slate-400 text-xs italic">
-            "Definir bien es el 50% de la contratación."
-         </p>
-      </div>
+              <div className="bg-slate-900 p-6 rounded-[2rem] shadow-2xl shadow-purple-900/20 text-white relative overflow-hidden transform hover:-translate-y-1 transition-transform">
+                  <div className="flex items-center gap-4 relative z-10">
+                      <div className="p-3 bg-white/10 rounded-xl backdrop-blur-sm border border-white/10">
+                         <PenTool className="w-6 h-6 text-yellow-300" />
+                      </div>
+                      <p className="text-sm font-medium">
+                          "Si no existe la Descripción de Puesto... <br/>
+                          <span className="font-bold text-yellow-300 text-lg">¡La armamos juntos!</span>"
+                      </p>
+                  </div>
+              </div>
+          </div>
 
+          {/* Right Column: The Checklist Steps */}
+          <div className="space-y-8">
+              
+              {/* Step 1 */}
+              <div className="flex gap-6 group animate-enter delay-100 items-start">
+                  <div className="flex-shrink-0">
+                      <span className="text-6xl font-brand font-black text-slate-200 leading-none group-hover:text-purple-300 transition-colors">01</span>
+                  </div>
+                  <div className="pb-4 relative top-2">
+                      <h4 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
+                          Validamos la Descripción de Puesto
+                          <FileCheck className="w-4 h-4 text-purple-500" />
+                      </h4>
+                      <ul className="space-y-2">
+                          <li className="flex items-start gap-2 text-sm text-slate-600 bg-white/50 p-3 rounded-xl border border-white/60 shadow-sm backdrop-blur-sm">
+                              <SearchCheck className="w-4 h-4 text-blue-500 mt-0.5 shrink-0" />
+                              <span>Revisión integral de la necesidad real del equipo.</span>
+                          </li>
+                          <li className="flex items-start gap-2 text-sm text-slate-600 bg-white/50 p-3 rounded-xl border border-white/60 shadow-sm backdrop-blur-sm">
+                              <Users className="w-4 h-4 text-pink-500 mt-0.5 shrink-0" />
+                              <span>Definimos perfil <strong>técnico</strong> + <strong>actitudinal</strong>.</span>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+
+              {/* Step 2 */}
+              <div className="flex gap-6 group animate-enter delay-200 items-start">
+                  <div className="flex-shrink-0">
+                       <span className="text-6xl font-brand font-black text-slate-200 leading-none group-hover:text-purple-300 transition-colors">02</span>
+                  </div>
+                  <div className="relative top-2">
+                      <h4 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
+                          Aviso de Publicación
+                          <Megaphone className="w-4 h-4 text-purple-500" />
+                      </h4>
+                      <p className="text-sm text-slate-600 bg-white/50 p-3 rounded-xl border border-white/60 shadow-sm backdrop-blur-sm">
+                          Redactamos y publicamos el aviso en conjunto, <strong className="text-purple-700">alineado 100% a las necesidades</strong> detectadas.
+                      </p>
+                  </div>
+              </div>
+
+          </div>
+      </div>
     </section>
   );
 };

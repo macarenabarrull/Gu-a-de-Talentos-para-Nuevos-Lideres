@@ -38,7 +38,7 @@ export const TIMING_STATS: TimingStat[] = [
 
 // Slide: Sourcing Actions
 export const SOURCING_CHANNELS: SourcingChannel[] = [
-  { title: "Promoción Interna", description: "1 año antigüedad + performance.", icon: UserPlus, percentage: "Talento Interno" },
+  { title: "Postulación Interna", description: "1 año antigüedad + performance.", icon: UserPlus, percentage: "Talento Interno" },
   { title: "Programa Referidos", description: "Si pasa la prueba, ¡Premio!", icon: Gift, percentage: "Red de Contactos" },
   { title: "Jóvenes Profesionales", description: "Semillero comercial.", icon: Briefcase, percentage: "Semillero" },
   { title: "Búsqueda Externa", description: "Consultoras y Mercado.", icon: Globe, percentage: "Mercado Abierto" }
@@ -83,6 +83,7 @@ export const ONBOARDING_KANBAN_STRUCTURE: KanbanColumn[] = [
 
 // All tasks for the pool
 export const ALL_ONBOARDING_TASKS: OnboardingTask[] = [
+  { id: "critical1", content: "Anuncio al equipo (48hs antes)", tag: "Líder" },
   { id: "1", content: "Asegurar accesos y notebook", tag: "Líder" },
   { id: "2", content: "Ficha de inducción lista", tag: "TBP" },
   { id: "3", content: "Evitar el desorden", tag: "Equipo" },
@@ -99,10 +100,10 @@ export const ALL_ONBOARDING_TASKS: OnboardingTask[] = [
 
 // Slide: Onboarding Tips
 export const ONBOARDING_TIPS: OnboardingTip[] = [
-  { title: "Presencia", description: "Tu cercanía hace la diferencia. Que sienta: 'Me estaban esperando'." },
-  { title: "Pertenencia", description: "Sos el primer referente. Transmitís cultura desde el minuto cero." },
-  { title: "Sembrar", description: "Lo que hacés el primer día impacta en su motivación futura." },
-  { title: "El Aliado", description: "Busca a alguien cercano que acompañe dudas y momentos." },
-  { title: "Almuerzo", description: "Organizá con quiénes y qué. No dejes que almuerce solo/a." },
-  { title: "Cierre", description: "Terminá el día preguntando: '¿Cómo te sentiste hoy?'." }
+  { title: "Presencia", description: "Tu cercanía hace la diferencia. Que sienta: 'Me estaban esperando'.", leaderTip: "Despejá tu agenda la primera hora del día." },
+  { title: "Pertenencia", description: "Sos el primer referente. Transmitís cultura desde el minuto cero.", leaderTip: "Contale historia y anécdotas de fyo." },
+  { title: "Sembrar", description: "Lo que hacés el primer día impacta en su motivación futura.", leaderTip: "Mostrale cómo su trabajo impacta en el negocio." },
+  { title: "El Aliado", description: "Busca a alguien cercano que acompañe dudas y momentos.", leaderTip: "Elegí a alguien empático, no necesariamente el más técnico." },
+  { title: "Almuerzo", description: "Organizá con quiénes y qué. No dejes que almuerce solo/a.", leaderTip: "El primer almuerzo paga la casa (o el equipo)." },
+  { title: "Cierre", description: "Terminá el día preguntando: '¿Cómo te sentiste hoy?'.", leaderTip: "Escuchá activamente, sin justificar si algo salió mal." }
 ];
