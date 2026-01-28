@@ -1,6 +1,6 @@
 import React from 'react';
 import { SectionHeading } from './SectionHeading';
-import { Armchair, FileText, Search, Users, Megaphone } from 'lucide-react';
+import { FileText, Megaphone } from 'lucide-react';
 
 export const DefinitionPhase: React.FC = () => {
   return (
@@ -18,11 +18,11 @@ export const DefinitionPhase: React.FC = () => {
           {/* Left: Estrategia Silla Vacía */}
           <div className="h-full bg-white rounded-[2.5rem] p-8 lg:p-12 border border-slate-100 shadow-xl shadow-purple-500/5 relative overflow-hidden group flex flex-col justify-center">
               {/* Decorative blob */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-purple-50 rounded-full blur-3xl -mr-20 -mt-20 opacity-60 pointer-events-none"></div>
+              <div className="absolute top-0 right-0 w-64 h-64 bg-slate-50 rounded-full blur-3xl -mr-20 -mt-20 opacity-60 pointer-events-none"></div>
               
               <div className="relative z-10">
-                  <div className="w-20 h-20 bg-purple-100 text-purple-600 rounded-3xl flex items-center justify-center mb-8 text-3xl shadow-sm group-hover:scale-110 transition-transform duration-500">
-                      <Armchair className="w-10 h-10" />
+                  <div className="icon-box-soft w-24 h-24 rounded-3xl mb-8 group-hover:scale-105 transition-transform duration-500">
+                      <span className="text-5xl emoji-3d">🪑</span>
                   </div>
                   
                   <h3 className="text-3xl md:text-4xl font-brand font-black text-slate-900 mb-6 leading-tight">
@@ -33,8 +33,8 @@ export const DefinitionPhase: React.FC = () => {
                       No se trata solo de llenar un hueco. Imaginamos quién se sienta ahí:
                   </p>
                   
-                  <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-0">
-                      <p className="text-purple-700 font-bold text-xl leading-tight">
+                  <div className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-100">
+                      <p className="text-slate-800 font-bold text-xl leading-tight">
                           ¿Qué valor agrega? <br/> ¿Cómo complementa al equipo?
                       </p>
                   </div>
@@ -55,14 +55,14 @@ export const DefinitionPhase: React.FC = () => {
                   </div>
                   
                   <div className="space-y-4 ml-2">
-                      <div className="bg-white px-6 py-4 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4 hover:shadow-md transition-all hover:-translate-y-1 hover:border-blue-100 group/item">
-                          <Search className="w-5 h-5 text-blue-500 shrink-0 group-hover/item:scale-110 transition-transform" />
+                      <div className="bg-white px-6 py-4 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4 hover:shadow-md transition-all hover:-translate-y-1 hover:border-purple-200 group/item">
+                          <span className="text-2xl emoji-3d group-hover/item:scale-110 transition-transform">🔍</span>
                           <p className="text-slate-600 text-sm font-medium">
                               Revisión integral de la necesidad real del equipo.
                           </p>
                       </div>
-                      <div className="bg-white px-6 py-4 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4 hover:shadow-md transition-all hover:-translate-y-1 hover:border-pink-100 group/item">
-                          <Users className="w-5 h-5 text-pink-500 shrink-0 group-hover/item:scale-110 transition-transform" />
+                      <div className="bg-white px-6 py-4 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4 hover:shadow-md transition-all hover:-translate-y-1 hover:border-purple-200 group/item">
+                          <span className="text-2xl emoji-3d group-hover/item:scale-110 transition-transform">🧠</span>
                           <p className="text-slate-600 text-sm font-medium">
                               Definimos perfil <strong className="text-slate-900">técnico + actitudinal.</strong>
                           </p>
@@ -81,7 +81,7 @@ export const DefinitionPhase: React.FC = () => {
                   </div>
                   
                   <div className="ml-2">
-                      <div className="bg-white px-6 py-5 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-4 hover:shadow-md transition-all hover:-translate-y-1 hover:border-purple-100">
+                      <div className="bg-white px-6 py-5 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-4 hover:shadow-md transition-all hover:-translate-y-1 hover:border-purple-200">
                           <p className="text-slate-600 text-sm font-medium leading-relaxed">
                               Redactamos y publicamos el aviso en conjunto, <strong className="text-purple-600">alineado 100% a las necesidades</strong> detectadas.
                           </p>

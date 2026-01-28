@@ -5,6 +5,7 @@ export interface ProcessStep {
   title: string;
   description: string;
   icon: LucideIcon;
+  emoji: string; // Added for 3D aesthetic
   phase: string;
 }
 
@@ -12,19 +13,22 @@ export interface TimingStat {
   role: string;
   range: string;
   color: string;
+  emoji: string; // Added for 3D aesthetic
 }
 
 export interface SourcingChannel {
   title: string;
   description: string;
   icon: LucideIcon;
-  percentage?: string; // Added for funnel visualization
+  emoji: string; // Added for 3D aesthetic
+  percentage?: string; 
 }
 
 export interface EvaluationType {
   role: string;
   method: string;
   focus: string;
+  emoji: string; // Added for 3D aesthetic
 }
 
 export interface OnboardingTask {
@@ -50,5 +54,5 @@ export interface StarStep {
 export interface OnboardingTip {
   title: string;
   description: string;
-  leaderTip?: string; // Added for specific advice
+  leaderTip?: string; 
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { SectionHeading } from './SectionHeading';
 import { PROCESS_STEPS } from '../constants';
-import { ArrowRight, ChevronRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 export const ProcessTimeline: React.FC = () => {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
@@ -12,13 +12,8 @@ export const ProcessTimeline: React.FC = () => {
   }, []);
 
   const getTheme = (index: number) => {
-    const themes = [
-        { bg: 'bg-purple-50', border: 'border-purple-200', text: 'text-purple-700', iconBg: 'bg-purple-100' },
-        { bg: 'bg-blue-50', border: 'border-blue-200', text: 'text-blue-700', iconBg: 'bg-blue-100' },
-        { bg: 'bg-pink-50', border: 'border-pink-200', text: 'text-pink-700', iconBg: 'bg-pink-100' },
-        { bg: 'bg-orange-50', border: 'border-orange-200', text: 'text-orange-700', iconBg: 'bg-orange-100' },
-    ];
-    return themes[index % themes.length];
+    // Simplified theme to match "Soft White" aesthetic
+    return { bg: 'bg-white', border: 'border-slate-100', text: 'text-slate-600', hoverBorder: 'group-hover:border-purple-200' };
   };
 
   return (
@@ -39,10 +34,10 @@ export const ProcessTimeline: React.FC = () => {
                 <path 
                     d="M 87.5% 25% V 50% H 12.5% V 70%" 
                     fill="none" 
-                    stroke="#cbd5e1" 
+                    stroke="#e2e8f0" 
                     strokeWidth="3" 
                     strokeDasharray="8 8"
-                    className="opacity-40"
+                    className="opacity-60"
                 />
                  {/* The Drawing Line */}
                  <path 
@@ -69,7 +64,6 @@ export const ProcessTimeline: React.FC = () => {
                 const isLast = index === PROCESS_STEPS.length - 1;
                 const isRow1 = index < 3; 
                 const isRow2 = index >= 4 && index < 7; 
-                const theme = getTheme(index);
                 
                 return (
                 <div 
@@ -80,11 +74,11 @@ export const ProcessTimeline: React.FC = () => {
                     onMouseLeave={() => setHoveredStep(null)}
                 >
                     
-                    {/* Desktop Arrows - BIGGER and BOLDER */}
+                    {/* Desktop Arrows */}
                     <div className="hidden lg:block absolute pointer-events-none z-20 w-full h-full">
                         {(isRow1 || isRow2) && (
-                            <div className="absolute top-1/2 -right-9 -translate-y-1/2 text-slate-400 bg-white rounded-full p-2.5 border-2 border-slate-100 shadow-md z-30 group-hover:scale-125 group-hover:border-purple-200 group-hover:text-purple-600 transition-all duration-300">
-                                <ArrowRight className="w-5 h-5" />
+                            <div className="absolute top-1/2 -right-9 -translate-y-1/2 text-slate-300 bg-white rounded-full p-2 border border-slate-100 shadow-sm z-30 group-hover:scale-110 group-hover:text-purple-400 transition-all duration-300">
+                                <ArrowRight className="w-4 h-4" />
                             </div>
                         )}
                     </div>
@@ -96,29 +90,29 @@ export const ProcessTimeline: React.FC = () => {
                         )}
                     </div>
 
-                    {/* Premium Colored Card */}
+                    {/* Soft 3D Card */}
                     <div className={`
-                        p-6 rounded-3xl border-2 transition-all duration-500 flex flex-col relative z-10 min-h-[10rem] justify-between
-                        bg-white hover:bg-white/90 shadow-lg shadow-slate-200/40 hover:shadow-2xl hover:shadow-purple-500/10 hover:-translate-y-2
-                        ${theme.border}
+                        p-6 rounded-3xl border border-slate-100 transition-all duration-500 flex flex-col relative z-10 min-h-[11rem] justify-between
+                        bg-white shadow-lg shadow-slate-200/50 hover:shadow-2xl hover:shadow-purple-500/5 hover:-translate-y-2 group-hover:border-purple-100
                     `}>
                     
                     {/* Floating Number Badge */}
-                    <div className={`absolute -top-3 -right-3 w-8 h-8 rounded-xl ${theme.bg} ${theme.text} border ${theme.border} flex items-center justify-center font-black text-sm shadow-sm group-hover:scale-110 transition-transform`}>
+                    <div className="absolute -top-3 -right-3 w-8 h-8 rounded-xl bg-white text-slate-400 border border-slate-100 flex items-center justify-center font-black text-xs shadow-sm group-hover:scale-110 group-hover:text-purple-600 transition-all">
                         {index + 1}
                     </div>
 
-                    <div className="flex justify-between items-start mb-3">
-                        <div className={`p-3 rounded-2xl ${theme.iconBg} ${theme.text} shadow-inner group-hover:scale-110 transition-transform duration-300`}>
-                            <step.icon className="w-6 h-6" />
+                    <div className="flex justify-between items-start mb-4">
+                        {/* 3D Emoji Icon Container */}
+                        <div className="icon-box-soft w-14 h-14 group-hover:scale-110 transition-transform duration-300">
+                            <span className="text-3xl emoji-3d">{step.emoji}</span>
                         </div>
                     </div>
                     
                     <div>
-                        <span className={`text-[10px] font-bold uppercase tracking-widest block mb-1 ${theme.text}`}>
+                        <span className="text-[10px] font-bold uppercase tracking-widest block mb-1 text-slate-400 group-hover:text-purple-500 transition-colors">
                             {step.phase}
                         </span>
-                        <h3 className="text-lg font-brand font-bold leading-tight text-slate-900 mb-2 group-hover:text-slate-950">
+                        <h3 className="text-lg font-brand font-bold leading-tight text-slate-900 mb-2">
                             {step.title}
                         </h3>
                         <p className="text-xs font-medium text-slate-500 leading-relaxed group-hover:text-slate-600">

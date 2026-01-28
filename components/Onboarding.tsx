@@ -1,50 +1,24 @@
 import React from 'react';
 import { SectionHeading } from './SectionHeading';
 import { ONBOARDING_TIPS } from '../constants';
-import { Sparkles, HeartHandshake, ShieldCheck, Lightbulb, Trophy, AlertCircle, TrendingUp } from 'lucide-react';
+import { HeartHandshake, Lightbulb, Trophy, AlertCircle } from 'lucide-react';
 
 export const Onboarding: React.FC = () => {
   return (
     <section className="h-full flex flex-col justify-center max-w-7xl mx-auto w-full px-6">
         
         {/* Header Area */}
-        <div className="flex flex-col lg:flex-row gap-8 lg:items-end mb-8 shrink-0">
-          <div className="lg:w-1/2">
+        <div className="mb-8 shrink-0">
              <SectionHeading 
               title="1er día fyo" 
               subtitle="El proceso no termina con la firma. Los primeros 90 días son el momento de la verdad."
             />
-          </div>
-          
-          {/* Visual Stat Card - Styled as 'Premium White' like the Probation card */}
-          <div className="lg:w-1/2 pb-2 flex gap-4">
-             <div className="flex-1 p-[1px] bg-gradient-to-r from-purple-200 via-pink-100 to-purple-200 rounded-[2rem] shadow-xl relative overflow-hidden group">
-                <div className="bg-white/90 backdrop-blur-xl rounded-[1.9rem] h-full p-6 flex items-center gap-6 relative z-10">
-                    
-                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-purple-500/30 border-4 border-white shrink-0">
-                         <TrendingUp className="w-8 h-8" />
-                    </div>
-                    
-                    <div>
-                        <div className="flex items-baseline gap-1 mb-1">
-                            <p className="text-4xl font-brand font-black text-slate-900 tracking-tighter">70%</p>
-                            <span className="text-[10px] font-bold text-purple-600 uppercase tracking-widest bg-purple-50 px-2 py-1 rounded-full">Impacto</span>
-                        </div>
-                        <p className="text-sm text-slate-600 font-medium leading-tight">
-                            de la percepción se forma en la <br/> 
-                            <strong className="text-slate-900">primera semana.</strong>
-                        </p>
-                    </div>
-
-                </div>
-             </div>
-          </div>
         </div>
 
         {/* Content Wrapper */}
         <div className="flex-1 min-h-0 flex flex-col gap-6 pb-2">
             
-            {/* Tips Grid - Sticky Notes Style */}
+            {/* Tips Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 flex-1 overflow-y-auto lg:overflow-visible">
             {ONBOARDING_TIPS.map((tip, i) => {
                 const colors = [
@@ -87,33 +61,30 @@ export const Onboarding: React.FC = () => {
             )})}
             </div>
 
-            {/* Premium Probation Period Card - Gold/Warranty Style */}
-            <div className="shrink-0 bg-gradient-to-r from-amber-200 via-yellow-100 to-amber-200 rounded-3xl p-[1px] shadow-xl">
-                <div className="bg-white/90 backdrop-blur-xl rounded-[1.5rem] p-6 lg:p-8 flex flex-col md:flex-row gap-6 items-center justify-between">
-                    
-                    <div className="flex items-center gap-6">
-                        <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-full flex items-center justify-center text-white shadow-lg shadow-amber-500/30 border-4 border-white shrink-0">
-                            <Trophy className="w-8 h-8" />
-                        </div>
-                        <div>
-                            <div className="flex items-center gap-2 mb-1">
-                                <h3 className="text-xl font-brand font-black text-slate-900 tracking-wide uppercase">Período de Prueba</h3>
-                                <div className="bg-red-100 text-red-600 px-2 py-0.5 rounded text-[10px] font-bold border border-red-200 flex items-center gap-1">
-                                    <AlertCircle className="w-3 h-3" />
-                                    <span>Crítico</span>
-                                </div>
-                            </div>
-                            <p className="text-slate-600 text-sm leading-relaxed font-medium">
-                                Un mes antes de finalizar (día 60), <strong className="text-purple-600">Talento</strong> te contactará para validar la continuidad.
-                            </p>
-                        </div>
+            {/* Probation Period Card - Cleaner Design */}
+            <div className="shrink-0 bg-white rounded-[2rem] p-6 lg:p-8 border border-slate-100 shadow-lg flex flex-col md:flex-row gap-6 items-center justify-between hover:shadow-xl transition-all duration-300">
+                <div className="flex items-center gap-6">
+                    <div className="w-16 h-16 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center shrink-0">
+                        <Trophy className="w-8 h-8" />
                     </div>
-                    
-                    <button className="bg-slate-900 text-white text-xs font-bold px-8 py-4 rounded-xl flex items-center gap-3 hover:bg-purple-600 transition-all shadow-lg transform hover:scale-105 active:scale-95 group border border-slate-800">
-                        <HeartHandshake className="w-4 h-4" />
-                        <span>Agendar Feedback</span>
-                    </button>
+                    <div>
+                        <div className="flex items-center gap-2 mb-1">
+                            <h3 className="text-xl font-brand font-black text-slate-900 tracking-wide uppercase">Período de Prueba</h3>
+                            <div className="bg-red-50 text-red-600 px-2 py-0.5 rounded text-[10px] font-bold border border-red-100 flex items-center gap-1">
+                                <AlertCircle className="w-3 h-3" />
+                                <span>Crítico</span>
+                            </div>
+                        </div>
+                        <p className="text-slate-600 text-sm leading-relaxed font-medium">
+                            Un mes antes de finalizar (día 60), <strong className="text-purple-600">Talento</strong> te contactará para validar la continuidad.
+                        </p>
+                    </div>
                 </div>
+                
+                <button className="bg-slate-900 text-white text-xs font-bold px-8 py-4 rounded-xl flex items-center gap-3 hover:bg-purple-600 transition-all shadow-lg transform hover:scale-105 active:scale-95 group border border-slate-800 shrink-0">
+                    <HeartHandshake className="w-4 h-4" />
+                    <span>Agendar Feedback</span>
+                </button>
             </div>
         </div>
         

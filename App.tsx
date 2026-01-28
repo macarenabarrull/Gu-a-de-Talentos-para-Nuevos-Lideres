@@ -13,18 +13,28 @@ import { Closing } from './components/Closing';
 import { PrintReport } from './components/PrintReport';
 import { ArrowLeft, ArrowRight, MousePointer2, Maximize2, Minimize2, Grid, X, Map } from 'lucide-react';
 
+// NARRATIVE ORDER UPDATE:
+// 1. Context (StrategicImpact)
+// 2. The Map (ProcessTimeline)
+// 3. Definition (DefinitionPhase)
+// 4. Attraction (SourcingFunnel)
+// 5. Evaluation (SourcingStrategy)
+// 6. Expectations (TimingSection)
+// 7. Closing the Deal (InterviewGuide)
+// 8. The Welcome Philosophy (Onboarding)
+// 9. The Execution Tool (OnboardingKanban)
 const SLIDES = [
   { component: Hero, title: "Inicio", phase: "Portada" },
-  { component: StrategicImpact, title: "¿Cuándo Inicia?", phase: "Inicio de proceso" },
-  { component: ProcessTimeline, title: "Roadmap del Proceso", phase: "Roadmap" },
+  { component: StrategicImpact, title: "¿Cuándo Inicia?", phase: "Contexto" },
+  { component: ProcessTimeline, title: "Roadmap del Proceso", phase: "Mapa" },
   { component: DefinitionPhase, title: "Entendamos qué buscamos", phase: "Definición" },
-  { component: SourcingFunnel, title: "Acciones de Atracción", phase: "Sourcing" },
+  { component: SourcingFunnel, title: "Acciones de Atracción", phase: "Atracción" },
   { component: SourcingStrategy, title: "Filtrar y Elegir", phase: "Evaluación" },
-  { component: TimingSection, title: "Tiempos Estimados", phase: "SLA" },
-  { component: InterviewGuide, title: "Propuesta Formal", phase: "Propuesta" },
-  { component: OnboardingKanban, title: "Acciones Clave", phase: "Ingreso" },
-  { component: Onboarding, title: "La Experiencia", phase: "Onboarding" },
-  { component: Closing, title: "Cierre", phase: "Fin" }
+  { component: TimingSection, title: "Tiempos Estimados", phase: "Expectativas" },
+  { component: InterviewGuide, title: "Propuesta Formal", phase: "Cierre" },
+  { component: Onboarding, title: "La Experiencia", phase: "Bienvenida" }, // Moved up: Concept First
+  { component: OnboardingKanban, title: "Plan de Aterrizaje", phase: "Gestión" }, // Moved down: Tool Second
+  { component: Closing, title: "Fin del Recorrido", phase: "Fin" }
 ];
 
 const App: React.FC = () => {

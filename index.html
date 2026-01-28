@@ -45,6 +45,27 @@
       .font-brand {
         font-family: 'Outfit', sans-serif;
       }
+
+      /* 3D Emoji Aesthetic */
+      .emoji-3d {
+        filter: drop-shadow(0 4px 3px rgba(0,0,0,0.15));
+        display: inline-block;
+        transition: transform 0.2s ease;
+      }
+      .group:hover .emoji-3d {
+        transform: scale(1.1) rotate(5deg);
+      }
+      
+      /* Soft Icon Container */
+      .icon-box-soft {
+        background: white;
+        border-radius: 1.5rem; /* Rounded like the reference */
+        box-shadow: 0 4px 20px -2px rgba(0,0,0,0.05);
+        border: 1px solid #f1f5f9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
       
       /* Custom Cursor */
       .cursor-dot {

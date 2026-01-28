@@ -1,7 +1,7 @@
 import React from 'react';
 import { SectionHeading } from './SectionHeading';
 import { EVALUATION_MATRIX } from '../constants';
-import { CheckCircle2, ScanFace, Users, Microscope } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
 
 export const SourcingStrategy: React.FC = () => {
   return (
@@ -16,21 +16,13 @@ export const SourcingStrategy: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1 max-h-[60vh]">
            {EVALUATION_MATRIX.map((item, index) => {
-               const icons = [Microscope, Users, ScanFace];
-               const Icon = icons[index % icons.length];
-               
-               // Clean color palette instead of gradients
-               const colors = [
-                   'text-blue-600 bg-blue-50 border-blue-100',
-                   'text-purple-600 bg-purple-50 border-purple-100',
-                   'text-orange-600 bg-orange-50 border-orange-100'
-               ];
-               
                return (
-                <div key={index} className="flex flex-col h-full bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl overflow-hidden group hover:-translate-y-1 transition-all duration-300">
-                    <div className="p-8 flex-1 flex flex-col items-center text-center">
-                        <div className={`w-16 h-16 rounded-2xl ${colors[index]} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                            <Icon className="w-8 h-8" />
+                <div key={index} className="flex flex-col h-full bg-white rounded-3xl border border-slate-100 shadow-lg shadow-slate-200/50 hover:shadow-2xl hover:shadow-purple-500/5 overflow-hidden group hover:-translate-y-2 transition-all duration-500 p-8">
+                    
+                    <div className="flex-1 flex flex-col items-center text-center">
+                        {/* Soft Icon Container */}
+                        <div className="icon-box-soft w-20 h-20 rounded-2xl mb-8 group-hover:scale-110 transition-transform duration-300">
+                            <span className="text-4xl emoji-3d">{item.emoji}</span>
                         </div>
                         
                         <h3 className="text-xl font-brand font-bold text-slate-900 mb-2">
