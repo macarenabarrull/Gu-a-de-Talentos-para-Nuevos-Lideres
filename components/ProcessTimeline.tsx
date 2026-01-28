@@ -6,21 +6,22 @@ import { ArrowRight } from 'lucide-react';
 export const ProcessTimeline: React.FC = () => {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
 
-  const getCardColor = (index: number) => {
-    const colors = [
-      'hover:border-purple-300 hover:shadow-purple-500/10 border-l-4 border-l-purple-500',
-      'hover:border-blue-300 hover:shadow-blue-500/10 border-l-4 border-l-blue-500',
-      'hover:border-pink-300 hover:shadow-pink-500/10 border-l-4 border-l-pink-500',
-      'hover:border-orange-300 hover:shadow-orange-500/10 border-l-4 border-l-orange-500',
+  const getCardStyle = (index: number) => {
+      // Subtle color coding
+    const styles = [
+      'hover:border-purple-200 border-l-4 border-l-purple-500',
+      'hover:border-blue-200 border-l-4 border-l-blue-500',
+      'hover:border-pink-200 border-l-4 border-l-pink-500',
+      'hover:border-orange-200 border-l-4 border-l-orange-500',
     ];
-    return colors[index % colors.length];
+    return styles[index % styles.length];
   };
 
   return (
-    <section className="h-full flex flex-col justify-center max-w-7xl mx-auto w-full px-4 pt-4 md:pt-0 relative">
+    <section className="h-full flex flex-col justify-center max-w-7xl mx-auto w-full px-6 pt-4 md:pt-0 relative">
       <div className="mb-4 shrink-0 relative z-10">
         <SectionHeading 
-            title="Roadmap del Proceso 🗺️" 
+            title="Roadmap del Proceso" 
             subtitle="El camino que recorremos juntos: cada paso construye el éxito del siguiente."
         />
       </div>
@@ -29,32 +30,22 @@ export const ProcessTimeline: React.FC = () => {
           
           <div className="relative w-full z-10">
             
-            {/* SVG Connector Layer for Desktop (The "Snake" Line) */}
+            {/* Connector Line (The Snake) */}
             <svg className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible">
-                <defs>
-                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#cbd5e1" />
-                        <stop offset="50%" stopColor="#94a3b8" />
-                        <stop offset="100%" stopColor="#cbd5e1" />
-                    </linearGradient>
-                </defs>
-                
-                {/* Connection 4 -> 5: The "Return" Path */}
                 <path 
                     d="M 87.5% 25% V 50% H 12.5% V 70%" 
                     fill="none" 
-                    stroke="#cbd5e1" 
-                    strokeWidth="2" 
-                    strokeDasharray="4 4"
-                    className="opacity-50"
+                    stroke="#e2e8f0" 
+                    strokeWidth="3" 
+                    strokeDasharray="6 6"
                 />
             </svg>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 gap-y-12 w-full relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 gap-y-12 w-full relative z-10">
                 {PROCESS_STEPS.map((step, index) => {
                 const isLast = index === PROCESS_STEPS.length - 1;
-                const isRow1 = index < 3; // 0, 1, 2 connect to right
-                const isRow2 = index >= 4 && index < 7; // 4, 5, 6 connect to right
+                const isRow1 = index < 3; 
+                const isRow2 = index >= 4 && index < 7; 
                 
                 return (
                 <div 
@@ -65,40 +56,38 @@ export const ProcessTimeline: React.FC = () => {
                     onMouseLeave={() => setHoveredStep(null)}
                 >
                     
-                    {/* Standard Horizontal Connectors (Desktop) */}
-                    <div className="hidden lg:block absolute pointer-events-none z-0 w-full h-full">
+                    {/* Desktop Arrows - Positioned Absolutely */}
+                    <div className="hidden lg:block absolute pointer-events-none z-20 w-full h-full">
                         {(isRow1 || isRow2) && (
-                            <div className="absolute top-1/2 -right-6 -translate-y-1/2 text-slate-300">
+                            <div className="absolute top-1/2 -right-7 -translate-y-1/2 text-slate-300 bg-slate-50 rounded-full p-1.5 border border-slate-100 shadow-sm">
                                 <ArrowRight className="w-4 h-4" />
                             </div>
                         )}
                     </div>
 
-                    {/* Mobile Connector (Down Arrow) */}
-                    <div className="lg:hidden absolute bottom-[-30px] left-1/2 -translate-x-1/2 text-slate-300 z-0">
+                    {/* Mobile Arrows */}
+                    <div className="lg:hidden absolute bottom-[-34px] left-1/2 -translate-x-1/2 text-slate-300 z-0">
                         {!isLast && (
-                            <ArrowRight className="w-4 h-4 rotate-90" />
+                            <ArrowRight className="w-5 h-5 rotate-90" />
                         )}
                     </div>
 
                     {/* Card */}
                     <div className={`
-                        p-4 rounded-xl border border-white/60 bg-white/60 backdrop-blur-xl transition-all duration-300 flex flex-col relative z-10 
-                        shadow-sm hover:shadow-lg ${getCardColor(index)} hover:-translate-y-1 min-h-[9rem] justify-between
+                        p-5 rounded-2xl border border-slate-100 bg-white transition-all duration-300 flex flex-col relative z-10 
+                        shadow-sm hover:shadow-xl hover:-translate-y-1 min-h-[8.5rem] justify-between
+                        ${getCardStyle(index)}
                     `}>
                     
-                    <div className="flex justify-between items-start mb-1">
+                    <div className="flex justify-between items-start mb-2">
                         <div className="flex items-center gap-2">
-                            <div className="p-1.5 bg-white rounded-lg shadow-sm border border-slate-100 text-purple-600">
+                            <div className="p-1.5 bg-slate-50 rounded-lg text-slate-600 group-hover:bg-slate-900 group-hover:text-white transition-colors">
                                 <step.icon className="w-4 h-4" />
                             </div>
-                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
                                 {step.phase}
                             </span>
                         </div>
-                        <span className="text-2xl font-brand font-black text-slate-200 select-none">
-                            {step.id}
-                        </span>
                     </div>
                     
                     <div>

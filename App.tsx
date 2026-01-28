@@ -14,8 +14,8 @@ import { PrintReport } from './components/PrintReport';
 import { ArrowLeft, ArrowRight, MousePointer2, Maximize2, Minimize2, Grid, X, Map } from 'lucide-react';
 
 const SLIDES = [
-  { component: Hero, title: "Inicio", phase: "Intro" },
-  { component: StrategicImpact, title: "¿Cuándo Inicia?", phase: "Contexto" },
+  { component: Hero, title: "Inicio", phase: "Portada" },
+  { component: StrategicImpact, title: "¿Cuándo Inicia?", phase: "Inicio de proceso" },
   { component: ProcessTimeline, title: "Roadmap del Proceso", phase: "Roadmap" },
   { component: DefinitionPhase, title: "Entendamos qué buscamos", phase: "Definición" },
   { component: SourcingFunnel, title: "Acciones de Atracción", phase: "Sourcing" },
@@ -131,31 +131,31 @@ const App: React.FC = () => {
     <>
       <main className="no-print h-screen w-screen bg-slate-50 flex flex-col font-sans selection:bg-purple-100 selection:text-purple-900 overflow-hidden relative">
         
-        {/* Background Ambience */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-purple-100/50 to-transparent rounded-full blur-[100px] pointer-events-none animate-breathe fixed z-0" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-pink-100/40 to-transparent rounded-full blur-[80px] pointer-events-none animate-breathe delay-700 fixed z-0" />
+        {/* Background Ambience (Softer) */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-purple-100/40 rounded-full blur-[120px] pointer-events-none animate-breathe fixed z-0" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-pink-100/30 rounded-full blur-[100px] pointer-events-none animate-breathe delay-700 fixed z-0" />
 
         {/* Header */}
-        <header className="w-full px-6 md:px-12 py-6 z-50 flex justify-between items-center bg-transparent relative shrink-0">
+        <header className="w-full px-6 py-4 z-50 flex justify-between items-center bg-transparent relative shrink-0">
             <div className="flex items-center gap-4">
                <div>
-                  <div className="font-brand font-black text-xl md:text-2xl tracking-tighter text-slate-900 flex items-baseline gap-1">
+                  <div className="font-brand font-black text-xl tracking-tighter text-slate-900 flex items-baseline gap-1">
                   fyo<span className="w-2 h-2 rounded-full bg-gradient-to-tr from-purple-600 to-pink-500"></span>
                   </div>
                </div>
             </div>
 
             <div className="flex items-center gap-3">
-                <div className="hidden md:flex items-center px-4 py-2 bg-white/40 backdrop-blur-md rounded-full border border-white/50 shadow-sm">
+                <div className="hidden md:flex items-center px-4 py-2 bg-white rounded-full border border-slate-100 shadow-sm">
                     <span className="text-[10px] font-bold tracking-widest text-slate-500 uppercase flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
+                        <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></span>
                         {currentPhase}
                     </span>
                 </div>
 
                 <button 
                 onClick={toggleFullscreen}
-                className="p-3 rounded-full bg-white/40 backdrop-blur-md border border-white/50 text-slate-500 hover:bg-white hover:text-purple-600 hover:border-purple-200 transition-all shadow-sm group active:scale-95"
+                className="p-2.5 rounded-full bg-white border border-slate-100 text-slate-500 hover:bg-slate-50 hover:text-purple-600 transition-all shadow-sm group active:scale-95"
                 title={isFullscreen ? "Salir de pantalla completa" : "Pantalla completa"}
                 >
                 {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
@@ -190,25 +190,25 @@ const App: React.FC = () => {
         </div>
 
         {/* Footer / Navigation */}
-        <footer className="w-full px-6 md:px-12 py-6 z-50 flex items-end justify-between bg-transparent relative shrink-0">
+        <footer className="w-full px-6 py-4 z-50 flex items-end justify-between bg-transparent relative shrink-0">
           
           {/* Interactive Progress Bar */}
-          <div className="absolute bottom-0 left-0 w-full h-1.5 bg-slate-200/50 flex group hover:h-3 transition-all duration-300">
+          <div className="absolute bottom-0 left-0 w-full h-1 bg-slate-100 flex group hover:h-1.5 transition-all duration-300">
               {SLIDES.map((_, idx) => (
                   <div 
                     key={idx}
                     onClick={() => goToSlide(idx)}
-                    className="h-full flex-1 cursor-pointer hover:bg-purple-200 transition-colors relative"
+                    className="h-full flex-1 cursor-pointer hover:bg-purple-100 transition-colors relative"
                   >
                      {/* Tooltip on hover */}
-                     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[9px] px-2 py-1 rounded opacity-0 hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none mb-1 shadow-lg transform translate-y-2 hover:translate-y-0 duration-200">
+                     <div className="absolute bottom-4 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] px-3 py-1.5 rounded opacity-0 hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none mb-1 shadow-lg transform translate-y-2 hover:translate-y-0 duration-200 font-medium">
                         {SLIDES[idx].title}
                      </div>
                   </div>
               ))}
               {/* Active Indicator */}
               <div 
-                className="absolute top-0 left-0 h-full bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 transition-all duration-500 ease-out shadow-[0_0_15px_rgba(192,38,211,0.4)] pointer-events-none"
+                className="absolute top-0 left-0 h-full bg-slate-900 transition-all duration-500 ease-out pointer-events-none"
                 style={{ width: `${((currentSlide + 1) / SLIDES.length) * 100}%` }}
               />
           </div>
@@ -217,21 +217,21 @@ const App: React.FC = () => {
           <div className="flex items-center gap-4 animate-enter delay-200">
               <button 
                 onClick={() => setIsMenuOpen(true)}
-                className="flex items-center gap-3 px-4 py-2 rounded-full bg-white/40 backdrop-blur-md border border-white/50 hover:bg-white hover:shadow-lg hover:border-purple-200 transition-all group active:scale-95"
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-100 hover:shadow-md hover:border-purple-200 transition-all group active:scale-95"
               >
-                 <Map className="w-4 h-4 text-slate-500 group-hover:text-purple-600" />
-                 <span className="text-sm font-black text-slate-700 group-hover:text-purple-900 select-none">
-                     {(currentSlide + 1).toString().padStart(2, '0')} <span className="text-slate-400 font-medium text-xs">/ {SLIDES.length}</span>
+                 <Map className="w-4 h-4 text-slate-400 group-hover:text-purple-600" />
+                 <span className="text-xs font-bold text-slate-600 group-hover:text-purple-900 select-none">
+                     {(currentSlide + 1).toString().padStart(2, '0')} <span className="text-slate-300 font-normal">/ {SLIDES.length}</span>
                  </span>
               </button>
           </div>
 
           {/* Navigation Controls */}
-          <div className="flex items-center gap-3 animate-enter delay-300 ml-auto mb-2">
+          <div className="flex items-center gap-3 animate-enter delay-300 ml-auto mb-1">
               <button 
                   onClick={prevSlide}
                   disabled={currentSlide === 0}
-                  className="group relative w-12 h-12 rounded-full flex items-center justify-center border border-slate-200 bg-white/40 backdrop-blur-md text-slate-500 hover:bg-white hover:border-purple-200 hover:text-purple-600 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm hover:shadow-lg hover:scale-110 active:scale-95"
+                  className="group relative w-11 h-11 rounded-full flex items-center justify-center border border-slate-200 bg-white text-slate-500 hover:bg-slate-50 hover:border-purple-200 hover:text-purple-600 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm hover:shadow-md active:scale-95"
               >
               <ArrowLeft className="w-5 h-5" />
               </button>
@@ -239,7 +239,7 @@ const App: React.FC = () => {
               <button 
                   onClick={nextSlide}
                   disabled={currentSlide === SLIDES.length - 1}
-                  className="group relative w-12 h-12 rounded-full flex items-center justify-center bg-slate-900 border border-slate-900 text-white hover:bg-purple-600 hover:border-purple-600 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-lg hover:shadow-purple-200 hover:scale-110 active:scale-95"
+                  className="group relative w-11 h-11 rounded-full flex items-center justify-center bg-slate-900 border border-slate-900 text-white hover:bg-purple-600 hover:border-purple-600 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
               >
               <ArrowRight className="w-5 h-5" />
               </button>
@@ -249,15 +249,15 @@ const App: React.FC = () => {
         {/* CHAPTER MENU OVERLAY */}
         {isMenuOpen && (
             <div className="fixed inset-0 z-[100] bg-slate-900/40 backdrop-blur-xl flex items-center justify-center p-6 animate-enter duration-300">
-                <div className="bg-white/80 backdrop-blur-2xl w-full max-w-4xl rounded-[2rem] shadow-2xl border border-white p-8 relative">
+                <div className="bg-white w-full max-w-5xl rounded-[2.5rem] shadow-2xl p-10 relative">
                     <button 
                         onClick={() => setIsMenuOpen(false)}
-                        className="absolute top-6 right-6 p-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-colors"
+                        className="absolute top-8 right-8 p-2 rounded-full bg-slate-50 hover:bg-slate-100 transition-colors"
                     >
-                        <X className="w-6 h-6 text-slate-600" />
+                        <X className="w-6 h-6 text-slate-500" />
                     </button>
                     
-                    <h2 className="text-2xl font-brand font-black text-slate-900 mb-8 flex items-center gap-2">
+                    <h2 className="text-2xl font-brand font-bold text-slate-900 mb-8 flex items-center gap-3">
                         <Grid className="w-6 h-6 text-purple-600" />
                         Índice de Contenidos
                     </h2>
@@ -268,24 +268,19 @@ const App: React.FC = () => {
                                 key={idx}
                                 onClick={() => goToSlide(idx)}
                                 className={`
-                                    text-left p-4 rounded-xl border transition-all duration-200 group relative overflow-hidden
+                                    text-left p-5 rounded-2xl border transition-all duration-200 group relative overflow-hidden
                                     ${currentSlide === idx 
-                                        ? 'bg-purple-600 border-purple-600 text-white shadow-lg shadow-purple-500/30' 
+                                        ? 'bg-slate-900 border-slate-900 text-white shadow-xl' 
                                         : 'bg-white border-slate-100 hover:border-purple-200 hover:shadow-md hover:-translate-y-1'
                                     }
                                 `}
                             >
-                                <span className={`text-[10px] font-bold uppercase tracking-widest block mb-1 ${currentSlide === idx ? 'text-purple-200' : 'text-slate-400'}`}>
+                                <span className={`text-[10px] font-bold uppercase tracking-widest block mb-2 ${currentSlide === idx ? 'text-slate-400' : 'text-slate-400'}`}>
                                     {slide.phase}
                                 </span>
                                 <span className={`font-bold text-sm leading-tight block ${currentSlide === idx ? 'text-white' : 'text-slate-800'}`}>
                                     {slide.title}
                                 </span>
-                                {currentSlide === idx && (
-                                    <div className="absolute -bottom-4 -right-4 text-purple-500 opacity-20">
-                                        <Grid className="w-16 h-16" />
-                                    </div>
-                                )}
                             </button>
                         ))}
                     </div>

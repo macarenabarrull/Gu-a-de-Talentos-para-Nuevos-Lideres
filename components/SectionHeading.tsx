@@ -9,21 +9,23 @@ interface Props {
 export const SectionHeading: React.FC<Props> = ({ title, subtitle, center = false }) => {
   return (
     <div className={`mb-4 w-full ${center ? 'flex flex-col items-center' : 'text-left'} animate-enter`}>
-      {/* Decorative accent */}
-      {!center && (
-        <div className="w-8 h-1 lg:w-10 lg:h-1 bg-gradient-to-r from-purple-600 to-pink-500 mb-2 rounded-full" />
-      )}
       
-      <h2 className={`text-2xl md:text-3xl lg:text-4xl font-brand font-black text-slate-900 tracking-tight mb-2 uppercase ${center ? 'text-center' : ''}`}>
+      {/* Kicker / Eyebrow (Uppercase is allowed here for hierarchy) */}
+      <div className={`flex items-center gap-2 mb-2 ${center ? 'justify-center' : 'justify-start'}`}>
+          {!center && <div className="w-6 h-1 bg-gradient-to-r from-purple-600 to-pink-500 rounded-full" />}
+          <span className="text-[10px] font-bold tracking-widest text-slate-400 uppercase">
+            Guía de Selección
+          </span>
+          {center && <div className="w-6 h-1 bg-gradient-to-r from-purple-600 to-pink-500 rounded-full" />}
+      </div>
+      
+      {/* Title: Sentence Case for elegance */}
+      <h2 className={`text-2xl md:text-3xl lg:text-4xl font-brand font-black text-slate-900 tracking-tight leading-none mb-3 ${center ? 'text-center' : ''}`}>
         {title}
       </h2>
-      
-      {center && (
-         <div className="w-10 h-1 bg-gradient-to-r from-purple-600 to-pink-500 mb-3 rounded-full" />
-      )}
 
       {subtitle && (
-        <p className={`text-sm md:text-base text-slate-600 max-w-4xl leading-relaxed font-normal delay-100 animate-enter ${center ? 'text-left self-center text-center' : 'text-left'}`}>
+        <p className={`text-sm text-slate-600 max-w-3xl leading-relaxed font-medium delay-100 animate-enter ${center ? 'text-center' : 'text-left'}`}>
           {subtitle}
         </p>
       )}

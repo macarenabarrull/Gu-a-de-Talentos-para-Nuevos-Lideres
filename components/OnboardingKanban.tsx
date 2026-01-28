@@ -22,8 +22,8 @@ export const OnboardingKanban: React.FC = () => {
 
   // Load state or Defaults
   useEffect(() => {
-    const savedCols = localStorage.getItem('fyo_kanban_cols_v5');
-    const savedPool = localStorage.getItem('fyo_kanban_pool_v5');
+    const savedCols = localStorage.getItem('fyo_kanban_cols_v6');
+    const savedPool = localStorage.getItem('fyo_kanban_pool_v6');
     
     if (savedCols) setColumns(JSON.parse(savedCols));
     if (savedPool) setPoolTasks(JSON.parse(savedPool));
@@ -31,8 +31,8 @@ export const OnboardingKanban: React.FC = () => {
 
   // Save state
   useEffect(() => {
-    localStorage.setItem('fyo_kanban_cols_v5', JSON.stringify(columns));
-    localStorage.setItem('fyo_kanban_pool_v5', JSON.stringify(poolTasks));
+    localStorage.setItem('fyo_kanban_cols_v6', JSON.stringify(columns));
+    localStorage.setItem('fyo_kanban_pool_v6', JSON.stringify(poolTasks));
     
     const hasTasksInBoard = columns.some(c => c.tasks.length > 0);
     const poolEmpty = poolTasks.length === 0;
@@ -140,7 +140,7 @@ export const OnboardingKanban: React.FC = () => {
   };
 
   return (
-    <section className="h-full flex flex-col justify-start md:justify-center max-w-7xl mx-auto w-full px-4 pt-4 md:pt-0 relative">
+    <section className="h-full flex flex-col justify-start md:justify-center max-w-7xl mx-auto w-full px-6 pt-4 md:pt-0 relative">
       
       {isComplete && (
          <>
@@ -151,12 +151,12 @@ export const OnboardingKanban: React.FC = () => {
 
       <div className="shrink-0 mb-4 flex flex-col lg:flex-row justify-between items-end gap-2">
         <SectionHeading 
-          title="ACCIONES CLAVE 📋" 
+          title="Acciones Clave" 
           subtitle="Tu misión: Organizá el plan de aterrizaje. Arrastrá las tarjetas del banco a su momento ideal."
         />
         <button 
             onClick={resetBoard}
-            className="flex items-center gap-2 px-4 py-2 bg-white/50 border border-purple-200 text-purple-700 hover:bg-white hover:shadow-md rounded-xl transition-all text-xs font-bold backdrop-blur-sm"
+            className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 text-slate-600 hover:text-purple-600 hover:border-purple-200 rounded-xl transition-all text-xs font-bold shadow-sm"
             title="Reiniciar Tablero"
         >
             <RotateCcw className="w-3.5 h-3.5" />
@@ -166,10 +166,10 @@ export const OnboardingKanban: React.FC = () => {
 
       <div className="flex-1 min-h-0 flex flex-col lg:flex-row gap-6 pb-2 overflow-hidden">
         
-        {/* TASK POOL */}
-        <div className="lg:w-1/4 flex flex-col bg-white/80 backdrop-blur-xl rounded-[1.5rem] border border-white shadow-lg shadow-purple-900/5 overflow-hidden shrink-0 h-1/3 lg:h-auto">
-            <div className="p-4 bg-gradient-to-r from-purple-50 to-pink-50 border-b border-purple-100/50">
-                <h3 className="font-brand font-bold text-slate-900 flex items-center gap-2 mb-2 text-sm">
+        {/* TASK POOL - STICKY NOTE STYLE */}
+        <div className="lg:w-1/4 flex flex-col bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden shrink-0 h-1/3 lg:h-auto">
+            <div className="p-4 bg-white border-b border-slate-100">
+                <h3 className="font-brand font-bold text-slate-900 flex items-center gap-2 mb-3 text-sm">
                     <ListPlus className="w-4 h-4 text-purple-600" />
                     Banco de Tareas
                 </h3>
@@ -181,14 +181,14 @@ export const OnboardingKanban: React.FC = () => {
                         onChange={(e) => setNewTaskContent(e.target.value)}
                         onKeyDown={(e) => e.key === 'Enter' && addTask()}
                         placeholder="Nueva tarea..."
-                        className="w-full px-3 py-2 rounded-lg border border-white/60 text-xs focus:outline-none focus:ring-2 focus:ring-purple-400 bg-white/60"
+                        className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs focus:outline-none focus:ring-2 focus:ring-purple-400 bg-slate-50"
                     />
                     <div className="flex gap-2">
                         <div className="relative flex-1">
                             <select 
                                 value={newTaskTag}
                                 onChange={(e) => setNewTaskTag(e.target.value as any)}
-                                className="w-full appearance-none px-3 py-2 rounded-lg border border-white/60 text-xs font-bold text-slate-600 bg-white/60 focus:outline-none cursor-pointer"
+                                className="w-full appearance-none px-3 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 bg-slate-50 focus:outline-none cursor-pointer"
                             >
                                 <option value="Líder">Líder</option>
                                 <option value="TBP">TBP</option>
@@ -196,20 +196,20 @@ export const OnboardingKanban: React.FC = () => {
                             </select>
                             <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none" />
                         </div>
-                        <button onClick={addTask} className="px-3 bg-slate-900 text-white rounded-lg hover:bg-purple-600 transition-colors shadow-sm">
+                        <button onClick={addTask} className="px-3 bg-slate-900 text-white rounded-xl hover:bg-purple-600 transition-colors shadow-sm">
                             <Plus className="w-4 h-4" />
                         </button>
                     </div>
                 </div>
             </div>
             
-            <div className="flex-1 p-3 overflow-y-auto space-y-2 custom-scrollbar bg-white/40">
+            <div className="flex-1 p-3 overflow-y-auto space-y-2 custom-scrollbar">
                 {poolTasks.map(task => (
                     <div 
                         key={task.id} 
                         draggable={editingTaskId !== task.id}
                         onDragStart={(e) => handleDragStart(e, task.id, 'pool')}
-                        className="bg-white p-3 rounded-lg border border-slate-100 shadow-sm cursor-grab active:cursor-grabbing group hover:border-purple-300 hover:shadow-md transition-all flex justify-between items-start"
+                        className="bg-white p-3 rounded-xl border border-slate-200 shadow-sm cursor-grab active:cursor-grabbing group hover:border-purple-300 hover:shadow-md transition-all flex justify-between items-start"
                     >
                          {editingTaskId === task.id ? (
                              <input 
@@ -221,16 +221,16 @@ export const OnboardingKanban: React.FC = () => {
                                 className="w-full text-xs font-medium text-slate-700 bg-purple-50 p-1 rounded focus:outline-none"
                              />
                          ) : (
-                            <div className="flex items-start gap-2 w-full">
-                                <GripVertical className="w-3.5 h-3.5 text-slate-300 mt-0.5 shrink-0" />
+                            <div className="flex items-start gap-3 w-full">
+                                <GripVertical className="w-4 h-4 text-slate-300 mt-0.5 shrink-0" />
                                 <div className="flex-1" onDoubleClick={() => startEditing(task)}>
-                                    <span className={`text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded mr-1.5 align-middle
-                                        ${task.tag === 'Líder' ? 'bg-purple-100 text-purple-700' : 
-                                        task.tag === 'TBP' ? 'bg-blue-100 text-blue-700' : 
-                                        'bg-green-100 text-green-700'}`}>
+                                    <span className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md mr-2 align-middle border
+                                        ${task.tag === 'Líder' ? 'bg-purple-50 text-purple-700 border-purple-100' : 
+                                        task.tag === 'TBP' ? 'bg-blue-50 text-blue-700 border-blue-100' : 
+                                        'bg-emerald-50 text-emerald-700 border-emerald-100'}`}>
                                         {task.tag}
                                     </span>
-                                    <span className="text-xs font-medium text-slate-700 leading-snug">{task.content}</span>
+                                    <span className="text-xs font-medium text-slate-700 leading-snug block mt-1">{task.content}</span>
                                 </div>
                                 <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                                     <button onClick={() => startEditing(task)} className="text-slate-300 hover:text-purple-600">
@@ -250,37 +250,33 @@ export const OnboardingKanban: React.FC = () => {
         {/* KANBAN BOARD */}
         <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4 h-full overflow-y-auto lg:overflow-visible">
             {columns.map((column, colIndex) => {
-                const gradient = colIndex === 0 ? 'from-orange-50 to-orange-100/30' 
-                               : colIndex === 1 ? 'from-purple-50 to-purple-100/30' 
-                               : 'from-green-50 to-green-100/30';
-                
                 return (
                 <div 
                     key={column.id} 
                     className={`
-                        rounded-[1.5rem] p-3 flex flex-col h-full border transition-all duration-300 bg-white/50 backdrop-blur-md min-h-[200px]
-                        ${dragOverCol === column.id ? 'ring-2 ring-purple-400 scale-[1.02] bg-white border-purple-200' : 'border-slate-100 shadow-lg shadow-slate-200/50'}
+                        rounded-2xl p-4 flex flex-col h-full border transition-all duration-300 bg-slate-50 min-h-[150px]
+                        ${dragOverCol === column.id ? 'ring-2 ring-purple-400 bg-purple-50/50 border-purple-200' : 'border-slate-200'}
                     `}
                     onDragOver={(e) => e.preventDefault()}
                     onDragEnter={(e) => handleDragEnter(e, column.id)}
                     onDragLeave={handleDragLeave}
                     onDrop={(e) => handleDrop(e, column.id)}
                 >
-                    <div className={`flex items-center gap-2 mb-3 px-3 py-2 rounded-xl bg-gradient-to-r ${gradient}`}>
-                        <span className="text-xl">{column.emoji}</span>
+                    <div className="flex items-center gap-3 mb-4">
+                        <span className="text-2xl bg-white w-10 h-10 flex items-center justify-center rounded-xl shadow-sm border border-slate-100">{column.emoji}</span>
                         <h3 className="font-brand font-bold text-slate-900 text-sm">
                         {column.title}
                         </h3>
-                        <span className="ml-auto bg-white px-2 py-0.5 rounded-full text-[9px] font-bold text-slate-500 border border-slate-100">{column.tasks.length}</span>
+                        <span className="ml-auto bg-slate-200 px-2 py-0.5 rounded-full text-[10px] font-bold text-slate-600">{column.tasks.length}</span>
                     </div>
 
-                    <div className="flex-1 space-y-2 overflow-y-auto pr-1 custom-scrollbar">
+                    <div className="flex-1 space-y-3 overflow-y-auto pr-1 custom-scrollbar">
                         {column.tasks.map((task) => (
                             <div 
                                 key={task.id} 
                                 draggable={editingTaskId !== task.id}
                                 onDragStart={(e) => handleDragStart(e, task.id, column.id)}
-                                className="bg-white p-3 rounded-xl shadow-sm border border-slate-100 hover:border-purple-300 hover:shadow-md cursor-grab active:cursor-grabbing group relative transition-all"
+                                className="bg-white p-3 rounded-xl shadow-sm border border-slate-200 hover:border-purple-300 hover:shadow-md cursor-grab active:cursor-grabbing group relative transition-all"
                             >
                                 {editingTaskId === task.id ? (
                                     <input 
@@ -293,11 +289,11 @@ export const OnboardingKanban: React.FC = () => {
                                     />
                                 ) : (
                                     <>
-                                        <div className="flex justify-between items-start mb-1.5">
-                                            <span className={`text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded
-                                            ${task.tag === 'Líder' ? 'bg-purple-50 text-purple-700' : 
-                                                task.tag === 'TBP' ? 'bg-blue-50 text-blue-700' : 
-                                                'bg-green-50 text-green-700'}`}>
+                                        <div className="flex justify-between items-start mb-2">
+                                            <span className={`text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md border
+                                            ${task.tag === 'Líder' ? 'bg-purple-50 text-purple-700 border-purple-100' : 
+                                                task.tag === 'TBP' ? 'bg-blue-50 text-blue-700 border-blue-100' : 
+                                                'bg-emerald-50 text-emerald-700 border-emerald-100'}`}>
                                             {task.tag}
                                             </span>
                                             <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
