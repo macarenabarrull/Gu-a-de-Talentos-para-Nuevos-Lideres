@@ -7,52 +7,67 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onStart }) => {
   return (
-    <section className="h-full flex flex-col justify-center items-center md:items-start text-center md:text-left max-w-7xl mx-auto w-full px-6 relative z-10">
+    <section className="h-full flex flex-col justify-center max-w-7xl mx-auto w-full px-8 relative z-10">
       
-      {/* Decorative Background Elements (Subtle) */}
-      <div className="absolute top-10 right-0 lg:right-20 animate-enter delay-500 hidden md:block">
-          <div className="w-32 h-32 bg-purple-100 rounded-full blur-3xl opacity-60 mix-blend-multiply"></div>
-      </div>
-
-      {/* Badge - Pill Shape */}
-      <div className="animate-enter inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-100 text-purple-700 font-bold text-[11px] tracking-wide shadow-sm hover:shadow-md transition-all mb-6">
-        <Sparkles className="w-3.5 h-3.5 text-purple-500" />
-        <span>Proceso de Selección y Onboarding</span>
-      </div>
-
-      {/* Main Title */}
-      <div className="animate-enter delay-100 mb-6 relative">
-        <h1 className="text-6xl md:text-8xl lg:text-[7rem] font-brand font-black text-slate-900 tracking-tighter leading-[0.9] flex flex-col md:flex-row items-center md:items-baseline gap-4 justify-center md:justify-start">
-          fyo
-          <span className="w-4 h-4 md:w-6 md:h-6 lg:w-8 lg:h-8 rounded-full bg-gradient-to-tr from-purple-600 to-pink-500 block animate-bounce" style={{ animationDuration: '3s' }}></span>
-        </h1>
-        <h2 className="text-3xl md:text-5xl lg:text-6xl font-brand font-bold text-slate-800 tracking-tighter mt-2 pr-4">
-          Talento & Cultura
-        </h2>
-      </div>
-      
-      {/* Subtitle / Description */}
-      <div className="animate-enter delay-200 flex flex-col md:flex-row gap-6 items-start mt-4 border-l-0 md:border-l-4 border-slate-900 md:pl-8">
-         <p className="text-base md:text-xl text-slate-600 font-medium max-w-lg lg:max-w-2xl leading-relaxed">
-           Cómo atraemos, elegimos y potenciamos a los líderes del futuro. <br/>
-           <span className="text-slate-900 font-bold">Tu manual estratégico.</span>
-         </p>
-      </div>
-      
-      {/* Call to Action Button */}
-      <div className="animate-enter delay-300 mt-10 flex flex-col items-center md:items-start gap-4">
-        <button 
-            onClick={onStart}
-            className="group relative flex items-center gap-3 bg-slate-900 text-white px-8 py-4 rounded-2xl text-sm font-bold tracking-wide hover:bg-purple-700 transition-all duration-300 shadow-xl shadow-slate-900/10 hover:shadow-purple-500/20 hover:-translate-y-1 active:scale-95 ring-4 ring-transparent hover:ring-purple-100"
-        >
-            <span>Comenzar el recorrido</span>
-            <div className="bg-white/20 rounded-full p-1 group-hover:translate-x-1 transition-transform">
-                <ChevronRight className="w-4 h-4" />
+      {/* Content Container */}
+      <div className="max-w-4xl z-20">
+        
+        {/* Badge */}
+        <div className="animate-enter mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-purple-100 shadow-sm text-purple-700 font-bold text-[10px] tracking-widest uppercase cursor-default hover:bg-purple-50 transition-colors">
+                <Sparkles className="w-3 h-3" />
+                <span>Proceso de Selección</span>
             </div>
-        </button>
-        <p className="text-[11px] text-slate-400 font-medium tracking-wide pl-2 hidden md:block">
-            Tiempo de lectura: 3 min
-        </p>
+        </div>
+
+        {/* Brand Logo & Title */}
+        <div className="animate-enter delay-100 mb-10">
+            <div className="flex items-baseline leading-none mb-2">
+                <span className="text-[8rem] md:text-[10rem] font-brand font-black text-slate-900 tracking-tighter">
+                    fyo
+                </span>
+                <span className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-purple-600 mb-6 md:mb-8 ml-1"></span>
+                <span className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-pink-500 mb-12 md:mb-16 ml-[-10px] mix-blend-multiply opacity-80"></span>
+            </div>
+            
+            <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-brand font-black text-slate-800 tracking-[-0.03em] leading-[0.9] uppercase">
+                Talento & Cultura
+            </h1>
+        </div>
+        
+        {/* Subtitle with Vertical Line */}
+        <div className="animate-enter delay-200 flex gap-6 items-stretch mb-12">
+            <div className="w-1.5 bg-purple-600 rounded-full"></div>
+            <div>
+                <p className="text-xl text-slate-600 font-medium leading-relaxed tracking-tight mb-1">
+                    Cómo atraemos y elegimos a nuestros potenciales nuevos talentos.
+                </p>
+                <p className="text-xl font-bold text-purple-600">
+                    Tu manual estratégico.
+                </p>
+            </div>
+        </div>
+        
+        {/* CTA */}
+        <div className="animate-enter delay-300">
+            <button 
+                onClick={onStart}
+                className="group flex items-center gap-4 bg-slate-900 text-white px-8 py-5 rounded-full text-sm font-bold tracking-widest uppercase hover:bg-slate-800 transition-all duration-300 shadow-xl shadow-slate-900/10 hover:-translate-y-1 active:scale-95"
+            >
+                <span>Comenzar el recorrido</span>
+                <div className="bg-white/20 rounded-full p-1 group-hover:bg-white group-hover:text-slate-900 transition-all">
+                    <ChevronRight className="w-4 h-4" />
+                </div>
+            </button>
+            <p className="mt-4 text-[10px] font-bold text-slate-300 uppercase tracking-widest pl-2">
+                Tiempo de lectura: 3 min
+            </p>
+        </div>
+      </div>
+
+      {/* Background Decor */}
+      <div className="absolute top-0 right-0 w-1/2 h-full z-0 opacity-40 pointer-events-none hidden md:block">
+          <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] bg-gradient-to-bl from-purple-100 to-transparent rounded-full blur-3xl mix-blend-multiply"></div>
       </div>
 
     </section>

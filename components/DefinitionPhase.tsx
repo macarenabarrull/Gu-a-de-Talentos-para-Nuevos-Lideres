@@ -1,10 +1,10 @@
 import React from 'react';
 import { SectionHeading } from './SectionHeading';
-import { FileCheck, PenTool, Megaphone, Armchair, SearchCheck, Users } from 'lucide-react';
+import { Armchair, FileText, Search, Users, Megaphone } from 'lucide-react';
 
 export const DefinitionPhase: React.FC = () => {
   return (
-    <section className="h-full flex flex-col justify-center max-w-5xl mx-auto w-full px-6">
+    <section className="h-full flex flex-col justify-center max-w-7xl mx-auto w-full px-6">
       
       <div className="shrink-0 mb-8">
         <SectionHeading 
@@ -13,84 +13,84 @@ export const DefinitionPhase: React.FC = () => {
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center flex-1 max-h-[600px]">
           
-          {/* Left Column: Concepts */}
-          <div className="space-y-4">
-              <div className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm relative overflow-hidden group hover:shadow-lg transition-all">
-                  <div className="absolute right-0 top-0 w-32 h-32 bg-purple-50 rounded-bl-[4rem] -mr-8 -mt-8 z-0 transition-transform group-hover:scale-105"></div>
+          {/* Left: Estrategia Silla Vacía */}
+          <div className="h-full bg-white rounded-[2.5rem] p-8 lg:p-12 border border-slate-100 shadow-xl shadow-purple-500/5 relative overflow-hidden group flex flex-col justify-center">
+              {/* Decorative blob */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-purple-50 rounded-full blur-3xl -mr-20 -mt-20 opacity-60 pointer-events-none"></div>
+              
+              <div className="relative z-10">
+                  <div className="w-20 h-20 bg-purple-100 text-purple-600 rounded-3xl flex items-center justify-center mb-8 text-3xl shadow-sm group-hover:scale-110 transition-transform duration-500">
+                      <Armchair className="w-10 h-10" />
+                  </div>
                   
-                  <div className="relative z-10 flex items-start gap-4">
-                      <div className="p-3 bg-purple-100 text-purple-700 rounded-2xl mt-1">
-                          <Armchair className="w-6 h-6" />
+                  <h3 className="text-3xl md:text-4xl font-brand font-black text-slate-900 mb-6 leading-tight">
+                      Estrategia de la <br/> silla vacía
+                  </h3>
+                  
+                  <p className="text-slate-600 text-lg font-medium leading-relaxed mb-8">
+                      No se trata solo de llenar un hueco. Imaginamos quién se sienta ahí:
+                  </p>
+                  
+                  <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-0">
+                      <p className="text-purple-700 font-bold text-xl leading-tight">
+                          ¿Qué valor agrega? <br/> ¿Cómo complementa al equipo?
+                      </p>
+                  </div>
+              </div>
+          </div>
+
+          {/* Right: Steps */}
+          <div className="flex flex-col gap-10 justify-center h-full pl-0 lg:pl-10">
+              
+              {/* Step 1 */}
+              <div className="animate-enter delay-100">
+                  <div className="flex items-center gap-4 mb-5">
+                      <div className="w-12 h-12 rounded-full bg-slate-100 text-slate-400 font-black flex items-center justify-center text-xl shadow-inner">1</div>
+                      <h4 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
+                          Validamos la descripción
+                          <FileText className="w-6 h-6 text-purple-400" />
+                      </h4>
+                  </div>
+                  
+                  <div className="space-y-4 ml-2">
+                      <div className="bg-white px-6 py-4 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4 hover:shadow-md transition-all hover:-translate-y-1 hover:border-blue-100 group/item">
+                          <Search className="w-5 h-5 text-blue-500 shrink-0 group-hover/item:scale-110 transition-transform" />
+                          <p className="text-slate-600 text-sm font-medium">
+                              Revisión integral de la necesidad real del equipo.
+                          </p>
                       </div>
-                      <div>
-                          <h3 className="text-lg font-brand font-bold text-slate-900 mb-2">Estrategia de la silla vacía</h3>
-                          <p className="text-slate-600 text-sm leading-relaxed font-medium">
-                              No se trata solo de llenar un hueco. Imaginamos quién se sienta ahí: 
-                              <br/>
-                              <span className="font-bold text-purple-700">¿Qué valor agrega? ¿Cómo complementa al equipo?</span>
+                      <div className="bg-white px-6 py-4 rounded-2xl border border-slate-100 shadow-sm flex items-center gap-4 hover:shadow-md transition-all hover:-translate-y-1 hover:border-pink-100 group/item">
+                          <Users className="w-5 h-5 text-pink-500 shrink-0 group-hover/item:scale-110 transition-transform" />
+                          <p className="text-slate-600 text-sm font-medium">
+                              Definimos perfil <strong className="text-slate-900">técnico + actitudinal.</strong>
                           </p>
                       </div>
                   </div>
               </div>
 
-              <div className="bg-amber-50 p-6 rounded-2xl shadow-sm border border-amber-100 relative overflow-hidden transform hover:-translate-y-1 transition-transform group">
-                  <div className="flex items-center gap-4 relative z-10">
-                      <div className="p-3 bg-white rounded-2xl shadow-sm border border-amber-100 text-amber-500">
-                         <PenTool className="w-6 h-6" />
-                      </div>
-                      <p className="text-sm font-medium text-slate-800 leading-relaxed">
-                          "¿No tenés la Descripción de Puesto? <br/>
-                          <span className="font-bold text-amber-700">No te preocupes, la co-creamos en la reunión.</span>"
-                      </p>
-                  </div>
-              </div>
-          </div>
-
-          {/* Right Column: Process Checklist */}
-          <div className="space-y-6 pl-0 md:pl-4">
-              
-              {/* Step 1 */}
-              <div className="flex gap-4 group animate-enter delay-100 items-start">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full border-2 border-slate-100 flex items-center justify-center bg-white group-hover:border-purple-200 transition-colors">
-                      <span className="text-xl font-brand font-black text-slate-300 group-hover:text-purple-600 transition-colors">1</span>
-                  </div>
-                  <div className="w-full pt-1">
-                      <h4 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
-                          Validamos la descripción
-                          <FileCheck className="w-4 h-4 text-purple-500" />
-                      </h4>
-                      <ul className="space-y-2">
-                          <li className="flex items-start gap-3 text-sm text-slate-600 bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
-                              <SearchCheck className="w-4 h-4 text-blue-500 mt-0.5 shrink-0" />
-                              <span>Revisión integral de la necesidad real del equipo.</span>
-                          </li>
-                          <li className="flex items-start gap-3 text-sm text-slate-600 bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
-                              <Users className="w-4 h-4 text-pink-500 mt-0.5 shrink-0" />
-                              <span>Definimos perfil <strong>técnico</strong> + <strong>actitudinal</strong>.</span>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
-
               {/* Step 2 */}
-              <div className="flex gap-4 group animate-enter delay-200 items-start">
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full border-2 border-slate-100 flex items-center justify-center bg-white group-hover:border-purple-200 transition-colors">
-                      <span className="text-xl font-brand font-black text-slate-300 group-hover:text-purple-600 transition-colors">2</span>
-                  </div>
-                  <div className="w-full pt-1">
-                      <h4 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2">
+              <div className="animate-enter delay-200">
+                  <div className="flex items-center gap-4 mb-5">
+                      <div className="w-12 h-12 rounded-full bg-slate-100 text-slate-400 font-black flex items-center justify-center text-xl shadow-inner">2</div>
+                      <h4 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
                           Aviso de publicación
-                          <Megaphone className="w-4 h-4 text-purple-500" />
+                          <Megaphone className="w-6 h-6 text-purple-400" />
                       </h4>
-                      <p className="text-sm text-slate-600 bg-white p-3 rounded-xl border border-slate-100 shadow-sm">
-                          Redactamos y publicamos el aviso en conjunto, <strong className="text-purple-700">alineado 100% a las necesidades</strong> detectadas.
-                      </p>
+                  </div>
+                  
+                  <div className="ml-2">
+                      <div className="bg-white px-6 py-5 rounded-2xl border border-slate-100 shadow-sm flex items-start gap-4 hover:shadow-md transition-all hover:-translate-y-1 hover:border-purple-100">
+                          <p className="text-slate-600 text-sm font-medium leading-relaxed">
+                              Redactamos y publicamos el aviso en conjunto, <strong className="text-purple-600">alineado 100% a las necesidades</strong> detectadas.
+                          </p>
+                      </div>
                   </div>
               </div>
 
           </div>
+
       </div>
     </section>
   );

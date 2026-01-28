@@ -12,40 +12,70 @@ export const StrategicImpact: React.FC = () => {
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1 max-h-[60vh] min-h-0">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1 max-h-[60vh] min-h-0 items-center">
         
         {/* Card Component */}
         {[
             { 
                 icon: PlusCircle, 
-                color: 'text-emerald-600 bg-emerald-50', 
-                title: 'Nueva incorporación', 
-                desc: 'Cuando la vacante está presupuestada en el plan anual. Es el escenario ideal.',
-                delay: 'delay-100'
+                title: 'Nueva Incorporación', 
+                desc: 'Vacante presupuestada en el plan anual. Crecimiento planificado.',
+                gradient: 'from-emerald-400 to-teal-600',
+                shadow: 'shadow-emerald-500/30',
+                delay: 'delay-100',
+                emoji: '🌱'
             },
             { 
                 icon: RefreshCcw, 
-                color: 'text-blue-600 bg-blue-50', 
                 title: 'Reemplazo', 
-                desc: 'Ante una renuncia o desvinculación. Requiere agilidad para minimizar el impacto.',
-                delay: 'delay-200'
+                desc: 'Ante una renuncia o desvinculación. Prioridad: Agilidad.',
+                gradient: 'from-blue-500 to-indigo-600',
+                shadow: 'shadow-blue-500/30',
+                delay: 'delay-200',
+                emoji: '🔄'
             },
             { 
                 icon: AlertOctagon, 
-                color: 'text-amber-600 bg-amber-50', 
-                title: 'Fuera de presupuesto', 
-                desc: 'Una nueva necesidad no contemplada. Requiere aprobación previa del comité.',
-                delay: 'delay-300'
+                title: 'Fuera de Presupuesto', 
+                desc: 'Nueva necesidad no contemplada. Requiere aprobación de Comité.',
+                gradient: 'from-orange-400 to-red-500',
+                shadow: 'shadow-orange-500/30',
+                delay: 'delay-300',
+                emoji: '🚨'
             }
         ].map((item, idx) => (
-            <div key={idx} className={`animate-enter ${item.delay} bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:shadow-xl hover:border-slate-200 hover:-translate-y-1 transition-all duration-300 group h-full flex flex-col`}>
-                <div className={`w-14 h-14 ${item.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                    <item.icon className="w-7 h-7" />
+            <div 
+                key={idx} 
+                className={`animate-enter ${item.delay} relative group h-[320px] rounded-[2rem] p-[1px] bg-gradient-to-br from-white/50 to-white/10 hover:scale-105 transition-transform duration-500`}
+            >
+                {/* Colored Glow Background */}
+                <div className={`absolute inset-0 rounded-[2rem] bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500`} />
+                
+                {/* Main Card Content */}
+                <div className="relative h-full bg-white/80 backdrop-blur-xl rounded-[2rem] p-8 flex flex-col items-center text-center overflow-hidden border border-white/60 shadow-xl">
+                    
+                    {/* Top Gradient Bar */}
+                    <div className={`absolute top-0 left-0 w-full h-2 bg-gradient-to-r ${item.gradient}`} />
+                    
+                    <div className="mt-4 mb-6 relative">
+                         <div className={`w-20 h-20 rounded-full bg-gradient-to-br ${item.gradient} flex items-center justify-center text-white shadow-lg ${item.shadow} group-hover:rotate-12 transition-transform duration-500`}>
+                             <item.icon className="w-9 h-9" />
+                         </div>
+                         <div className="absolute -bottom-2 -right-2 text-2xl filter drop-shadow-md animate-bounce" style={{ animationDuration: '3s' }}>
+                             {item.emoji}
+                         </div>
+                    </div>
+
+                    <h3 className="text-2xl font-brand font-black text-slate-900 mb-4 leading-tight">
+                        {item.title}
+                    </h3>
+                    
+                    <p className="text-slate-600 text-sm leading-relaxed font-medium">
+                        {item.desc}
+                    </p>
+
+                    <div className={`mt-auto w-12 h-1 rounded-full bg-gradient-to-r ${item.gradient} opacity-50`} />
                 </div>
-                <h3 className="text-xl font-brand font-bold text-slate-900 mb-3">{item.title}</h3>
-                <p className="text-slate-600 text-sm leading-relaxed mt-auto font-medium">
-                    {item.desc}
-                </p>
             </div>
         ))}
 

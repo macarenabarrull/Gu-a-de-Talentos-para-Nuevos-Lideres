@@ -10,20 +10,22 @@ import {
   Handshake,
   Stethoscope,
   ClipboardList,
-  Target
+  Target,
+  ScanSearch,
+  MessageSquare
 } from 'lucide-react';
 import { ProcessStep, TimingStat, SourcingChannel, EvaluationType, KanbanColumn, StarStep, OnboardingTip, OnboardingTask } from './types';
 
-// Slide: Process Roadmap (Updated to 8 steps)
+// Slide: Process Roadmap (Updated text for accuracy)
 export const PROCESS_STEPS: ProcessStep[] = [
-  { id: 1, phase: "Paso 1", title: "Alineación", description: "Alineación inicial sobre el perfil buscado.", icon: Target },
-  { id: 2, phase: "Paso 2", title: "Comunicación", description: "Difusión interna y referidos.", icon: Megaphone },
-  { id: 3, phase: "Paso 3", title: "KickOff", description: "Validación con consultoras.", icon: Handshake },
-  { id: 4, phase: "Paso 4", title: "Entrevistas", description: "Junto a Líderes y Gerentes.", icon: Users },
-  { id: 5, phase: "Paso 5", title: "Psicotécnico", description: "Evaluación de competencias.", icon: ClipboardList },
-  { id: 6, phase: "Paso 6", title: "Propuesta", description: "Análisis y oferta formal.", icon: FileCheck },
-  { id: 7, phase: "Paso 7", title: "Médico", description: "Estudios de ley.", icon: Stethoscope },
-  { id: 8, phase: "Paso 8", title: "Onboarding", description: "Bienvenida al equipo fyo.", icon: PartyPopper }
+  { id: 1, phase: "Paso 1", title: "Relevamiento", description: "Definición estratégica del perfil junto al Líder y RRHH.", icon: Target },
+  { id: 2, phase: "Paso 2", title: "Sourcing", description: "Activación de canales: Referidos, LinkedIn y Base de Datos.", icon: ScanSearch },
+  { id: 3, phase: "Paso 3", title: "Screening", description: "Primer filtro telefónico para validar fit básico y pretensiones.", icon: MessageSquare },
+  { id: 4, phase: "Paso 4", title: "Entrevistas", description: "Evaluación profunda técnica y cultural (Líder + Equipo).", icon: Users },
+  { id: 5, phase: "Paso 5", title: "Evaluaciones", description: "Psicotécnico y validación de referencias laborales.", icon: ClipboardList },
+  { id: 6, phase: "Paso 6", title: "Oferta", description: "Negociación y presentación formal de la propuesta.", icon: FileCheck },
+  { id: 7, phase: "Paso 7", title: "Pre-ingreso", description: "Exámen médico y alta administrativa (accesos).", icon: Stethoscope },
+  { id: 8, phase: "Paso 8", title: "Inducción", description: "Bienvenida y plan de aterrizaje (Onboarding).", icon: PartyPopper }
 ];
 
 // Slide: Timing SLA

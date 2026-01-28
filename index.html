@@ -10,17 +10,40 @@
     <!-- Tailwind CSS (CDN for runtime) -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Fonts: Outfit (Geometric/Premium) + Plus Jakarta Sans (Modern/Legible) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     
+    <!-- Tailwind Configuration for Fonts -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+              brand: ['"Outfit"', 'sans-serif'],
+            },
+            animation: {
+              'spin-slow': 'spin 3s linear infinite',
+              'breathe': 'breathe 10s infinite ease-in-out',
+              'swipe': 'swipe-hand 2s ease-in-out infinite',
+            }
+          }
+        }
+      }
+    </script>
+
     <style>
       body {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Plus Jakarta Sans', sans-serif;
         cursor: none; /* Hide default cursor */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
       
       .font-brand {
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Outfit', sans-serif;
       }
       
       /* Custom Cursor */
@@ -60,7 +83,7 @@
         height: 100%;
         pointer-events: none;
         z-index: 50;
-        opacity: 0.03;
+        opacity: 0.035; /* Slightly increased for texture with new fonts */
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
       }
 
@@ -78,7 +101,7 @@
 
       .animate-enter {
         opacity: 0; /* Start hidden */
-        animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation: slideUpFade 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
 
       .delay-100 { animation-delay: 100ms; }
@@ -89,10 +112,10 @@
 
       /* Slide Transitions */
       .slide-anim-next {
-        animation: slideInRight 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation: slideInRight 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
       }
       .slide-anim-prev {
-        animation: slideInLeft 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        animation: slideInLeft 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
       }
 
       @keyframes slideInRight {
@@ -107,12 +130,9 @@
       /* Background Breathing */
       @keyframes breathe {
         0%, 100% { transform: scale(1) translate(0, 0); }
-        50% { transform: scale(1.1) translate(-10px, -10px); }
+        50% { transform: scale(1.05) translate(-10px, -10px); }
       }
-      .animate-breathe {
-        animation: breathe 10s infinite ease-in-out;
-      }
-
+      
       /* Confetti Animation */
       @keyframes confetti-fall {
         0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
@@ -131,9 +151,6 @@
         20% { opacity: 1; }
         80% { transform: translateX(-20px); opacity: 1; }
         100% { transform: translateX(-20px); opacity: 0; }
-      }
-      .animate-swipe {
-        animation: swipe-hand 2s ease-in-out infinite;
       }
 
       /* Custom Scrollbar for Kanban */
@@ -159,6 +176,7 @@
           -webkit-print-color-adjust: exact; 
           print-color-adjust: exact;
           cursor: auto;
+          font-family: 'Plus Jakarta Sans', sans-serif !important;
         }
         .cursor-dot, .cursor-outline, .bg-noise { display: none !important; }
         .no-print { display: none !important; }
