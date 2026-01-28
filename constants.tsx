@@ -6,13 +6,13 @@ import {
   UserPlus, 
   Gift, 
   Briefcase, 
-  Globe,
-  Handshake,
-  Stethoscope,
-  ClipboardList,
-  Target,
-  ScanSearch,
-  MessageSquare
+  Globe, 
+  Handshake, 
+  Stethoscope, 
+  ClipboardList, 
+  Target, 
+  ScanSearch, 
+  MessageSquare 
 } from 'lucide-react';
 import { ProcessStep, TimingStat, SourcingChannel, EvaluationType, KanbanColumn, StarStep, OnboardingTip, OnboardingTask } from './types';
 
@@ -47,9 +47,10 @@ export const SOURCING_CHANNELS: SourcingChannel[] = [
 ];
 
 // Slide: Evaluation Matrix
+// Updated Emojis for consistency
 export const EVALUATION_MATRIX: EvaluationType[] = [
-  { role: "Analistas", method: "Psicotécnico", focus: "Técnico + Cultural", emoji: "🧪" },
-  { role: "Líderes / Coord.", method: "Competencias", focus: "Gestión + Liderazgo", emoji: "🦁" },
+  { role: "Analistas", method: "Psicotécnico", focus: "Técnico + Cultural", emoji: "⚡" },
+  { role: "Líderes / Coord.", method: "Competencias", focus: "Gestión + Liderazgo", emoji: "👑" },
   { role: "Programa JP", method: "Assessment Center", focus: "Potencial + Psicotécnico", emoji: "🌟" }
 ];
 
