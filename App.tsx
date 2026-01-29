@@ -18,8 +18,8 @@ import { ArrowLeft, ArrowRight, MousePointer2, Maximize2, Minimize2, Grid, X, Ma
 // 2. The Map (ProcessTimeline)
 // 3. Definition (DefinitionPhase)
 // 4. Attraction (SourcingFunnel)
-// 5. Evaluation (SourcingStrategy)
-// 6. Expectations (TimingSection)
+// 5. Expectations (TimingSection)
+// 6. Evaluation (SourcingStrategy)
 // 7. Closing the Deal (InterviewGuide)
 // 8. The Welcome Philosophy (Onboarding)
 // 9. The Execution Tool (OnboardingKanban)
@@ -28,9 +28,9 @@ const SLIDES = [
   { component: StrategicImpact, title: "¿Cuándo Inicia?", phase: "Comienzo del proceso de selección" },
   { component: ProcessTimeline, title: "Etapas del Proceso", phase: "Etapas de selección" },
   { component: DefinitionPhase, title: "Entendamos qué buscamos", phase: "Descripción del puesto de trabajo" },
-  { component: SourcingFunnel, title: "Acciones de Atracción", phase: "Atracción" },
-  { component: SourcingStrategy, title: "Filtrar y Elegir", phase: "Evaluación" },
-  { component: TimingSection, title: "Tiempos Estimados", phase: "Expectativas" },
+  { component: SourcingFunnel, title: "Acciones de Atracción", phase: "Nuestra estrategia de atracción" },
+  { component: TimingSection, title: "Tiempos Estimados", phase: "Expectativas" }, // Moved up
+  { component: SourcingStrategy, title: "Filtrar y Elegir", phase: "Evaluación" }, // Moved down
   { component: InterviewGuide, title: "Propuesta Formal", phase: "Cierre" },
   { component: Onboarding, title: "La Experiencia", phase: "Bienvenida" }, // Moved up: Concept First
   { component: OnboardingKanban, title: "Plan de Aterrizaje", phase: "Gestión" }, // Moved down: Tool Second

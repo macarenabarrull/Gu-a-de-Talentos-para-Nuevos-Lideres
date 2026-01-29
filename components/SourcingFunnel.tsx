@@ -8,7 +8,7 @@ export const SourcingFunnel: React.FC = () => {
       
       <div className="shrink-0 mb-8">
         <SectionHeading 
-            title="Acciones de atracción" 
+            title="¿DÓNDE BUSCAMOS?" 
             subtitle="No es solo publicar un aviso. Activamos múltiples canales en simultáneo para captar talento."
         />
       </div>
@@ -42,7 +42,7 @@ export const SourcingFunnel: React.FC = () => {
                         {emojis[index]}
                     </div>
                     
-                    <h3 className="font-brand font-bold text-xl text-slate-900 mb-3 leading-tight tracking-tight">
+                    <h3 className="font-brand font-bold text-xl text-slate-900 mb-3 leading-tight tracking-tight uppercase">
                         {channel.title}
                     </h3>
                     
@@ -59,9 +59,10 @@ export const SourcingFunnel: React.FC = () => {
          })}
       </div>
       
-      <div className="mt-8 bg-slate-950 p-1 rounded-2xl animate-enter delay-500 shrink-0 mb-4 max-w-2xl mx-auto shadow-2xl shadow-slate-900/20">
-        <div className="bg-slate-900 border border-white/10 rounded-xl p-5 text-center">
-            <p className="text-slate-300 text-sm font-medium">
+      {/* Updated Bottom Bubble: Full Width & Purple Gradient */}
+      <div className="mt-8 bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 p-1 rounded-2xl animate-enter delay-500 shrink-0 mb-4 w-full shadow-2xl shadow-purple-900/20">
+        <div className="bg-gradient-to-r from-slate-900 to-purple-800 border border-white/10 rounded-xl p-5 text-center">
+            <p className="text-slate-200 text-sm font-medium">
             💡 <span className="font-bold text-white">Estrategia 360:</span> No dependemos de una sola fuente. Atacamos el mercado desde todos los ángulos.
             </p>
         </div>

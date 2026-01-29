@@ -40,10 +40,34 @@ export const TIMING_STATS: TimingStat[] = [
 
 // Slide: Sourcing Actions
 export const SOURCING_CHANNELS: SourcingChannel[] = [
-  { title: "Postulación Interna", description: "1 año antigüedad + performance.", icon: UserPlus, percentage: "Talento Interno", emoji: "🏢" },
-  { title: "Programa Referidos", description: "Si la persona pasa el período de prueba ¡giftcard!", icon: Gift, percentage: "Red de Contactos", emoji: "🎁" },
-  { title: "Jóvenes Profesionales", description: "Semillero comercial.", icon: Briefcase, percentage: "Semillero", emoji: "🎓" },
-  { title: "Búsqueda Externa", description: "Consultoras y Mercado.", icon: Globe, percentage: "Mercado Abierto", emoji: "🌎" }
+  { 
+    title: "POSTULACIÓN INTERNA", 
+    description: "Es un acuerdo entre líderes. Los candidatos deben contar con al menos 1 año de antigüedad y estar cumpliendo con los objetivos definidos. Además, la postulación debe formalizarse vía mail a Talentos.", 
+    icon: UserPlus, 
+    percentage: "Talento Interno", 
+    emoji: "🏢" 
+  },
+  { 
+    title: "PROGRAMA REFERIDO", 
+    description: "Es clave fomentar este programa. Quienes refieran candidatos recibirán una giftcard en caso de que la persona referida supere el período de prueba.", 
+    icon: Gift, 
+    percentage: "Red de Contactos", 
+    emoji: "🎁" 
+  },
+  { 
+    title: "JÓVENES PROFESIONALES", 
+    description: "Si bien es un Programa pensado para la Mesa Comercial, toda la compañía acompaña activamente el desarrollo profesional de los jóvenes profesionales.", 
+    icon: Briefcase, 
+    percentage: "Semillero", 
+    emoji: "🎓" 
+  },
+  { 
+    title: "BÚSQUEDA EXTERNA", 
+    description: "Contamos con consultoras que nos acompañan en la atracción de talentos para potenciar nuestras búsquedas.", 
+    icon: Globe, 
+    percentage: "Consultoras", 
+    emoji: "🌎" 
+  }
 ];
 
 // Slide: Evaluation Matrix
