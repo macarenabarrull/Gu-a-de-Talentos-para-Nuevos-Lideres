@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { SectionHeading } from './SectionHeading';
 import { TIMING_STATS } from '../constants';
-import { Clock, RefreshCw, Zap } from 'lucide-react';
+import { Clock, RefreshCw, Zap, SlidersHorizontal } from 'lucide-react';
 
 export const TimingSection: React.FC = () => {
   const [animate, setAnimate] = useState(false);
@@ -16,7 +16,7 @@ export const TimingSection: React.FC = () => {
         
         <div className="mb-10">
             <SectionHeading 
-                title="Tiempos estimados" 
+                title="TIEMPOS DE SELECCIÓN" 
                 subtitle="Más que una estadística, es un compromiso mutuo. La velocidad depende de nuestra sincronización."
             />
         </div>
@@ -51,7 +51,7 @@ export const TimingSection: React.FC = () => {
                         <span className="block text-4xl font-black text-slate-900 tracking-tighter">
                             {stat.range.split(' ')[0]}
                         </span>
-                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1 block">Días Hábiles</span>
+                        <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1 block">Días</span>
                     </div>
 
                     {/* Hover Glow */}
@@ -60,13 +60,24 @@ export const TimingSection: React.FC = () => {
              ))}
         </div>
 
-        <div className="mt-8 flex flex-col md:flex-row items-center justify-center gap-6 text-center">
-             <div className="flex items-center gap-3 bg-white px-5 py-2.5 rounded-full border border-slate-200 shadow-sm">
-                <RefreshCw className="w-4 h-4 text-emerald-500 animate-spin-slow" />
-                <p className="text-xs font-medium text-slate-500">
-                    Cálculo asumiendo <strong className="text-slate-900">feedback continuo</strong> (24/48hs).
-                </p>
-            </div>
+        <div className="mt-8 flex flex-col items-center justify-center gap-4 text-center">
+             
+             <div className="flex flex-wrap justify-center gap-4">
+                <div className="flex items-center gap-3 bg-white px-5 py-2.5 rounded-full border border-slate-200 shadow-sm">
+                    <RefreshCw className="w-4 h-4 text-emerald-500 animate-spin-slow" />
+                    <p className="text-xs font-medium text-slate-500">
+                        Cálculo asumiendo <strong className="text-slate-900">feedback continuo</strong>.
+                    </p>
+                </div>
+                
+                <div className="flex items-center gap-3 bg-white px-5 py-2.5 rounded-full border border-slate-200 shadow-sm">
+                    <SlidersHorizontal className="w-4 h-4 text-purple-500" />
+                    <p className="text-xs font-medium text-slate-500">
+                        Varía si el <strong className="text-slate-900">perfil se ajusta</strong> en la marcha.
+                    </p>
+                </div>
+             </div>
+
             <div className="flex items-center gap-2 text-slate-400 text-xs font-medium">
                 <Zap className="w-4 h-4 text-amber-400 fill-amber-400" />
                 <span>Tu velocidad es el acelerador.</span>
