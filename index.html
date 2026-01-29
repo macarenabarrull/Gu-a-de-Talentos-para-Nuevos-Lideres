@@ -67,11 +67,11 @@
         justify-content: center;
       }
       
-      /* Custom Cursor */
+      /* Optimized Custom Cursor */
       .cursor-dot {
         width: 8px;
         height: 8px;
-        background-color: #9333ea;
+        background-color: #9333ea; /* Purple 600 */
         position: fixed;
         top: 0;
         left: 0;
@@ -84,7 +84,7 @@
       .cursor-outline {
         width: 32px;
         height: 32px;
-        border: 1px solid rgba(147, 51, 234, 0.4);
+        border: 1.5px solid rgba(147, 51, 234, 0.5); /* Purple 600 opacity */
         position: fixed;
         top: 0;
         left: 0;
@@ -92,7 +92,18 @@
         border-radius: 50%;
         z-index: 9999;
         pointer-events: none;
-        transition: width 0.2s, height 0.2s, background-color 0.2s;
+        will-change: transform, width, height, background-color;
+        /* Removed transition on transform for faster response */
+        transition: width 0.2s cubic-bezier(0.25, 1, 0.5, 1), 
+                    height 0.2s cubic-bezier(0.25, 1, 0.5, 1), 
+                    background-color 0.2s;
+      }
+      
+      .cursor-outline.hovered {
+        width: 50px;
+        height: 50px;
+        background-color: rgba(147, 51, 234, 0.08);
+        border-color: transparent;
       }
 
       /* Noise Texture Overlay */
@@ -230,41 +241,71 @@
   <body>
     <div id="root"></div>
     <div class="bg-noise no-print"></div>
+    <!-- Custom Cursor Elements -->
     <div class="cursor-dot"></div>
     <div class="cursor-outline"></div>
+
     <script type="module" src="/index.tsx"></script>
     <script>
-      // Cursor Logic
+      // Optimized Cursor Logic
       const dot = document.querySelector('.cursor-dot');
       const outline = document.querySelector('.cursor-outline');
       
       if (dot && outline) {
+        let mouseX = 0;
+        let mouseY = 0;
+        let outlineX = 0;
+        let outlineY = 0;
+        let isMoving = false;
+
+        // Track mouse movement
         window.addEventListener('mousemove', (e) => {
-          const posX = e.clientX;
-          const posY = e.clientY;
+          mouseX = e.clientX;
+          mouseY = e.clientY;
           
-          dot.style.left = `${posX}px`;
-          dot.style.top = `${posY}px`;
-          
-          outline.animate({
-            left: `${posX}px`,
-            top: `${posY}px`
-          }, { duration: 500, fill: "forwards" });
+          if (!isMoving) {
+            isMoving = true;
+            // First move initialization
+            outlineX = mouseX;
+            outlineY = mouseY;
+          }
+
+          // Dot moves instantly
+          dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
         });
 
-        // Show cursor on interactive elements
-        const interactiveElements = document.querySelectorAll('button, a, .cursor-pointer');
-        interactiveElements.forEach(el => {
-          el.addEventListener('mouseenter', () => {
-            outline.style.width = '50px';
-            outline.style.height = '50px';
-            outline.style.backgroundColor = 'rgba(147, 51, 234, 0.1)';
-          });
-          el.addEventListener('mouseleave', () => {
-            outline.style.width = '32px';
-            outline.style.height = '32px';
-            outline.style.backgroundColor = 'transparent';
-          });
+        // Smooth animation loop for outline
+        const animate = () => {
+          // Lerp factor: 0.4 for faster response (User requested "Rápido")
+          const speed = 0.4; 
+          
+          outlineX += (mouseX - outlineX) * speed;
+          outlineY += (mouseY - outlineY) * speed;
+          
+          outline.style.transform = `translate(${outlineX}px, ${outlineY}px) translate(-50%, -50%)`;
+          
+          requestAnimationFrame(animate);
+        };
+        animate();
+
+        // Robust Hover Detection (Event Delegation)
+        // Works with React dynamic elements
+        document.addEventListener('mouseover', (e) => {
+          const target = e.target;
+          const isInteractive = target.closest('button, a, input, select, textarea, .cursor-pointer');
+          
+          if (isInteractive) {
+            outline.classList.add('hovered');
+          } else {
+            outline.classList.remove('hovered');
+          }
+        });
+        
+        document.addEventListener('mouseout', (e) => {
+           // Ensure it clears when leaving window or complex structures
+           if (e.relatedTarget === null) {
+              outline.classList.remove('hovered');
+           }
         });
       }
     </script>

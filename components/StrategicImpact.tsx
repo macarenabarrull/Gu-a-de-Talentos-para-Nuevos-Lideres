@@ -17,19 +17,19 @@ export const StrategicImpact: React.FC = () => {
         {[
             { 
                 title: 'NUEVA INCORPORACIÓN', 
-                desc: 'Vacante presupuestada en el plan anual. Crecimiento planificado.',
+                desc: 'Vacante presupuestada en el plan anual del ejercicio en vigencia. Crecimiento planificado.',
                 emoji: '🌱',
                 delay: 'delay-100'
             },
             { 
                 title: 'REEMPLAZO', 
-                desc: 'Ante una renuncia o desvinculación. Prioridad: Agilidad.',
+                desc: 'Este caso se da ante la salida de un colaborador del equipo. Es el momento de repensar el equipo y necesidades internas.',
                 emoji: '🔄',
                 delay: 'delay-200'
             },
             { 
                 title: 'FUERA DE PRESUPUESTO', 
-                desc: 'Nueva necesidad no contemplada. Requiere aprobación de Comité.',
+                desc: 'Es nueva necesidad no contemplada. Requiere aprobación de los Directores y Gerentes del área.',
                 emoji: '🚨',
                 delay: 'delay-300'
             }
@@ -59,22 +59,25 @@ export const StrategicImpact: React.FC = () => {
         ))}
       </div>
 
-      {/* New Bubble Section */}
+      {/* New Bubble Section - Updated Colors for High Contrast */}
       <div className="animate-enter delay-500 w-full">
           <div className="max-w-3xl mx-auto relative">
                {/* Visual Connectors */}
-               <div className="absolute -top-6 left-1/6 lg:left-[16%] -translate-x-1/2 w-px h-6 bg-gradient-to-b from-slate-200 to-slate-300 hidden md:block"></div>
-               <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-px h-6 bg-gradient-to-b from-slate-200 to-slate-300 hidden md:block"></div>
-               <div className="absolute -top-6 right-1/6 lg:right-[16%] translate-x-1/2 w-px h-6 bg-gradient-to-b from-slate-200 to-slate-300 hidden md:block"></div>
+               <div className="absolute -top-6 left-1/6 lg:left-[16%] -translate-x-1/2 w-px h-6 bg-gradient-to-b from-slate-200 to-indigo-500 hidden md:block"></div>
+               <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-px h-6 bg-gradient-to-b from-slate-200 to-purple-500 hidden md:block"></div>
+               <div className="absolute -top-6 right-1/6 lg:right-[16%] translate-x-1/2 w-px h-6 bg-gradient-to-b from-slate-200 to-indigo-500 hidden md:block"></div>
 
-               <div className="bg-slate-900 text-white rounded-2xl p-5 md:p-6 text-center shadow-xl shadow-slate-900/10 border border-slate-800 relative overflow-hidden group">
+               <div className="bg-gradient-to-r from-violet-700 to-indigo-800 text-white rounded-2xl p-5 md:p-6 text-center shadow-xl shadow-indigo-500/20 border border-violet-500/50 relative overflow-hidden group">
                    {/* Shine effect */}
-                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 opacity-50 group-hover:opacity-100 transition-opacity"></div>
+                   <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-white/0 via-white/30 to-white/0 opacity-50 group-hover:opacity-100 transition-opacity"></div>
                    
-                   <p className="text-sm md:text-base font-medium flex flex-col md:flex-row items-center justify-center gap-3">
-                       <span className="text-2xl animate-bounce">☝️</span>
-                       <span>En todos estos casos el proceso de selección se inicia luego de que esté la <strong className="text-purple-300">validación interna</strong>.</span>
+                   <p className="text-sm md:text-base font-medium flex flex-col md:flex-row items-center justify-center gap-3 relative z-10">
+                       <span className="text-2xl animate-bounce filter drop-shadow-md">☝️</span>
+                       <span className="drop-shadow-sm">En todos estos casos el proceso de selección se inicia luego de que esté la <strong className="text-yellow-300 font-bold tracking-wide">validación interna</strong>.</span>
                    </p>
+                   
+                   {/* Background Decor */}
+                   <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-purple-500 rounded-full blur-3xl opacity-30 pointer-events-none"></div>
                </div>
           </div>
       </div>

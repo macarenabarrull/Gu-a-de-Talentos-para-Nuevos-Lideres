@@ -25,7 +25,7 @@ import { ArrowLeft, ArrowRight, MousePointer2, Maximize2, Minimize2, Grid, X, Ma
 // 9. The Execution Tool (OnboardingKanban)
 const SLIDES = [
   { component: Hero, title: "Inicio", phase: "Portada" },
-  { component: StrategicImpact, title: "¿Cuándo Inicia?", phase: "Contexto" },
+  { component: StrategicImpact, title: "¿Cuándo Inicia?", phase: "Comienzo del proceso de selección" },
   { component: ProcessTimeline, title: "Roadmap del Proceso", phase: "Mapa" },
   { component: DefinitionPhase, title: "Entendamos qué buscamos", phase: "Definición" },
   { component: SourcingFunnel, title: "Acciones de Atracción", phase: "Atracción" },
