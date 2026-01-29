@@ -73,9 +73,9 @@ export const SOURCING_CHANNELS: SourcingChannel[] = [
 // Slide: Evaluation Matrix
 // Updated Emojis for consistency
 export const EVALUATION_MATRIX: EvaluationType[] = [
-  { role: "Analistas", method: "Psicotécnico", focus: "Técnico + Cultural", emoji: "⚡" },
-  { role: "Líderes / Coord.", method: "Competencias", focus: "Gestión + Liderazgo", emoji: "👑" },
-  { role: "Programa JP", method: "Assessment Center", focus: "Potencial + Psicotécnico", emoji: "🌟" }
+  { role: "ANALISTAS", method: "Psicotécnico", focus: "Técnico + Fit Cultural", emoji: "⚡" },
+  { role: "LÍDERES", method: "Competencias", focus: "Gestión + Liderazgo + Fit Cultural", emoji: "👑" },
+  { role: "PROGRAMA JP", method: "Assessment Center", focus: "Potencial + Psicotécnico + Trabajo en Equipo + Competencias", emoji: "🌟" }
 ];
 
 // Slide: Closing / Medical

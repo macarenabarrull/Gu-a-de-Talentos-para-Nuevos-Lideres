@@ -9,8 +9,8 @@ export const SourcingStrategy: React.FC = () => {
       
       <div className="shrink-0 mb-8">
             <SectionHeading 
-            title="Criterios de evaluación" 
-            subtitle="¿Por qué evaluamos distinto? Adaptamos la vara para medir potencial en Juniors y experiencia real en Líderes."
+            title="PROFUNDIZAMOS EL PERFIL: ¿QUÉ EVALUACIONES USAMOS?" 
+            subtitle="¿Por qué evaluamos distinto? Porque adaptamos la vara para medir potencial en Juniors y experiencia real en Líderes."
         />
       </div>
 
