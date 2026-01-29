@@ -259,9 +259,7 @@ const App: React.FC = () => {
         {isMenuOpen && (
             <div className="fixed inset-0 z-[100] bg-slate-900/20 backdrop-blur-[20px] flex items-center justify-center p-6 animate-enter duration-500">
                 <div className="bg-white/80 backdrop-blur-2xl w-full max-w-5xl rounded-[2.5rem] shadow-2xl border border-white/50 p-10 relative overflow-hidden">
-                    {/* Background noise texture inside menu */}
-                    <div className="absolute inset-0 bg-noise opacity-50 pointer-events-none"></div>
-
+                    
                     <button 
                         onClick={() => setIsMenuOpen(false)}
                         className="absolute top-8 right-8 p-3 rounded-full bg-slate-100/50 hover:bg-slate-200/80 transition-colors z-20"
@@ -269,9 +267,9 @@ const App: React.FC = () => {
                         <X className="w-6 h-6 text-slate-500" />
                     </button>
                     
-                    <h2 className="text-3xl font-brand font-black text-slate-900 mb-10 flex items-center gap-3 relative z-10 tracking-tight">
-                        <Map className="w-7 h-7 text-purple-600" />
-                        Índice
+                    <h2 className="text-4xl font-brand font-black text-slate-900 mb-10 flex items-center gap-4 relative z-10 tracking-tighter uppercase">
+                        <Map className="w-8 h-8 text-purple-600" />
+                        ÍNDICE
                     </h2>
 
                     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 relative z-10">

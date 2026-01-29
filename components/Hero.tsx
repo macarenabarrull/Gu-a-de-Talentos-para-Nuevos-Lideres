@@ -40,10 +40,10 @@ export const Hero: React.FC<HeroProps> = ({ onStart }) => {
             <div className="w-1.5 bg-purple-600 rounded-full"></div>
             <div>
                 <p className="text-xl text-slate-600 font-medium leading-relaxed tracking-tight mb-1">
-                    Cómo atraemos y elegimos a nuestros potenciales nuevos talentos.
+                    Cómo atraemos y elegimos a nuestros nuevos talentos.
                 </p>
                 <p className="text-xl font-bold text-purple-600">
-                    Tu manual estratégico.
+                    Tu guía estratégica.
                 </p>
             </div>
         </div>
