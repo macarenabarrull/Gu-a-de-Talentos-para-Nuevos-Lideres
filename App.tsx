@@ -26,8 +26,8 @@ import { ArrowLeft, ArrowRight, MousePointer2, Maximize2, Minimize2, Grid, X, Ma
 const SLIDES = [
   { component: Hero, title: "Inicio", phase: "Portada" },
   { component: StrategicImpact, title: "¿Cuándo Inicia?", phase: "Comienzo del proceso de selección" },
-  { component: ProcessTimeline, title: "Roadmap del Proceso", phase: "Mapa" },
-  { component: DefinitionPhase, title: "Entendamos qué buscamos", phase: "Definición" },
+  { component: ProcessTimeline, title: "Etapas del Proceso", phase: "Etapas de selección" },
+  { component: DefinitionPhase, title: "Entendamos qué buscamos", phase: "Descripción del puesto de trabajo" },
   { component: SourcingFunnel, title: "Acciones de Atracción", phase: "Atracción" },
   { component: SourcingStrategy, title: "Filtrar y Elegir", phase: "Evaluación" },
   { component: TimingSection, title: "Tiempos Estimados", phase: "Expectativas" },
@@ -185,7 +185,7 @@ const App: React.FC = () => {
 
         {/* Content Area */}
         <div 
-          className="flex-1 w-full relative z-10 flex items-center justify-center overflow-hidden"
+          className="flex-1 w-full relative z-10 flex items-center justify-center overflow-hidden pt-20 md:pt-12"
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}

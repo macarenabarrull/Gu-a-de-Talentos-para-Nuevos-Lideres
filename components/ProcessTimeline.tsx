@@ -20,7 +20,7 @@ export const ProcessTimeline: React.FC = () => {
     <section className="h-full flex flex-col justify-center max-w-7xl mx-auto w-full px-6 pt-4 md:pt-0 relative">
       <div className="mb-6 shrink-0 relative z-10">
         <SectionHeading 
-            title="Roadmap del Proceso" 
+            title="ETAPAS DEL PROCESO DE SELECCIÓN" 
             subtitle="El camino que recorremos juntos: desde la definición hasta el primer día."
         />
       </div>
@@ -74,10 +74,10 @@ export const ProcessTimeline: React.FC = () => {
                     onMouseLeave={() => setHoveredStep(null)}
                 >
                     
-                    {/* Desktop Arrows */}
-                    <div className="hidden lg:block absolute pointer-events-none z-20 w-full h-full">
+                    {/* Desktop Arrows - Vibrant & High Z-Index */}
+                    <div className="hidden lg:block absolute pointer-events-none z-50 w-full h-full">
                         {(isRow1 || isRow2) && (
-                            <div className="absolute top-1/2 -right-9 -translate-y-1/2 text-slate-300 bg-white rounded-full p-2 border border-slate-100 shadow-sm z-30 group-hover:scale-110 group-hover:text-purple-400 transition-all duration-300">
+                            <div className="absolute top-1/2 -right-9 -translate-y-1/2 text-white bg-gradient-to-r from-purple-500 to-pink-500 rounded-full p-2.5 shadow-lg shadow-purple-500/30 z-50 group-hover:scale-110 group-hover:shadow-xl transition-all duration-300 transform">
                                 <ArrowRight className="w-4 h-4" />
                             </div>
                         )}

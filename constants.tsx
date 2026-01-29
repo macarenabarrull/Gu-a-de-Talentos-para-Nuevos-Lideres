@@ -19,14 +19,14 @@ import { ProcessStep, TimingStat, SourcingChannel, EvaluationType, KanbanColumn,
 // Slide: Process Roadmap 
 // Standardized Emojis for "3D" look
 export const PROCESS_STEPS: ProcessStep[] = [
-  { id: 1, phase: "Paso 1", title: "Relevamiento", description: "Definición estratégica del perfil junto al Líder y RRHH.", icon: Target, emoji: "🎯" },
-  { id: 2, phase: "Paso 2", title: "Sourcing", description: "Activación de canales: Referidos, LinkedIn y Base de Datos.", icon: ScanSearch, emoji: "🌍" },
-  { id: 3, phase: "Paso 3", title: "Screening", description: "Primer filtro telefónico para validar fit básico y pretensiones.", icon: MessageSquare, emoji: "🔍" },
-  { id: 4, phase: "Paso 4", title: "Entrevistas", description: "Evaluación profunda técnica y cultural (Líder + Equipo).", icon: Users, emoji: "👥" },
-  { id: 5, phase: "Paso 5", title: "Evaluaciones", description: "Psicotécnico y validación de referencias laborales.", icon: ClipboardList, emoji: "📝" },
-  { id: 6, phase: "Paso 6", title: "Oferta", description: "Negociación y presentación formal de la propuesta.", icon: FileCheck, emoji: "✍️" },
-  { id: 7, phase: "Paso 7", title: "Pre-ingreso", description: "Exámen médico y alta administrativa (accesos).", icon: Stethoscope, emoji: "🩺" },
-  { id: 8, phase: "Paso 8", title: "Inducción", description: "Bienvenida y plan de aterrizaje (Onboarding).", icon: PartyPopper, emoji: "🚀" }
+  { id: 1, phase: "Etapa 1", title: "RELEVAMIENTO", description: "Definición estratégica del perfil junto al Líder/Gerente y TBP.", icon: Target, emoji: "🎯" },
+  { id: 2, phase: "Etapa 2", title: "COMUNICACION INTERNA", description: "Activación de Programa Referidos (importancia de fomentar) y Postulación Interna (si así se solicita).", icon: Megaphone, emoji: "🌍" },
+  { id: 3, phase: "Etapa 3", title: "HUNTING", description: "Atracción de talentos, envío de informes, filtrado de perfiles y realización de feedbacks.", icon: ScanSearch, emoji: "🔍" },
+  { id: 4, phase: "Etapa 4", title: "ENTREVISTAS", description: "Pueden ser virtuales o presenciales. Consiste en una evaluación profunda técnica y cultural (Líder + TBP).", icon: Users, emoji: "👥" },
+  { id: 5, phase: "Etapa 5", title: "EVALUACIÓN PSICOTECNICA", description: "Psicotécnico y validación de referencias laborales.", icon: ClipboardList, emoji: "📝" },
+  { id: 6, phase: "Etapa 6", title: "PROPUESTA FORMAL", description: "Negociación y presentación formal de la propuesta. Explicación integral de toda la propuesta de valor ¡es tu momento de brillar!", icon: FileCheck, emoji: "✍️" },
+  { id: 7, phase: "Etapa 7", title: "PRE-INGRESO", description: "Examen médico y alta administrativa (accesos). Importante que carguen el ticket de alta.", icon: Stethoscope, emoji: "🩺" },
+  { id: 8, phase: "Etapa 8", title: "ONBOARDING", description: "Bienvenida y almuerzo con el equipo.", icon: PartyPopper, emoji: "🚀" }
 ];
 
 // Slide: Timing SLA

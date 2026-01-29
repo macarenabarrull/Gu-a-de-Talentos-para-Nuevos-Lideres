@@ -8,7 +8,7 @@ export const DefinitionPhase: React.FC = () => {
       
       <div className="shrink-0 mb-8">
         <SectionHeading 
-            title="Definición del perfil" 
+            title="PRIMERO: ENTENDAMOS QUÉ BUSCAMOS" 
             subtitle="Antes de salir a buscar, tenemos que saber qué estamos buscando. Por eso, el primer paso es estratégico."
         />
       </div>
@@ -25,17 +25,20 @@ export const DefinitionPhase: React.FC = () => {
                       <span className="text-5xl emoji-3d">🪑</span>
                   </div>
                   
-                  <h3 className="text-3xl md:text-4xl font-brand font-black text-slate-900 mb-6 leading-tight">
-                      Estrategia de la <br/> silla vacía
+                  <h3 className="text-3xl md:text-4xl font-brand font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-indigo-600 mb-6 leading-tight uppercase">
+                      ESTRATEGIA DE LA <br/> SILLA VACÍA
                   </h3>
                   
                   <p className="text-slate-600 text-lg font-medium leading-relaxed mb-8">
                       No se trata solo de llenar un hueco. Imaginamos quién se sienta ahí:
                   </p>
                   
-                  <div className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-100">
-                      <p className="text-slate-800 font-bold text-xl leading-tight">
-                          ¿Qué valor agrega? <br/> ¿Cómo complementa al equipo?
+                  <div className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-100 shadow-sm">
+                      <p className="text-slate-800 font-bold text-lg leading-relaxed">
+                          ¿Qué valor agrega? <br/> 
+                          ¿Cómo complementa al equipo? <br/>
+                          ¿Qué necesitamos hoy? <br/>
+                          ¿Cómo lo puedo acompañar?
                       </p>
                   </div>
               </div>
