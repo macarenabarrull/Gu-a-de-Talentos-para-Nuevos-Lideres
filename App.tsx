@@ -155,12 +155,12 @@ const App: React.FC = () => {
         <div className="absolute top-[-10%] right-[-10%] w-[100vw] h-[100vw] bg-gradient-to-b from-purple-100/30 to-transparent rounded-full blur-[150px] pointer-events-none animate-breathe fixed z-0 mix-blend-multiply" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[80vw] h-[80vw] bg-gradient-to-t from-pink-100/30 to-transparent rounded-full blur-[150px] pointer-events-none animate-breathe delay-1000 fixed z-0 mix-blend-multiply" />
 
-        {/* Header - Fixed Height */}
-        <header className="w-full px-8 py-4 z-50 flex justify-between items-center bg-transparent relative shrink-0 h-16 md:h-20">
+        {/* Header - Fixed Height & Z-Index */}
+        <header className="w-full px-6 py-2 md:py-4 z-50 flex justify-between items-center bg-transparent relative shrink-0 h-16 md:h-20">
             <div className="flex items-center gap-4">
                <div>
-                  <div className="font-brand font-black text-xl tracking-tighter text-slate-900 flex items-baseline gap-1 cursor-default">
-                  fyo<span className="w-2 h-2 rounded-full bg-slate-900"></span>
+                  <div className="font-brand font-black text-lg md:text-xl tracking-tighter text-slate-900 flex items-baseline gap-1 cursor-default">
+                  fyo<span className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-slate-900"></span>
                   </div>
                </div>
             </div>
@@ -175,7 +175,7 @@ const App: React.FC = () => {
 
                 <button 
                 onClick={toggleFullscreen}
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-white/50 backdrop-blur-md border border-white/60 text-slate-500 hover:bg-white hover:text-purple-600 transition-all shadow-sm hover:shadow-lg hover:scale-105 active:scale-95"
+                className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-white/50 backdrop-blur-md border border-white/60 text-slate-500 hover:bg-white hover:text-purple-600 transition-all shadow-sm hover:shadow-lg hover:scale-105 active:scale-95"
                 title={isFullscreen ? "Salir de pantalla completa" : "Pantalla completa"}
                 >
                 {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
@@ -193,33 +193,35 @@ const App: React.FC = () => {
             </div>
         )}
 
-        {/* Content Area - SCROLLABLE to prevent overlap on small screens */}
+        {/* Content Area - NO SCROLL, FLEX FIT */}
         <div 
-          className="flex-1 w-full relative z-10 overflow-y-auto overflow-x-hidden custom-scrollbar"
+          className="flex-1 w-full relative z-10 overflow-hidden flex flex-col items-center justify-center"
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
         >
             <div 
                 key={currentSlide} 
-                className={`w-full min-h-full flex flex-col justify-center py-6 md:py-8 ${direction === 'next' ? 'slide-anim-next' : 'slide-anim-prev'}`}
+                className={`w-full h-full flex flex-col items-center justify-center ${direction === 'next' ? 'slide-anim-next' : 'slide-anim-prev'}`}
             >
-                <CurrentComponent onStart={nextSlide} onRestart={() => goToSlide(0)} />
+                <div className="w-full h-full max-w-[1600px] flex flex-col justify-center">
+                   <CurrentComponent onStart={nextSlide} onRestart={() => goToSlide(0)} />
+                </div>
             </div>
         </div>
 
         {/* Footer - Fixed Height */}
-        <footer className="w-full px-8 py-6 z-50 flex items-end justify-between bg-transparent relative shrink-0 h-20">
+        <footer className="w-full px-6 py-4 md:py-6 z-50 flex items-end justify-between bg-transparent relative shrink-0 h-20 md:h-24">
           
           {/* Interactive Progress Bar */}
-          <div className="absolute bottom-0 left-0 w-full h-[2px] bg-slate-200/50 flex group hover:h-1 transition-all duration-500">
+          <div className="absolute bottom-0 left-0 w-full h-[3px] bg-slate-200/50 flex group hover:h-1.5 transition-all duration-500">
               {SLIDES.map((_, idx) => (
                   <div 
                     key={idx}
                     onClick={() => goToSlide(idx)}
                     className="h-full flex-1 cursor-pointer hover:bg-purple-200/50 transition-colors relative"
                   >
-                     <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-slate-900/90 backdrop-blur-md text-white text-[10px] px-3 py-1.5 rounded-lg opacity-0 hover:opacity-100 transition-all whitespace-nowrap pointer-events-none mb-1 shadow-xl transform translate-y-2 hover:translate-y-0 duration-300 font-medium tracking-wide">
+                     <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-slate-900/90 backdrop-blur-md text-white text-[10px] px-3 py-1.5 rounded-lg opacity-0 hover:opacity-100 transition-all whitespace-nowrap pointer-events-none mb-1 shadow-xl transform translate-y-2 hover:translate-y-0 duration-300 font-medium tracking-wide z-50">
                         {SLIDES[idx].title}
                      </div>
                   </div>
@@ -234,10 +236,10 @@ const App: React.FC = () => {
           <div className="flex items-center gap-4 animate-enter delay-200">
               <button 
                 onClick={() => setIsMenuOpen(true)}
-                className="flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/60 backdrop-blur-xl border border-white/60 hover:shadow-xl hover:shadow-slate-200/50 hover:bg-white hover:border-white transition-all duration-300 group active:scale-95"
+                className="flex items-center gap-3 px-4 py-2 md:px-5 md:py-2.5 rounded-full bg-white/60 backdrop-blur-xl border border-white/60 hover:shadow-xl hover:shadow-slate-200/50 hover:bg-white hover:border-white transition-all duration-300 group active:scale-95"
               >
                  <Grid className="w-4 h-4 text-slate-400 group-hover:text-purple-600 transition-colors" />
-                 <span className="text-xs font-bold text-slate-600 group-hover:text-slate-900 select-none tracking-wide">
+                 <span className="text-xs font-bold text-slate-600 group-hover:text-slate-900 select-none tracking-wide hidden md:inline">
                      {(currentSlide + 1).toString().padStart(2, '0')} <span className="text-slate-300 font-normal mx-1">/</span> {SLIDES.length}
                  </span>
               </button>
@@ -248,7 +250,7 @@ const App: React.FC = () => {
               <button 
                   onClick={prevSlide}
                   disabled={currentSlide === 0}
-                  className="group relative w-12 h-12 rounded-full flex items-center justify-center border border-white/60 bg-white/40 backdrop-blur-md text-slate-500 hover:bg-white hover:text-slate-900 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:scale-95"
+                  className="group relative w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center border border-white/60 bg-white/40 backdrop-blur-md text-slate-500 hover:bg-white hover:text-slate-900 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-sm hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:scale-95"
               >
               <ArrowLeft className="w-5 h-5 transition-transform group-hover:-translate-x-0.5" />
               </button>
@@ -256,7 +258,7 @@ const App: React.FC = () => {
               <button 
                   onClick={nextSlide}
                   disabled={currentSlide === SLIDES.length - 1}
-                  className="group relative w-12 h-12 rounded-full flex items-center justify-center bg-slate-900 border border-slate-900 text-white hover:bg-purple-600 hover:border-purple-600 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-lg shadow-slate-900/20 hover:shadow-purple-500/30 hover:shadow-2xl hover:-translate-y-1 active:translate-y-0 active:scale-95"
+                  className="group relative w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center bg-slate-900 border border-slate-900 text-white hover:bg-purple-600 hover:border-purple-600 disabled:opacity-30 disabled:cursor-not-allowed transition-all shadow-lg shadow-slate-900/20 hover:shadow-purple-500/30 hover:shadow-2xl hover:-translate-y-1 active:translate-y-0 active:scale-95"
               >
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-0.5" />
               </button>

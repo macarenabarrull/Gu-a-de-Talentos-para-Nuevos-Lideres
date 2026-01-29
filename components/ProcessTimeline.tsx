@@ -12,20 +12,18 @@ export const ProcessTimeline: React.FC = () => {
   }, []);
 
   return (
-    <section className="min-h-full flex flex-col justify-center max-w-[85rem] mx-auto w-full px-8 py-8 relative">
-      <div className="mb-12 shrink-0 relative z-10">
-        <SectionHeading 
-            title="ETAPAS DEL PROCESO DE SELECCIÓN" 
+    <section className="h-full flex flex-col justify-center max-w-[90rem] mx-auto w-full px-8 py-4 relative">
+      <SectionHeading 
+            title="ETAPAS DEL PROCESO" 
             subtitle="El camino que recorremos juntos: desde la definición hasta el primer día."
-        />
-      </div>
+      />
 
-      <div className="flex-1 flex items-center justify-center relative p-2">
+      <div className="flex-1 min-h-0 relative p-2 w-full">
           
-          <div className="relative w-full z-10">
+          <div className="relative w-full h-full z-10">
             
             {/* Animated Snake Line (Desktop Only) */}
-            <svg className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible" style={{ top: '20px' }}>
+            <svg className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible" style={{ top: '10px' }}>
                 <path 
                     d="M 87.5% 25% V 50% H 12.5% V 75%" 
                     fill="none" 
@@ -34,7 +32,6 @@ export const ProcessTimeline: React.FC = () => {
                     strokeDasharray="8 8"
                     className="opacity-60"
                 />
-                 {/* The Drawing Line */}
                  <path 
                     d="M 87.5% 25% V 50% H 12.5% V 75%" 
                     fill="none" 
@@ -54,8 +51,8 @@ export const ProcessTimeline: React.FC = () => {
                 </defs>
             </svg>
 
-            {/* Grid with larger gap for arrows */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-12 gap-y-12 w-full relative z-10">
+            {/* Grid - H-FULL ensures it takes space, GAP is relative to viewport */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6 w-full h-full relative z-10">
                 {PROCESS_STEPS.map((step, index) => {
                 const isLast = index === PROCESS_STEPS.length - 1;
                 const isRow1 = index < 3; 
@@ -64,54 +61,47 @@ export const ProcessTimeline: React.FC = () => {
                 return (
                 <div 
                     key={step.id} 
-                    className="group relative animate-enter flex flex-col"
-                    style={{ animationDelay: `${index * 100}ms` }}
+                    className="group relative animate-enter flex flex-col h-full min-h-0"
+                    style={{ animationDelay: `${index * 50}ms` }}
                     onMouseEnter={() => setHoveredStep(step.id)}
                     onMouseLeave={() => setHoveredStep(null)}
                 >
                     
-                    {/* Desktop Arrows - Positioned exactly in the gap */}
+                    {/* Desktop Arrows */}
                     <div className="hidden lg:block absolute pointer-events-none z-50 w-full h-full">
                         {(isRow1 || isRow2) && (
-                            <div className="absolute top-1/2 right-[-24px] translate-x-1/2 -translate-y-1/2 text-white bg-gradient-to-r from-purple-500 to-pink-500 rounded-full p-2 shadow-lg shadow-purple-500/30 z-50 group-hover:scale-110 group-hover:shadow-xl transition-all duration-300 transform ring-4 ring-[#fafafa]">
-                                <ArrowRight className="w-3.5 h-3.5" />
+                            <div className="absolute top-1/2 right-[-20px] translate-x-1/2 -translate-y-1/2 text-white bg-gradient-to-r from-purple-500 to-pink-500 rounded-full p-1.5 shadow-lg shadow-purple-500/30 z-50 group-hover:scale-110 group-hover:shadow-xl transition-all duration-300 transform ring-4 ring-[#fafafa]">
+                                <ArrowRight className="w-3 h-3" />
                             </div>
                         )}
                     </div>
 
-                    {/* Mobile Arrows */}
-                    <div className="lg:hidden absolute bottom-[-32px] left-1/2 -translate-x-1/2 text-slate-300 z-0">
-                        {!isLast && (
-                            <ArrowRight className="w-5 h-5 rotate-90" />
-                        )}
-                    </div>
-
-                    {/* Card - Standardized Height and Padding */}
+                    {/* Card - FLEX-1 to fill grid cell height */}
                     <div className={`
-                        p-5 rounded-[1.5rem] border border-slate-100 transition-all duration-500 flex flex-col relative z-10 h-full min-h-[14rem]
-                        bg-white shadow-lg shadow-slate-200/50 hover:shadow-2xl hover:shadow-purple-500/5 hover:-translate-y-2 group-hover:border-purple-200
+                        p-3 lg:p-5 rounded-[1.5rem] border border-slate-100 transition-all duration-500 flex flex-col relative z-10 flex-1 min-h-0
+                        bg-white shadow-lg shadow-slate-200/50 hover:shadow-2xl hover:shadow-purple-500/5 hover:-translate-y-1 group-hover:border-purple-200
                     `}>
                     
                     {/* Floating Number Badge */}
-                    <div className="absolute -top-3 -right-3 w-7 h-7 rounded-lg bg-white text-slate-400 border border-slate-100 flex items-center justify-center font-black text-[10px] shadow-sm group-hover:scale-110 group-hover:text-purple-600 transition-all">
+                    <div className="absolute -top-2 -right-2 w-6 h-6 rounded-lg bg-white text-slate-400 border border-slate-100 flex items-center justify-center font-black text-[10px] shadow-sm group-hover:scale-110 group-hover:text-purple-600 transition-all">
                         {index + 1}
                     </div>
 
-                    <div className="flex justify-between items-start mb-4">
+                    <div className="flex justify-between items-start mb-2 lg:mb-4 shrink-0">
                         {/* 3D Emoji Icon Container */}
-                        <div className="icon-box-soft w-12 h-12 rounded-xl group-hover:scale-110 transition-transform duration-300 bg-slate-50/50 border-slate-100">
-                            <span className="text-2xl emoji-3d">{step.emoji}</span>
+                        <div className="icon-box-soft w-8 h-8 lg:w-12 lg:h-12 rounded-xl group-hover:scale-110 transition-transform duration-300 bg-slate-50/50 border-slate-100 flex items-center justify-center">
+                            <span className="text-base lg:text-2xl emoji-3d">{step.emoji}</span>
                         </div>
                     </div>
                     
-                    <div className="mt-auto">
-                        <span className="text-[9px] font-bold uppercase tracking-widest block mb-1 text-slate-400 group-hover:text-purple-500 transition-colors">
+                    <div className="flex-1 flex flex-col overflow-hidden">
+                        <span className="text-[8px] lg:text-[9px] font-bold uppercase tracking-widest block mb-0.5 text-slate-400 group-hover:text-purple-500 transition-colors shrink-0">
                             {step.phase}
                         </span>
-                        <h3 className="text-base font-brand font-bold leading-tight text-slate-900 mb-2">
+                        <h3 className="text-xs lg:text-sm font-brand font-bold leading-tight text-slate-900 mb-1 lg:mb-2 shrink-0">
                             {step.title}
                         </h3>
-                        <p className="text-[11px] font-medium text-slate-500 leading-relaxed group-hover:text-slate-600 line-clamp-4">
+                        <p className="text-[9px] lg:text-[11px] font-medium text-slate-500 leading-relaxed group-hover:text-slate-600 line-clamp-3 lg:line-clamp-4">
                             {step.description}
                         </p>
                     </div>
