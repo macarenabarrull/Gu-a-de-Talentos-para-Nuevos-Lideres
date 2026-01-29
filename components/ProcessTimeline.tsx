@@ -61,7 +61,10 @@ export const ProcessTimeline: React.FC = () => {
                 <div 
                     key={step.id} 
                     className="group relative animate-enter flex flex-col h-full min-h-0"
-                    style={{ animationDelay: `${index * 50}ms` }}
+                    style={{ 
+                        animationDelay: `${index * 50}ms`,
+                        zIndex: PROCESS_STEPS.length - index 
+                    }}
                     onMouseEnter={() => setHoveredStep(step.id)}
                     onMouseLeave={() => setHoveredStep(null)}
                 >
