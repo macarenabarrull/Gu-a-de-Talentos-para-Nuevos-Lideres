@@ -3,7 +3,7 @@ import { SectionHeading } from './SectionHeading';
 
 export const StrategicImpact: React.FC = () => {
   return (
-    <section className="h-full flex flex-col justify-center max-w-6xl mx-auto w-full px-6">
+    <section className="min-h-full flex flex-col justify-center max-w-6xl mx-auto w-full px-6 py-8">
       <div className="shrink-0 mb-8">
         <SectionHeading 
             title="¿CUÁNDO INICIA EL PROCESO?" 
@@ -11,7 +11,7 @@ export const StrategicImpact: React.FC = () => {
         />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 items-center">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 items-stretch">
         
         {/* Card Component */}
         {[
@@ -36,7 +36,7 @@ export const StrategicImpact: React.FC = () => {
         ].map((item, idx) => (
             <div 
                 key={idx} 
-                className={`animate-enter ${item.delay} relative group h-auto md:h-[320px] rounded-[2.5rem] bg-white border border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:shadow-purple-500/10 hover:-translate-y-2 transition-all duration-500 p-8 flex flex-col items-center text-center justify-center`}
+                className={`animate-enter ${item.delay} relative group min-h-[300px] md:h-auto lg:min-h-[340px] rounded-[2.5rem] bg-white border border-slate-100 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:shadow-purple-500/10 hover:-translate-y-2 transition-all duration-500 p-8 flex flex-col items-center text-center justify-center`}
             >
                  {/* Top Decorative Line */}
                  <div className="absolute top-8 left-1/2 -translate-x-1/2 w-12 h-1 bg-slate-100 rounded-full group-hover:bg-purple-200 transition-colors"></div>

@@ -34,7 +34,7 @@ export interface EvaluationType {
 export interface OnboardingTask {
   id: string;
   content: string;
-  tag: 'Líder' | 'RRHH' | 'Buddy' | 'Equipo' | 'TBP';
+  tag: 'Líder' | 'RRHH' | 'Buddy' | 'Equipo' | 'TBP' | 'Talento';
 }
 
 export interface KanbanColumn {

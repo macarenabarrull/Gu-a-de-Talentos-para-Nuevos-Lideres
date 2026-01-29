@@ -4,12 +4,23 @@ import { ONBOARDING_KANBAN_STRUCTURE, ALL_ONBOARDING_TASKS } from '../constants'
 import { KanbanColumn, OnboardingTask } from '../types';
 import { Plus, Trash2, GripVertical, ListPlus, RotateCcw, ChevronDown, Pencil, Sparkles } from 'lucide-react';
 
+// Fisher-Yates Shuffle Algorithm
+const shuffleArray = (array: OnboardingTask[]) => {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+};
+
 export const OnboardingKanban: React.FC = () => {
   const [columns, setColumns] = useState<KanbanColumn[]>(ONBOARDING_KANBAN_STRUCTURE);
-  const [poolTasks, setPoolTasks] = useState<OnboardingTask[]>(ALL_ONBOARDING_TASKS);
+  // Initialize with shuffled tasks
+  const [poolTasks, setPoolTasks] = useState<OnboardingTask[]>(() => shuffleArray(ALL_ONBOARDING_TASKS));
   
   const [newTaskContent, setNewTaskContent] = useState("");
-  const [newTaskTag, setNewTaskTag] = useState<'Líder' | 'TBP' | 'Equipo'>('Líder');
+  const [newTaskTag, setNewTaskTag] = useState<'Líder' | 'TBP' | 'Equipo' | 'Talento'>('Líder');
   const [isComplete, setIsComplete] = useState(false);
   const [dragOverCol, setDragOverCol] = useState<string | null>(null);
   
@@ -18,16 +29,23 @@ export const OnboardingKanban: React.FC = () => {
   const editInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const savedCols = localStorage.getItem('fyo_kanban_cols_v7');
-    const savedPool = localStorage.getItem('fyo_kanban_pool_v7');
+    // Reset local storage if version changed or if structure is empty/mismatched to new task list
+    const savedCols = localStorage.getItem('fyo_kanban_cols_v9');
+    const savedPool = localStorage.getItem('fyo_kanban_pool_v9');
     
     if (savedCols) setColumns(JSON.parse(savedCols));
-    if (savedPool) setPoolTasks(JSON.parse(savedPool));
+    if (savedPool) {
+        // If loading from save, use saved order
+        setPoolTasks(JSON.parse(savedPool));
+    } else {
+        // If fresh start, ensure shuffled
+        setPoolTasks(shuffleArray(ALL_ONBOARDING_TASKS));
+    }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('fyo_kanban_cols_v7', JSON.stringify(columns));
-    localStorage.setItem('fyo_kanban_pool_v7', JSON.stringify(poolTasks));
+    localStorage.setItem('fyo_kanban_cols_v9', JSON.stringify(columns));
+    localStorage.setItem('fyo_kanban_pool_v9', JSON.stringify(poolTasks));
     
     const hasTasksInBoard = columns.some(c => c.tasks.length > 0);
     const poolEmpty = poolTasks.length === 0;
@@ -135,17 +153,22 @@ export const OnboardingKanban: React.FC = () => {
   };
 
   const resetBoard = () => {
-    if (confirm('¿Reiniciar el tablero?')) {
+    if (confirm('¿Reiniciar el examen?')) {
         setColumns(ONBOARDING_KANBAN_STRUCTURE);
-        setPoolTasks(ALL_ONBOARDING_TASKS);
+        // Shuffle on reset
+        setPoolTasks(shuffleArray(ALL_ONBOARDING_TASKS));
         setIsComplete(false);
+        // Clear local storage for reset
+        localStorage.removeItem('fyo_kanban_cols_v9');
+        localStorage.removeItem('fyo_kanban_pool_v9');
     }
   };
 
   const getTagColor = (tag: string) => {
       switch(tag) {
           case 'Líder': return 'bg-purple-100 text-purple-700 border-purple-200';
-          case 'TBP': return 'bg-blue-100 text-blue-700 border-blue-200';
+          case 'TBP': 
+          case 'Talento': return 'bg-blue-100 text-blue-700 border-blue-200';
           case 'Equipo': return 'bg-emerald-100 text-emerald-700 border-emerald-200';
           default: return 'bg-slate-100 text-slate-700';
       }
@@ -163,8 +186,8 @@ export const OnboardingKanban: React.FC = () => {
 
       <div className="shrink-0 mb-4 flex flex-col lg:flex-row justify-between items-end gap-2">
         <SectionHeading 
-          title="Acciones Clave" 
-          subtitle="Organizá el plan de aterrizaje. Arrastrá las tarjetas para asignar los momentos."
+          title="EXAMEN SORPRESA 😈" 
+          subtitle="Vamos a ver si prestaste atención. Si querés liderar, tenés que saber priorizar. Ordená las acciones donde corresponden."
         />
         <button 
             onClick={resetBoard}
@@ -209,7 +232,7 @@ export const OnboardingKanban: React.FC = () => {
                                 className="w-full appearance-none px-3 py-2 rounded-xl border border-slate-200 text-xs font-bold text-slate-600 bg-white focus:outline-none cursor-pointer shadow-sm"
                             >
                                 <option value="Líder">Líder</option>
-                                <option value="TBP">TBP</option>
+                                <option value="Talento">Talento</option>
                                 <option value="Equipo">Equipo</option>
                             </select>
                             <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-slate-400 pointer-events-none" />

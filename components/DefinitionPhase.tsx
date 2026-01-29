@@ -4,7 +4,7 @@ import { FileText, Megaphone } from 'lucide-react';
 
 export const DefinitionPhase: React.FC = () => {
   return (
-    <section className="h-full flex flex-col justify-center max-w-7xl mx-auto w-full px-6">
+    <section className="min-h-full flex flex-col justify-center max-w-7xl mx-auto w-full px-6 py-8">
       
       <div className="shrink-0 mb-8">
         <SectionHeading 
@@ -13,10 +13,10 @@ export const DefinitionPhase: React.FC = () => {
         />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center flex-1 max-h-[600px]">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch flex-1">
           
           {/* Left: Estrategia Silla Vacía */}
-          <div className="h-full bg-white rounded-[2.5rem] p-8 lg:p-12 border border-slate-100 shadow-xl shadow-purple-500/5 relative overflow-hidden group flex flex-col justify-center">
+          <div className="min-h-[400px] bg-white rounded-[2.5rem] p-8 lg:p-12 border border-slate-100 shadow-xl shadow-purple-500/5 relative overflow-hidden group flex flex-col justify-center">
               {/* Decorative blob */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-slate-50 rounded-full blur-3xl -mr-20 -mt-20 opacity-60 pointer-events-none"></div>
               
@@ -45,12 +45,12 @@ export const DefinitionPhase: React.FC = () => {
           </div>
 
           {/* Right: Steps */}
-          <div className="flex flex-col gap-10 justify-center h-full pl-0 lg:pl-10">
+          <div className="flex flex-col gap-8 justify-center h-full pl-0 lg:pl-10">
               
               {/* Step 1 */}
               <div className="animate-enter delay-100">
                   <div className="flex items-center gap-4 mb-5">
-                      <div className="w-12 h-12 rounded-full bg-slate-100 text-slate-400 font-black flex items-center justify-center text-xl shadow-inner">1</div>
+                      <div className="w-12 h-12 rounded-full bg-slate-100 text-slate-400 font-black flex items-center justify-center text-xl shadow-inner shrink-0">1</div>
                       <h4 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
                           Validamos la descripción
                           <FileText className="w-6 h-6 text-purple-400" />
@@ -76,7 +76,7 @@ export const DefinitionPhase: React.FC = () => {
               {/* Step 2 */}
               <div className="animate-enter delay-200">
                   <div className="flex items-center gap-4 mb-5">
-                      <div className="w-12 h-12 rounded-full bg-slate-100 text-slate-400 font-black flex items-center justify-center text-xl shadow-inner">2</div>
+                      <div className="w-12 h-12 rounded-full bg-slate-100 text-slate-400 font-black flex items-center justify-center text-xl shadow-inner shrink-0">2</div>
                       <h4 className="text-2xl font-bold text-slate-900 flex items-center gap-3">
                           Aviso de publicación
                           <Megaphone className="w-6 h-6 text-purple-400" />

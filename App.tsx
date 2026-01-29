@@ -33,7 +33,7 @@ const SLIDES = [
   { component: SourcingStrategy, title: "Filtrar y Elegir", phase: "Evaluación" },
   { component: InterviewGuide, title: "Propuesta Formal", phase: "Cierre" },
   { component: Onboarding, title: "La Experiencia", phase: "Bienvenida" }, // Moved up: Concept First
-  { component: OnboardingKanban, title: "Plan de Aterrizaje", phase: "Gestión" }, // Moved down: Tool Second
+  { component: OnboardingKanban, title: "Plan de Aterrizaje", phase: "Actividad" }, // Renamed to Actividad
   { component: Closing, title: "Fin del Recorrido", phase: "Fin" }
 ];
 
@@ -119,10 +119,20 @@ const App: React.FC = () => {
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (isMenuOpen) {
-          if (e.key === 'Escape') setIsMenuOpen(false);
+      // Escape Logic priority: Menu -> Fullscreen
+      if (e.key === 'Escape') {
+        if (isMenuOpen) {
+          setIsMenuOpen(false);
           return;
+        }
+        if (document.fullscreenElement) {
+          document.exitFullscreen();
+          return;
+        }
       }
+
+      if (isMenuOpen) return;
+
       if (e.key === 'ArrowRight' || e.key === ' ') {
         e.preventDefault();
         nextSlide();
@@ -141,12 +151,12 @@ const App: React.FC = () => {
     <>
       <main className="no-print h-screen w-screen bg-[#fafafa] flex flex-col font-sans selection:bg-slate-900 selection:text-white overflow-hidden relative">
         
-        {/* Premium Atmosphere: Softer, larger, slower gradients */}
+        {/* Premium Atmosphere */}
         <div className="absolute top-[-10%] right-[-10%] w-[100vw] h-[100vw] bg-gradient-to-b from-purple-100/30 to-transparent rounded-full blur-[150px] pointer-events-none animate-breathe fixed z-0 mix-blend-multiply" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[80vw] h-[80vw] bg-gradient-to-t from-pink-100/30 to-transparent rounded-full blur-[150px] pointer-events-none animate-breathe delay-1000 fixed z-0 mix-blend-multiply" />
 
-        {/* Header - Glassmorphism 2.0 */}
-        <header className="w-full px-8 py-5 z-50 flex justify-between items-center bg-transparent relative shrink-0">
+        {/* Header - Fixed Height */}
+        <header className="w-full px-8 py-4 z-50 flex justify-between items-center bg-transparent relative shrink-0 h-16 md:h-20">
             <div className="flex items-center gap-4">
                <div>
                   <div className="font-brand font-black text-xl tracking-tighter text-slate-900 flex items-baseline gap-1 cursor-default">
@@ -183,25 +193,25 @@ const App: React.FC = () => {
             </div>
         )}
 
-        {/* Content Area */}
+        {/* Content Area - SCROLLABLE to prevent overlap on small screens */}
         <div 
-          className="flex-1 w-full relative z-10 flex items-center justify-center overflow-hidden pt-20 md:pt-12"
+          className="flex-1 w-full relative z-10 overflow-y-auto overflow-x-hidden custom-scrollbar"
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
         >
             <div 
                 key={currentSlide} 
-                className={`w-full h-full flex flex-col justify-center ${direction === 'next' ? 'slide-anim-next' : 'slide-anim-prev'}`}
+                className={`w-full min-h-full flex flex-col justify-center py-6 md:py-8 ${direction === 'next' ? 'slide-anim-next' : 'slide-anim-prev'}`}
             >
                 <CurrentComponent onStart={nextSlide} onRestart={() => goToSlide(0)} />
             </div>
         </div>
 
-        {/* Footer / Navigation */}
-        <footer className="w-full px-8 py-6 z-50 flex items-end justify-between bg-transparent relative shrink-0">
+        {/* Footer - Fixed Height */}
+        <footer className="w-full px-8 py-6 z-50 flex items-end justify-between bg-transparent relative shrink-0 h-20">
           
-          {/* Interactive Progress Bar - Glowing Line */}
+          {/* Interactive Progress Bar */}
           <div className="absolute bottom-0 left-0 w-full h-[2px] bg-slate-200/50 flex group hover:h-1 transition-all duration-500">
               {SLIDES.map((_, idx) => (
                   <div 
@@ -209,13 +219,11 @@ const App: React.FC = () => {
                     onClick={() => goToSlide(idx)}
                     className="h-full flex-1 cursor-pointer hover:bg-purple-200/50 transition-colors relative"
                   >
-                     {/* Tooltip */}
                      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-slate-900/90 backdrop-blur-md text-white text-[10px] px-3 py-1.5 rounded-lg opacity-0 hover:opacity-100 transition-all whitespace-nowrap pointer-events-none mb-1 shadow-xl transform translate-y-2 hover:translate-y-0 duration-300 font-medium tracking-wide">
                         {SLIDES[idx].title}
                      </div>
                   </div>
               ))}
-              {/* Active Indicator with Glow */}
               <div 
                 className="absolute top-0 left-0 h-full bg-gradient-to-r from-purple-600 to-pink-500 transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)] pointer-events-none shadow-[0_0_15px_rgba(192,38,211,0.5)]"
                 style={{ width: `${((currentSlide + 1) / SLIDES.length) * 100}%` }}
@@ -255,10 +263,10 @@ const App: React.FC = () => {
           </div>
         </footer>
 
-        {/* CHAPTER MENU OVERLAY - Premium Blur */}
+        {/* CHAPTER MENU OVERLAY */}
         {isMenuOpen && (
             <div className="fixed inset-0 z-[100] bg-slate-900/20 backdrop-blur-[20px] flex items-center justify-center p-6 animate-enter duration-500">
-                <div className="bg-white/80 backdrop-blur-2xl w-full max-w-5xl rounded-[2.5rem] shadow-2xl border border-white/50 p-10 relative overflow-hidden">
+                <div className="bg-white/80 backdrop-blur-2xl w-full max-w-5xl rounded-[2.5rem] shadow-2xl border border-white/50 p-10 relative overflow-hidden overflow-y-auto max-h-[90vh] custom-scrollbar">
                     
                     <button 
                         onClick={() => setIsMenuOpen(false)}
@@ -272,7 +280,7 @@ const App: React.FC = () => {
                         ÍNDICE
                     </h2>
 
-                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 relative z-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 relative z-10">
                         {SLIDES.map((slide, idx) => (
                             <button
                                 key={idx}

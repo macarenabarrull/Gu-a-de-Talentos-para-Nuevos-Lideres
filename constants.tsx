@@ -108,29 +108,60 @@ export const ONBOARDING_KANBAN_STRUCTURE: KanbanColumn[] = [
   }
 ];
 
-// All tasks for the pool
+// All tasks for the pool (Updated to match user request)
 export const ALL_ONBOARDING_TASKS: OnboardingTask[] = [
-  { id: "critical1", content: "Anuncio al equipo (48hs antes)", tag: "Líder" },
-  { id: "1", content: "Asegurar accesos y notebook", tag: "Líder" },
-  { id: "2", content: "Ficha de inducción lista", tag: "TBP" },
-  { id: "3", content: "Evitar el desorden", tag: "Equipo" },
-  { id: "4", content: "Bienvenida cálida (sonrisa)", tag: "Líder" },
-  { id: "5", content: "Presentalo con intención", tag: "Líder" },
-  { id: "6", content: "Gestión del almuerzo", tag: "Equipo" },
-  { id: "7", content: "Cierre: '¿Cómo te sentiste?'", tag: "Líder" },
-  { id: "8", content: "Buscar un Aliado (Referente)", tag: "Equipo" },
-  { id: "9", content: "Compartí tiempo (no solo)", tag: "Líder" },
-  { id: "10", content: "Feedback Período Prueba", tag: "TBP" },
-  { id: "p1", content: "Presentación al equipo", tag: "Líder" },
-  { id: "p2", content: "Configurar correo", tag: "Equipo" }
+  // LIDER Tasks
+  { id: "l1", content: "Alta de usuario - Ticket ABM", tag: "Líder" },
+  { id: "l2", content: "Presentación de propuesta de valor", tag: "Líder" },
+  { id: "l3", content: "Seguimiento y cercanía al candidato", tag: "Líder" },
+  { id: "l4", content: "Estrategia SILLA VACÍA", tag: "Líder" },
+  { id: "l5", content: "Validación de búsqueda", tag: "Líder" },
+  { id: "l6", content: "Entrevistas individuales", tag: "Líder" },
+  { id: "l7", content: "Feedback constante", tag: "Líder" },
+  { id: "l8", content: "Gestión de almuerzo", tag: "Líder" },
+  { id: "l9", content: "Reunion con equipo", tag: "Líder" },
+  { id: "l10", content: "Presentación cálida", tag: "Líder" },
+  
+  // TALENTO Tasks
+  { id: "t1", content: "Relevamiento de perfil", tag: "Talento" },
+  { id: "t2", content: "Armado de aviso", tag: "Talento" },
+  { id: "t3", content: "Armado de propuesta de valor", tag: "Talento" },
+  { id: "t4", content: "Coordinación con consultoras", tag: "Talento" },
+  { id: "t5", content: "Gestión de legajo y documentación", tag: "Talento" },
+  { id: "t6", content: "Gestión de agendas", tag: "Talento" },
+  { id: "t7", content: "Gestión de psicotécnico", tag: "Talento" },
+  { id: "t8", content: "Gestión de examen médico", tag: "Talento" },
+  { id: "t9", content: "Entrevistas individuales", tag: "Talento" }
 ];
 
 // Slide: Onboarding Tips
 export const ONBOARDING_TIPS: OnboardingTip[] = [
-  { title: "Presencia", description: "Tu cercanía hace la diferencia. Que sienta: 'Me estaban esperando'." },
-  { title: "Pertenencia", description: "Sos el primer referente. Transmitís cultura desde el minuto cero.", leaderTip: "Contale historia y anécdotas de fyo." },
-  { title: "Sembrar", description: "Lo que hacés el primer día impacta en su motivación futura.", leaderTip: "Mostrale cómo su trabajo impacta en el negocio." },
-  { title: "El Aliado", description: "Busca a alguien cercano que acompañe dudas y momentos.", leaderTip: "Elegí a alguien empático, no necesariamente el más técnico." },
-  { title: "Almuerzo", description: "Organizá con quiénes y qué. No dejes que almuerce solo/a." },
-  { title: "Cierre", description: "Terminá el día preguntando: '¿Cómo te sentiste hoy?'.", leaderTip: "Escuchá activamente, sin justificar si algo salió mal." }
+  { 
+    title: "PRESENCIA", 
+    description: "Tu cercanía hace la diferencia. Que sienta: 'Me estaban esperando', preséntalo al equipo y dale una bienvenida cálida." 
+  },
+  { 
+    title: "PERTENENCIA", 
+    description: "Sos el primer referente. Transmitís cultura desde el minuto cero.", 
+    leaderTip: "Contale historia y anécdotas de fyo." 
+  },
+  { 
+    title: "SEMBRAR", 
+    description: "Lo que hacés el primer día impacta en su motivación futura.", 
+    leaderTip: "Mostrale cómo su trabajo impacta en el negocio." 
+  },
+  { 
+    title: "ALIADO", 
+    description: "Busca a alguien cercano que acompañe dudas y momentos, que sea tu aliado en la inducción.", 
+    leaderTip: "Elegí a alguien empático y cercano que te ayude, no necesariamente el más técnico." 
+  },
+  { 
+    title: "ALMUERZO", 
+    description: "Organizá con quiénes y qué. No dejes que almuerce solo/a." 
+  },
+  { 
+    title: "FIN DEL DÍA", 
+    description: "Terminá el día o la semana preguntando: '¿Cómo te sentiste hoy?'.", 
+    leaderTip: "Escuchá activamente, sin justificar si algo salió mal." 
+  }
 ];

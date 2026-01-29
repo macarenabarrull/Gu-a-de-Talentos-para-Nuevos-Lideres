@@ -1,7 +1,7 @@
 import React from 'react';
 import { SectionHeading } from './SectionHeading';
 import { ONBOARDING_TIPS } from '../constants';
-import { HeartHandshake, Lightbulb, Trophy, AlertCircle } from 'lucide-react';
+import { HeartHandshake, Lightbulb, Trophy } from 'lucide-react';
 
 export const Onboarding: React.FC = () => {
   return (
@@ -10,8 +10,8 @@ export const Onboarding: React.FC = () => {
         {/* Header Area */}
         <div className="mb-8 shrink-0">
              <SectionHeading 
-              title="1er día fyo" 
-              subtitle="El proceso no termina con la firma. Los primeros 90 días son el momento de la verdad."
+              title="1ER DÍA FYO" 
+              subtitle="El proceso no termina con su confirmación a la propuesta. Los primeros 90 días son el momento de la verdad para un ingreso."
             />
         </div>
 
@@ -70,20 +70,16 @@ export const Onboarding: React.FC = () => {
                     <div>
                         <div className="flex items-center gap-2 mb-1">
                             <h3 className="text-xl font-brand font-black text-slate-900 tracking-wide uppercase">Período de Prueba</h3>
-                            <div className="bg-red-50 text-red-600 px-2 py-0.5 rounded text-[10px] font-bold border border-red-100 flex items-center gap-1">
-                                <AlertCircle className="w-3 h-3" />
-                                <span>Crítico</span>
-                            </div>
                         </div>
                         <p className="text-slate-600 text-sm leading-relaxed font-medium">
-                            Un mes antes de finalizar (día 60), <strong className="text-purple-600">Talento</strong> te contactará para validar la continuidad.
+                            Un mes antes de finalizar, <strong className="text-purple-600">Talento</strong> te contactará para validar la continuidad.
                         </p>
                     </div>
                 </div>
                 
-                <button className="bg-slate-900 text-white text-xs font-bold px-8 py-4 rounded-xl flex items-center gap-3 hover:bg-purple-600 transition-all shadow-lg transform hover:scale-105 active:scale-95 group border border-slate-800 shrink-0">
+                <button className="bg-purple-600 text-white text-xs font-bold px-6 py-4 rounded-xl flex items-center gap-3 hover:bg-purple-700 transition-all shadow-lg shadow-purple-200 transform hover:scale-105 active:scale-95 group border border-purple-500 shrink-0">
                     <HeartHandshake className="w-4 h-4" />
-                    <span>Agendar Feedback</span>
+                    <span>No te olvides de agendar un espacio de feedback</span>
                 </button>
             </div>
         </div>

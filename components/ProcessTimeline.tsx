@@ -12,19 +12,19 @@ export const ProcessTimeline: React.FC = () => {
   }, []);
 
   return (
-    <section className="h-full flex flex-col justify-center max-w-[85rem] mx-auto w-full px-8 pt-4 md:pt-0 relative">
-      <div className="mb-8 shrink-0 relative z-10">
+    <section className="min-h-full flex flex-col justify-center max-w-[85rem] mx-auto w-full px-8 py-8 relative">
+      <div className="mb-12 shrink-0 relative z-10">
         <SectionHeading 
             title="ETAPAS DEL PROCESO DE SELECCIÓN" 
             subtitle="El camino que recorremos juntos: desde la definición hasta el primer día."
         />
       </div>
 
-      <div className="flex-1 overflow-y-auto lg:overflow-visible flex items-center justify-center relative p-2">
+      <div className="flex-1 flex items-center justify-center relative p-2">
           
           <div className="relative w-full z-10">
             
-            {/* Animated Snake Line */}
+            {/* Animated Snake Line (Desktop Only) */}
             <svg className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible" style={{ top: '20px' }}>
                 <path 
                     d="M 87.5% 25% V 50% H 12.5% V 75%" 
@@ -88,7 +88,7 @@ export const ProcessTimeline: React.FC = () => {
 
                     {/* Card - Standardized Height and Padding */}
                     <div className={`
-                        p-5 rounded-[1.5rem] border border-slate-100 transition-all duration-500 flex flex-col relative z-10 h-full min-h-[12rem]
+                        p-5 rounded-[1.5rem] border border-slate-100 transition-all duration-500 flex flex-col relative z-10 h-full min-h-[14rem]
                         bg-white shadow-lg shadow-slate-200/50 hover:shadow-2xl hover:shadow-purple-500/5 hover:-translate-y-2 group-hover:border-purple-200
                     `}>
                     
