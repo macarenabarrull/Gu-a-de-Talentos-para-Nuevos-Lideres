@@ -54,7 +54,6 @@ export const ProcessTimeline: React.FC = () => {
             {/* Grid - H-FULL ensures it takes space, GAP is relative to viewport */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6 w-full h-full relative z-10">
                 {PROCESS_STEPS.map((step, index) => {
-                const isLast = index === PROCESS_STEPS.length - 1;
                 const isRow1 = index < 3; 
                 const isRow2 = index >= 4 && index < 7; 
                 
@@ -67,14 +66,14 @@ export const ProcessTimeline: React.FC = () => {
                     onMouseLeave={() => setHoveredStep(null)}
                 >
                     
-                    {/* Desktop Arrows */}
-                    <div className="hidden lg:block absolute pointer-events-none z-50 w-full h-full">
-                        {(isRow1 || isRow2) && (
-                            <div className="absolute top-1/2 right-[-20px] translate-x-1/2 -translate-y-1/2 text-white bg-gradient-to-r from-purple-500 to-pink-500 rounded-full p-1.5 shadow-lg shadow-purple-500/30 z-50 group-hover:scale-110 group-hover:shadow-xl transition-all duration-300 transform ring-4 ring-[#fafafa]">
-                                <ArrowRight className="w-3 h-3" />
+                    {/* Desktop Arrows - Positioned to ensure visibility */}
+                    {(isRow1 || isRow2) && (
+                        <div className="hidden lg:flex absolute top-1/2 right-[-1.5rem] translate-x-1/2 -translate-y-1/2 z-[100] pointer-events-none items-center justify-center">
+                            <div className="text-white bg-gradient-to-r from-purple-500 to-pink-500 rounded-full p-2 shadow-lg shadow-purple-500/30 group-hover:scale-110 group-hover:shadow-xl transition-all duration-300 ring-4 ring-[#fafafa]">
+                                <ArrowRight className="w-4 h-4" />
                             </div>
-                        )}
-                    </div>
+                        </div>
+                    )}
 
                     {/* Card - FLEX-1 to fill grid cell height */}
                     <div className={`

@@ -42,7 +42,7 @@ export const TIMING_STATS: TimingStat[] = [
 export const SOURCING_CHANNELS: SourcingChannel[] = [
   { 
     title: "POSTULACIÓN INTERNA", 
-    description: "Es un acuerdo entre líderes. Los candidatos deben contar con al menos 1 año de antigüedad y estar cumpliendo con los objetivos definidos. Además, la postulación debe formalizarse vía mail a Talentos.", 
+    description: "Es un acuerdo entre líderes. Los candidatos deben contar con al menos 1 año de antigüedad. Los líderes son los principales promotores de que esto ocurra.", 
     icon: UserPlus, 
     percentage: "Talento Interno", 
     emoji: "🏢" 

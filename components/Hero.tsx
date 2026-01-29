@@ -3,6 +3,7 @@ import { ChevronRight, Sparkles } from 'lucide-react';
 
 interface HeroProps {
     onStart?: () => void;
+    onRestart?: () => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({ onStart }) => {

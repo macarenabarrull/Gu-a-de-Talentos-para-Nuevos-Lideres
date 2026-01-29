@@ -8,7 +8,7 @@ import {
   ALL_ONBOARDING_TASKS,
   ONBOARDING_KANBAN_STRUCTURE
 } from '../constants';
-import { Square, CheckSquare, scissors } from 'lucide-react';
+import { Square, CheckSquare, Scissors } from 'lucide-react';
 
 export const PrintReport: React.FC = () => {
   return (
@@ -214,31 +214,33 @@ export const PrintReport: React.FC = () => {
 
       <div className="break-after-page"></div>
 
-      {/* ================= PAGE 3: WORKSHEET (ACTIVITY) ================= */}
-      <div className="min-h-[297mm] p-[10mm] relative flex flex-col bg-slate-50">
+      {/* ================= PAGE 3: WORKSHEET (ACTIVITY - OPTIMIZED FOR A4) ================= */}
+      {/* Reduced padding from 10mm to 8mm to ensure strict fit */}
+      <div className="min-h-[297mm] h-[297mm] p-[8mm] relative flex flex-col bg-slate-50 overflow-hidden box-border">
         
-        <div className="border-2 border-dashed border-slate-300 rounded-3xl p-8 h-full bg-white relative">
+        <div className="border-2 border-dashed border-slate-300 rounded-3xl p-6 h-full bg-white relative flex flex-col">
             
             {/* Cut Line Indication (Visual only) */}
             <div className="absolute top-0 right-8 -mt-3 bg-white px-2 text-slate-400 flex items-center gap-1 text-[8px] uppercase tracking-widest font-bold">
                  <span className="transform rotate-180">✂️</span> Hoja de Trabajo
             </div>
 
-            <div className="text-center mb-8">
-                <h1 className="text-3xl font-black text-slate-900 uppercase mb-2">Plan de Aterrizaje</h1>
-                <p className="text-sm text-slate-500 font-medium">Actividad Práctica: Clasificá las tareas en la columna correcta.</p>
+            <div className="text-center mb-6 shrink-0">
+                <h1 className="text-3xl font-black text-slate-900 uppercase mb-1">Plan de Aterrizaje</h1>
+                <p className="text-xs text-slate-500 font-medium">Actividad Práctica: Clasificá las tareas en la columna correcta.</p>
             </div>
 
-            {/* THE POOL */}
-            <div className="mb-8 p-6 bg-slate-50 rounded-2xl border border-slate-200">
-                <h3 className="font-bold text-slate-900 uppercase mb-4 flex items-center gap-2">
-                    <Square className="w-4 h-4 text-purple-600 fill-purple-600" /> Banco de Tareas (Para clasificar)
+            {/* THE POOL - UPDATED: 3 Columns to save vertical space */}
+            <div className="mb-6 p-4 bg-slate-50 rounded-2xl border border-slate-200 shrink-0">
+                <h3 className="font-bold text-slate-900 uppercase mb-3 flex items-center gap-2 text-xs">
+                    <Square className="w-3.5 h-3.5 text-purple-600 fill-purple-600" /> Banco de Tareas (Para clasificar)
                 </h3>
-                <div className="grid grid-cols-2 gap-2">
+                {/* Changed to grid-cols-3 to fit more items in less vertical space */}
+                <div className="grid grid-cols-3 gap-2">
                     {ALL_ONBOARDING_TASKS.map((task) => (
-                        <div key={task.id} className="flex items-center gap-2 text-[10px] p-2 bg-white rounded border border-slate-100">
-                            <div className="w-3 h-3 border border-slate-300 rounded-sm shrink-0"></div>
-                            <span className="font-medium text-slate-700">
+                        <div key={task.id} className="flex items-center gap-1.5 text-[8px] p-1.5 bg-white rounded border border-slate-100">
+                            <div className="w-2.5 h-2.5 border border-slate-300 rounded-sm shrink-0"></div>
+                            <span className="font-medium text-slate-700 leading-tight">
                                 <span className="font-bold text-slate-900 mr-1">[{task.tag}]</span>
                                 {task.content}
                             </span>
@@ -247,34 +249,34 @@ export const PrintReport: React.FC = () => {
                 </div>
             </div>
 
-            {/* THE COLUMNS (EMPTY) */}
-            <div className="grid grid-cols-3 gap-6 h-[400px]">
+            {/* THE COLUMNS (EMPTY) - Flex grow to fill available space */}
+            <div className="grid grid-cols-3 gap-4 flex-1 min-h-0">
                 {ONBOARDING_KANBAN_STRUCTURE.map((col) => (
-                    <div key={col.id} className="flex flex-col h-full border-2 border-slate-200 rounded-2xl p-4 bg-slate-50/50">
-                        <div className="text-center mb-4 pb-2 border-b border-slate-200">
-                             <div className="text-2xl mb-1">{col.emoji}</div>
-                             <h4 className="font-black text-slate-900 uppercase text-xs">{col.title}</h4>
+                    <div key={col.id} className="flex flex-col h-full border-2 border-slate-200 rounded-2xl p-3 bg-slate-50/50">
+                        <div className="text-center mb-3 pb-2 border-b border-slate-200 shrink-0">
+                             <div className="text-xl mb-1">{col.emoji}</div>
+                             <h4 className="font-black text-slate-900 uppercase text-[10px]">{col.title}</h4>
                         </div>
-                        {/* Empty Lines for writing */}
-                        <div className="flex-1 space-y-4 pt-2">
+                        {/* Empty Lines for writing - Distribute evenly */}
+                        <div className="flex-1 flex flex-col justify-evenly">
                              {[...Array(6)].map((_, i) => (
-                                 <div key={i} className="border-b border-slate-300 h-6 w-full"></div>
+                                 <div key={i} className="border-b border-slate-300 w-full h-4"></div>
                              ))}
                         </div>
                     </div>
                 ))}
             </div>
 
-            <div className="mt-8 text-center">
-                <p className="text-[10px] text-slate-400 italic">
-                    "El éxito del onboarding depende de la planificación previa. Usá esta hoja para organizar el ingreso de tu próximo colaborador."
+            <div className="mt-4 text-center shrink-0">
+                <p className="text-[9px] text-slate-400 italic">
+                    "El éxito del onboarding depende de la planificación previa."
                 </p>
             </div>
 
         </div>
 
         {/* Footer Page 3 */}
-        <div className="mt-auto pt-4 flex justify-between text-[8px] text-slate-400">
+        <div className="mt-auto pt-2 flex justify-between text-[8px] text-slate-400 shrink-0">
              <span>Guía Integral de Selección - Página 3/3 (Actividad)</span>
              <span>fyo Talento y Cultura</span>
         </div>
